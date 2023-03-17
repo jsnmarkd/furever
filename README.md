@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    Jungle
+    Furever
   <br>
 </h1>
 
