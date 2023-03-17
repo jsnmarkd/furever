@@ -46,6 +46,7 @@ npm run dev
 ```
 6. Run the App
 ```sh
+cd client
 npm start
 ```
 
