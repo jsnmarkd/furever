@@ -23,6 +23,31 @@
 
 ## Setup
 
+1. Install client Dependencies
+```sh
+cd client
+npm install
+```
+2. Install server Dependencies
+```sh
+cd server
+npm install
+```
+3. In the server folder create a .env file using the .env.example file. You can leave the .env.example file for now.
+4. Setup Database
+```sh
+npm run db:reset
+```
+5. Run the Server
+For devs - So that you don't need to restart server
+```sh
+cd server
+npm run dev
+```
+6. Run the App
+```sh
+npm start
+```
 
 ## Database
 
