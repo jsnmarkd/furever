@@ -1,6 +1,6 @@
 INSERT INTO dog_media (picture, video) VALUES
-  ('https://example.com/dogs/buddy_1.jpg', 'https://example.com/dogs/buddy_video_1.mp4'),
-  ('https://example.com/dogs/buddy_2.jpg', 'https://example.com/dogs/buddy_video_2.mp4'),
-  ('https://example.com/dogs/max_1.jpg', NULL),
-  ('https://example.com/dogs/ace_1.jpg', 'https://example.com/dogs/ace_video_1.mp4'),
-  ('https://example.com/dogs/bella_1.jpg', 'https://example.com/dogs/bella_video_1.mp4');
+  ('https://picsum.photos/400/500', 'https://www.shutterstock.com/shutterstock/videos/1068515015/preview/stock-footage-golden-retriever-eating-dog-food-from-metal-bowl-concept-of-online-shop-delivery-for-pets.webm'),
+  ('https://picsum.photos/400/500', 'https://www.shutterstock.com/shutterstock/videos/1017130072/preview/stock-footage-funny-puppy-eat-from-a-bowl.webm'),
+  ('https://picsum.photos/400/500', 'https://www.shutterstock.com/shutterstock/videos/1031036624/preview/stock-footage-beagle-puppy-trying-to-come-down.webm'),
+  ('https://picsum.photos/400/500', 'https://www.shutterstock.com/shutterstock/videos/1058381281/preview/stock-footage-jack-russell-terrier-looks-out-the-open-window-of-the-car-close-up-slow-motion.webm'),
+  ('https://picsum.photos/400/500', 'https://www.shutterstock.com/shutterstock/videos/1057720540/preview/stock-footage-close-up-shot-of-young-bearded-man-hugging-and-kissing-his-cute-friend-brown-basenji-pure-breed-dog.webm');
