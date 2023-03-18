@@ -1,6 +1,6 @@
-INSERT INTO users (id, email, password) VALUES (1, 'rick.sandchez@gmail.com', 'picklerick');
-INSERT INTO users (id, email, password) VALUES (2, 'lisa.simpson@gmail.com', 'ehhhhh');
-INSERT INTO users (id, email, password) VALUES (3, 'link@yahoo.com', 'hyrule');
-INSERT INTO users (id, email, password) VALUES (4, 'simon_bel123@mail.ca', 'dracula');
-INSERT INTO users (id, email, password) VALUES (5, 'all_might@academia.jp', 'plusUltra');
-INSERT INTO users (id, email, password) VALUES (6, 'mario@mushroomkindom.jp', 'plumber79');
+INSERT INTO users (username, email, password, first_name, last_name, profile_picture, bio) VALUES
+  ('john_doe', 'john_doe@example.com', 'password', 'John', 'Doe', 'https://example.com/profiles/john_doe.jpg', 'I love dogs!'),
+  ('jane_smith', 'jane_smith@example.com', 'password', 'Jane', 'Smith', 'https://example.com/profiles/jane_smith.jpg', 'Dog mom of three!'),
+  ('bob_johnson', 'bob_johnson@example.com', 'password', 'Bob', 'Johnson', 'https://example.com/profiles/bob_johnson.jpg', 'Dog enthusiast and trainer.'),
+  ('emily_wilson', 'emily_wilson@example.com', 'password', 'Emily', 'Wilson', 'https://example.com/profiles/emily_wilson.jpg', 'I rescue dogs and find them their forever homes.'),
+  ('will_smith', 'will_smith@example.com', 'password', 'Will', 'Smith', 'https://example.com/profiles/will_smith.jpg', 'I love dogs as much as I love acting!');
