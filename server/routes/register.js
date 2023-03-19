@@ -1,17 +1,11 @@
 const express = require('express');
-const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const pool = require('../configs/db.config.js');
 const router = express.Router();
 
-router.use(cors({
-  origin: 'http://localhost:3000'
-}));
-
-// checks registration deails once submitted
+// checks registration details once submitted
 router.post('/', (req, res) => {
-  const { username, email, password, firstName, lastName } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 10)
+  const { username, email, firstName, lastName, password, passwordConfirmation } = req.body;
 
   // checks if username exists
   pool.query('SELECT id FROM users WHERE username = $1', [username])
@@ -27,23 +21,21 @@ router.post('/', (req, res) => {
         return res.status(400).json({ error: 'Email already registered' });
       }
 
-      //checks password/confirmation match
+      // checks password/confirmation match
       if (password !== passwordConfirmation) {
         return res.status(400).json({ error: 'Passwords do not match' });
       }
-      return bcrypt.hash(password, 10);
-    })
 
-    // encrypts password and stores in db
-    .then((hashedPassword) => {
-      // adds user to db
-      return pool.query('INSERT INTO users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, email, hashedPassword, firstName, lastName]);
-    })
-    // confirmation
-    .then((result) => {
-      console.log('sucessfully created user',result.rows[0]); 
-      res.status(200).json({ message: 'User registered successfully' });
-      return res.redirect('/')
+      // encrypts password and stores in db
+      return bcrypt.hash(password, 10)
+        .then((hashedPassword) => {
+          return pool.query('INSERT INTO users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, email, hashedPassword, firstName, lastName]);
+        })
+        .then((result) => {
+          const newUser = result.rows[0];
+          console.log('Successfully created user:', result.rows[0]);
+          return res.status(200).json({ message: 'User registered successfully' });
+        });
     })
     .catch((error) => {
       console.error('Error registering user:', error);

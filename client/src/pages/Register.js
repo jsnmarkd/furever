@@ -7,30 +7,36 @@ function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('USER INFO', { firstName, lastName, username, email, password, password_confirmation});
     axios.post('http://localhost:8080/register', {
       firstName: firstName,
       lastName: lastName,
       username: username,
       email: email,
       password: password,
-      password_confirmation: password_confirmation,
+      passwordConfirmation: passwordConfirmation,
     })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error('error1',error.response.data);
-    });
-    
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error('error1', error.response.data);
+        setErrorMessage(error.response.data.error);
+      });
   };
+
   return (
     <div>
       <h1>Sign up</h1>
+      {errorMessage && (
+        <div>
+          <p>{errorMessage}</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First Name:</label>
@@ -62,7 +68,7 @@ function Register() {
         <div>
           <label htmlFor="email">Email:</label>
           <input
-            type="email"
+            type="text"
             id="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -78,15 +84,15 @@ function Register() {
           />
         </div>
         <div>
-          <label htmlFor="password_confirmation">Re-Enter Password:</label>
+          <label htmlFor="passwordConfirmation">Re-Enter Password:</label>
           <input
-            type="password_confirmation"
-            id="password_confirmation"
-            value={password_confirmation}
-            onChange={(event) => setPassword(event.target.value)}
+            type="password"
+            id="passwordConfirmation"
+            value={passwordConfirmation}
+            onChange={(event) => setPasswordConfirmation(event.target.value)}
           />
         </div>
-        
+
         <button type="submit">Submit</button>
       </form>
     </div>
