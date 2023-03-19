@@ -2,32 +2,54 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Register() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  // const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('USER INFO', {username, email, password, passwordConfirmation});
-    axios.post('/api/register', {
+    console.log('USER INFO', { firstName, lastName, username, email, password});
+    axios.post('http://localhost:8080/register', {
+      firstName: firstName,
+      lastName: lastName,
       username: username,
       email: email,
       password: password,
-      passwordConfirmation: passwordConfirmation
+      // passwordConfirmation: passwordConfirmation
     })
     .then((response) => {
       console.log(response.data);
     })
     .catch((error) => {
-      console.error(error.response.data);
+      console.error('error1',error.response.data);
     });
+    
   };
-
   return (
     <div>
       <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </div>
         <div>
           <label htmlFor="username">Username:</label>
           <input
@@ -55,15 +77,7 @@ function Register() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <div>
-          <label htmlFor="passwordConfirmation">Confirm Password:</label>
-          <input
-            type="password"
-            id="passwordConfirmation"
-            value={passwordConfirmation}
-            onChange={(event) => setPasswordConfirmation(event.target.value)}
-          />
-        </div>
+        
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -71,4 +85,3 @@ function Register() {
 }
 
 export default Register;
-
