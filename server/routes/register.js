@@ -28,22 +28,22 @@ router.post('/', (req, res) => {
       }
 
       //checks password/confirmation match
-    //   if (password !== passwordConfirmation) {
-    //     return res.status(400).json({ error: 'Passwords do not match' });
-    //   }
-    //   return bcrypt.hash(password, 10);
-    // })
-
-    // // encrypts password and stores in db
-    // .then((hashedPassword) => {
-      return pool.query('INSERT INTO users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, email, hashedPassword, firstName, lastName]);
+      if (password !== passwordConfirmation) {
+        return res.status(400).json({ error: 'Passwords do not match' });
+      }
+      return bcrypt.hash(password, 10);
     })
 
+    // encrypts password and stores in db
+    .then((hashedPassword) => {
+      // adds user to db
+      return pool.query('INSERT INTO users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, email, hashedPassword, firstName, lastName]);
+    })
+    // confirmation
     .then((result) => {
       console.log('sucessfully created user',result.rows[0]); 
-      //
-      
-      return res.status(200).json({ message: 'User registered successfully' });
+      res.status(200).json({ message: 'User registered successfully' });
+      return res.redirect('/')
     })
     .catch((error) => {
       console.error('Error registering user:', error);

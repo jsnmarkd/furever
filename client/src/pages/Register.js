@@ -11,14 +11,14 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('USER INFO', { firstName, lastName, username, email, password});
+    console.log('USER INFO', { firstName, lastName, username, email, password, password_confirmation});
     axios.post('http://localhost:8080/register', {
       firstName: firstName,
       lastName: lastName,
       username: username,
       email: email,
       password: password,
-      // passwordConfirmation: passwordConfirmation
+      password_confirmation: password_confirmation,
     })
     .then((response) => {
       console.log(response.data);
@@ -74,6 +74,15 @@ function Register() {
             type="password"
             id="password"
             value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="password_confirmation">Re-Enter Password:</label>
+          <input
+            type="password_confirmation"
+            id="password_confirmation"
+            value={password_confirmation}
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
