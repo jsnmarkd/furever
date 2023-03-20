@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import { Link, Route, Routes } from 'react-router-dom';
-import Register from './pages/Register';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+// routes
+import Router from './routes';
+// theme
+import ThemeProvider from './theme';
+// components
+import { StyledChart } from './components/chart';
+import ScrollToTop from './components/scroll-to-top';
 
-function App() {
+// ----------------------------------------------------------------------
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Link to='/register'>Register</Link>
-      <Routes>
-        <Route path='/register' element={<Register/>}/>
-      </Routes>
-      </header>
-    </div>
+    <HelmetProvider>
+      <BrowserRouter>
+        <ThemeProvider>
+          <ScrollToTop />
+          <StyledChart />
+          <Router />
+        </ThemeProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
-
-export default App;
