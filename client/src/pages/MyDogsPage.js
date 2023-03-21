@@ -23,7 +23,8 @@ import {
   TablePagination,
   Modal,
   Box,
-
+  CardHeader,
+  CardContent,
 } from '@mui/material';
 // components
 import Label from '../components/label';
@@ -38,13 +39,17 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'gender', label: 'Gender', alignRight: false },
+  { id: 'bio', label: 'Bio', alignRight: false },
   { id: 'birthday', label: 'Birthday', alignRight: false },
   { id: 'dateOfDeath', label: 'Date of Death', alignRight: false },
-  { id: 'bio', label: 'Bio', alignRight: false },
   { id: '' },
   { id: '' },
 ];
+
+
+
+
+
 
 // ----------------------------------------------------------------------
 
@@ -80,6 +85,8 @@ function applySortFilter(array, comparator, query) {
 export default function MyDogsPage() {
   const [open, setOpen] = useState(null);
 
+  const [DogModalOpen, setDogModalOpen] = useState(null);
+
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -92,6 +99,7 @@ export default function MyDogsPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
@@ -99,7 +107,6 @@ export default function MyDogsPage() {
   const handleCloseMenu = () => {
     setOpen(null);
   };
-
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -145,12 +152,12 @@ export default function MyDogsPage() {
     setFilterName(event.target.value);
   };
 
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
+  const handleOpenDogModal = (event) => {
+    setDogModalOpen(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setOpen(null);
+  const handleCloseDogModal = () => {
+    setDogModalOpen(null);
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
@@ -170,23 +177,31 @@ export default function MyDogsPage() {
           <Typography variant="h4" gutterBottom>
             MyDogs
           </Typography>
-          <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button onClick={handleOpenDogModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add Dog
           </Button>
-          <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
+       <Modal
+            open={DogModalOpen}
+            onClose={handleCloseDogModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+          <Card> 
+            {/* <CardHeader>
+              <CardContent>
+
+              </CardContent>
+            </CardHeader> */}
+            <Box>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                MyDogs
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              He was a lover of treats, belly rubs, and long walks in the park.
+              </Typography>
+        
+            </Box>
+         </Card>
         </Modal>
         </Stack>
 
@@ -206,7 +221,7 @@ export default function MyDogsPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, gender, birthday, dateOfDeath, avatarUrl, bio} = row;
+                    const { id, name, birthday, dateOfDeath, avatarUrl, bio } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -224,7 +239,7 @@ export default function MyDogsPage() {
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{gender}</TableCell>
+                
 
                         <TableCell align="left">{birthday}</TableCell>
 
