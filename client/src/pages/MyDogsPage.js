@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 // @mui
 import {
   Card,
@@ -25,6 +26,9 @@ import {
   Box,
   CardHeader,
   CardContent,
+  CardActions,
+  CardMedia,
+  Grid,
 } from '@mui/material';
 // components
 import Label from '../components/label';
@@ -42,8 +46,8 @@ const TABLE_HEAD = [
   { id: 'bio', label: 'Bio', alignRight: false },
   { id: 'birthday', label: 'Birthday', alignRight: false },
   { id: 'dateOfDeath', label: 'Date of Death', alignRight: false },
-  { id: '' },
-  { id: '' },
+  { id: 'x' },
+  { id: 'y' },
 ];
 
 
@@ -52,6 +56,8 @@ const TABLE_HEAD = [
 
 
 // ----------------------------------------------------------------------
+
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -83,9 +89,9 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function MyDogsPage() {
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState(false);
 
-  const [DogModalOpen, setDogModalOpen] = useState(null);
+  const [DogModalOpen, setDogModalOpen] = useState(false);
 
   const [page, setPage] = useState(0);
 
@@ -166,6 +172,23 @@ export default function MyDogsPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
+
+  const [userDogs, setUserDogs] = useState([]);
+
+  useEffect(() => {
+    axios.get('/dogs')
+      .then(res => {
+       
+        setUserDogs(res.data.dogs);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  // {userDogs.map((userDog, index) => <Card key={userDog.id} post={userDog} index={index} />)}
+
+
   return (
     <>
       <Helmet>
@@ -201,14 +224,36 @@ export default function MyDogsPage() {
               </Typography>
         
             </Box>
-         </Card>
+
+            <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image="/static/images/cards/contemplative-reptile.jpg"
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Lizard
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lizards are a widespread group of squamate reptiles, with over 6,000
+          species, ranging across all continents except Antarctica
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+   </Card>
         </Modal>
         </Stack>
 
         <Card>
-          {/* <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} /> */}
+
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
+
               <Table>
                 <UserListHead
                   order={order}
@@ -219,50 +264,48 @@ export default function MyDogsPage() {
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
-                <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, birthday, dateOfDeath, avatarUrl, bio } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
-
-                    return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
-                        <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
-                        </TableCell>
-
-                        <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-
                 
+                <TableBody>
+                
+                  {userDogs.map((dog) => {
+                    const selectedUser = selected.indexOf(dog.dog_name) !== -1;
+                    return ( 
+                     <TableRow hover key={dog.id} tabIndex={-1} role="checkbox" selected={selectedUser}>
+                     <TableCell padding="checkbox">
+                       <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, dog.dog_name)} />
+                     </TableCell>
 
-                        <TableCell align="left">{birthday}</TableCell>
 
-                        <TableCell align="left">{dateOfDeath}</TableCell>
+                     <TableCell component="th" scope="row" padding="none">
+                       <Stack direction="row" alignItems="center" spacing={2}>
+                         <Avatar alt={dog.dog_name} src={dog.dog_profile_picture} />
+                         <Typography variant="subtitle2" noWrap>
+                           {dog.dog_name}
+                         </Typography>
+                       </Stack>
+                     </TableCell>
 
-                        <TableCell align="left">{dateOfDeath}</TableCell>
+                     <TableCell align="left">{dog.dog_description}</TableCell>
 
-                        <TableCell align="left">{bio}</TableCell>
+                     <TableCell align="left">{dog.date_birth}</TableCell>
 
-                        {/* <TableCell align="left">{bio ? 'Yes' : 'No'}</TableCell> */}
+                     <TableCell align="left">{dog.date_passing}</TableCell>
 
-                        {/* <TableCell align="left">
-                          <Label color={(bio === 'banned' && 'error') || 'success'}>{sentenceCase(bio)}</Label>
-                        </TableCell> */}
 
-                        <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                            <Iconify icon={'eva:more-vertical-fill'} />
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
+
+                  
+
+
+                     <TableCell align="right">
+                       <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
+                         <Iconify icon={'eva:more-vertical-fill'} />
+                       </IconButton>
+                     </TableCell>
+                   </TableRow>
+
+                  )} )}
+              
+                 
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
                       <TableCell colSpan={6} />
@@ -297,15 +340,6 @@ export default function MyDogsPage() {
             </TableContainer>
           </Scrollbar>
 
-          {/* <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={USERLIST.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          /> */}
         </Card>
       </Container>
 
