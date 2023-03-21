@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { useTheme } from '@mui/material/styles';
@@ -5,6 +7,7 @@ import { Grid, Container, Typography, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
+import { HomePageCard } from '../sections/@dashboard/home';
 // sections
 import {
   AppTasks,
@@ -32,6 +35,17 @@ const SORT_OPTIONS = [
 
 export default function HomePage() {
   const theme = useTheme();
+  const [contents, setContents] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/contents')
+      .then(res => {
+        setContents(res.data.contents);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
@@ -72,12 +86,10 @@ export default function HomePage() {
               <BlogPostsSort options={SORT_OPTIONS} />
             </Stack>
           </Grid>
+        </Grid>
 
-          <Grid container spacing={3}>
-            {POSTS.map((post, index) => (
-              <BlogPostCard key={post.id} post={post} index={index} />
-            ))}
-          </Grid>
+        <Grid container spacing={3}>
+          {contents.map((content, index) => <HomePageCard key={content.id} post={content} index={index} />)}
         </Grid>
       </Container>
     </>

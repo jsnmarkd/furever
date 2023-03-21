@@ -8,6 +8,11 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register')
+const dogsRouter = require('./routes/dogs');
+const mediaRouter = require('./routes/dog_media');
+const likesRouter = require('./routes/likes');
+const contentsRouter = require('./routes/contents');
+const usersDogsRouter = require('./routes/users_dogs');
 var app = express();
 
 app.use(cors({
@@ -23,5 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
+app.use('/dogs', dogsRouter);
+app.use('/media', mediaRouter);
+app.use('/likes', likesRouter);
+app.use('/contents', contentsRouter);
+app.use('/users_dogs', usersDogsRouter);
 module.exports = app;
 
