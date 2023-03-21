@@ -12,6 +12,7 @@ const dogsRouter = require('./routes/dogs');
 const mediaRouter = require('./routes/dog_media');
 const likesRouter = require('./routes/likes');
 const contentsRouter = require('./routes/contents');
+const usersDogsRouter = require('./routes/users_dogs');
 var app = express();
 
 app.use(cors({
@@ -31,5 +32,6 @@ app.use('/dogs', dogsRouter);
 app.use('/media', mediaRouter);
 app.use('/likes', likesRouter);
 app.use('/contents', contentsRouter);
+app.use('/users_dogs', usersDogsRouter);
 module.exports = app;
 
