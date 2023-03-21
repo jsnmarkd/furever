@@ -30,7 +30,7 @@ const SORT_OPTIONS = [
 
 // ----------------------------------------------------------------------
 
-export default function HomePage() {
+export default function Page() {
   const theme = useTheme();
 
   return (
