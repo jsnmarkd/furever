@@ -8,8 +8,7 @@ import { Grid, Container, Typography, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 
-import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
-import PRODUCTS from '../_mock/products';
+import { ContentCard } from '../sections/@dashboard/content';
 
 export default function ContentPage() {
   const { id } = useParams();
@@ -26,36 +25,23 @@ export default function ContentPage() {
       });
   }, []);
   console.log(contents);
-  const {
-    media_picture,
-    comments,
-    share,
-    username,
-    user_profile_picture,
-    dog_name,
-    dog_profile_picture,
-    created_at,
-    media_description,
-    media_video,
-  } = contents;
 
   return (
     <>
       <Helmet>
-        <title> {`${dog_name}'s Memorial`} </title>
+        <title> {`${contents.dog_name}'s Memorial`} </title>
       </Helmet>
 
       <Container maxWidth="xl">
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            {`${dog_name}'s Memorial`}
+            {`${contents.dog_name}'s Memorial`}
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Edit Memorial
           </Button>
         </Stack>
-
-        <ProductList products={PRODUCTS} />
+        <ContentCard content={contents}/>
       </Container>
     </>
   );
