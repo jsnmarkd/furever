@@ -47,7 +47,7 @@ export default function ContentCard({ content }) {
   } = content
   return (
     <Card>
-      <Box sx={{ pt: '40%', position: 'relative' }}>
+      <Box sx={{ pt: '100%', position: 'relative' }}>
         <StyledProductImg alt={dog_name} src={media_picture} />
         <Tooltip title={username} arrow >
             <StyledAvatar

@@ -3,12 +3,14 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography, Button, Stack } from '@mui/material';
+import { Container, Typography, Button, Stack, Box, TextField } from '@mui/material';
+import { styled } from '@mui/joy/styles';
+import Sheet from '@mui/joy/Sheet';
+import Grid from '@mui/joy/Grid';
 // components
 import Iconify from '../components/iconify';
 
-import { ContentCard } from '../sections/@dashboard/content';
+import { ContentCard, CommentBox, CommentBox2 } from '../sections/@dashboard/content';
 
 export default function ContentPage() {
   const { id } = useParams();
@@ -26,6 +28,13 @@ export default function ContentPage() {
   }, []);
   console.log(contents);
 
+  const Item = styled(Sheet)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.vars.palette.text.tertiary,
+  }));
+
   return (
     <>
       <Helmet>
@@ -41,7 +50,16 @@ export default function ContentPage() {
             Edit Memorial
           </Button>
         </Stack>
-        <ContentCard content={contents}/>
+        <Container>
+        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+          <Grid xs={6}>
+              <ContentCard content={contents} />  
+          </Grid>
+          <Grid xs={6}>
+              <CommentBox2 />
+          </Grid>
+        </Grid>
+        </Container>
       </Container>
     </>
   );
