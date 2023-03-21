@@ -21,6 +21,9 @@ import {
   IconButton,
   TableContainer,
   TablePagination,
+  Modal,
+  Box,
+
 } from '@mui/material';
 // components
 import Label from '../components/label';
@@ -97,6 +100,7 @@ export default function MyDogsPage() {
     setOpen(null);
   };
 
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -141,6 +145,14 @@ export default function MyDogsPage() {
     setFilterName(event.target.value);
   };
 
+  const handleOpen = (event) => {
+    setOpen(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setOpen(null);
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
 
   const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
@@ -158,14 +170,28 @@ export default function MyDogsPage() {
           <Typography variant="h4" gutterBottom>
             MyDogs
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add Dog
           </Button>
+          <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box >
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Text in a modal
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+        </Modal>
         </Stack>
 
         <Card>
           {/* <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} /> */}
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
