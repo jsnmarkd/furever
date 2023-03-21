@@ -1,27 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const content = require("../db/queries/content");
+const contents = require("../db/queries/contents");
 
 router.get("/", (req, res) => {
-  media.getAllContent().then((data) => {
+  contents.getAllContent().then((data) => {
     console.log(data);
-    res.json({ content: data });
+    res.json({ contents: data });
   });
 });
 
 router.get("/dog/:id", (req, res) => {
   const dogId = req.params.id;
-  content.getContentByDogId(dogId).then((data) => {
+  contents.getContentByDogId(dogId).then((data) => {
     console.log(data);
-    res.json({ content: data });
+    res.json({ contents: data });
   });
 });
 
 router.get("/user/:id", (req, res) => {
   const userId = req.params.id;
-  content.getContentByUserId(userId).then((data) => {
+  contents.getContentByUserId(userId).then((data) => {
     console.log(data);
-    res.json({ content: data });
+    res.json({ contents: data });
   });
 });
 
