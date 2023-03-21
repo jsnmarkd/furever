@@ -8,7 +8,7 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  profile_picture TEXT,
+  user_profile_picture TEXT,
   bio TEXT,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

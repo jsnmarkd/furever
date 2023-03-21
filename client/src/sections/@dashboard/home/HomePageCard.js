@@ -58,7 +58,7 @@ HomePageCard.propTypes = {
 
 export default function HomePageCard({ post, index }) {
   console.log(post);
-  const { picture, title, comments, share, username, profile_picture, created_at, description, video } = post;
+  const { media_picture, comments, share, username, user_profile_picture, dog_name, dog_profile_picture, created_at, media_description, media_video } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
@@ -107,7 +107,7 @@ export default function HomePageCard({ post, index }) {
           />
           <StyledAvatar
             alt={username}
-            src={profile_picture}
+            src={user_profile_picture}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -118,8 +118,20 @@ export default function HomePageCard({ post, index }) {
               }),
             }}
           />
-
-          <StyledCover alt={description} src={picture} />
+          <StyledAvatar
+            alt={dog_name}
+            src={dog_profile_picture}
+            sx={{
+              ...((latestPostLarge || latestPost) && {
+                zIndex: 9,
+                top: 24,
+                left: 50,
+                width: 40,
+                height: 40,
+              }),
+            }}
+          />
+          <StyledCover alt={media_description} src={media_picture} />
         </StyledCardMedia>
 
         <CardContent
@@ -147,7 +159,7 @@ export default function HomePageCard({ post, index }) {
               }),
             }}
           >
-            {description}
+            {media_description}
           </StyledTitle>
 
           <StyledInfo>

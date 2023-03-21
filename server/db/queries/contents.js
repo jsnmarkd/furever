@@ -5,11 +5,11 @@ const getAllContent = () => {
     .query(
       `
       SELECT * FROM content_block
-      LEFT JOIN dog_media 
+      FULL OUTER JOIN dog_media 
       ON content_block.media_id = dog_media.id
-      LEFT JOIN users 
+      FULL OUTER JOIN users 
       ON content_block.user_id = users.id 
-      LEFT JOIN dogs 
+      FULL OUTER JOIN dogs 
       ON content_block.dog_id = dogs.id
       ;
       `
