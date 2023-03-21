@@ -72,12 +72,12 @@ export default function HomePage() {
               <BlogPostsSort options={SORT_OPTIONS} />
             </Stack>
           </Grid>
-
-          <Grid container spacing={3}>
-            {POSTS.map((post, index) => (
-              <BlogPostCard key={post.id} post={post} index={index} />
-            ))}
-          </Grid>
+        </Grid>
+        
+        <Grid container spacing={3}>
+          {POSTS.map((post, index) => (
+            <BlogPostCard key={post.id} post={post} index={index} />
+          ))}
         </Grid>
       </Container>
     </>
