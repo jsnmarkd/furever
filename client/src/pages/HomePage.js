@@ -59,7 +59,7 @@ export default function HomePage() {
             Memorials
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Post
+            New Memorial
           </Button>
         </Stack>
 
