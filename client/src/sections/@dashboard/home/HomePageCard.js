@@ -57,8 +57,7 @@ HomePageCard.propTypes = {
 };
 
 export default function HomePageCard({ post, index }) {
-  console.log(post);
-  const { media_picture, comments, share, username, user_profile_picture, dog_name, dog_profile_picture, created_at, media_description, media_video } = post;
+  const { id, media_picture, comments, share, username, user_profile_picture, dog_name, dog_profile_picture, created_at, media_description, media_video } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
@@ -147,7 +146,8 @@ export default function HomePageCard({ post, index }) {
           <Typography gutterBottom variant="caption" sx={{ color: 'text.disabled', display: 'block' }}>
             {fDate(created_at)}
           </Typography>
-
+          
+          <Link href={`/dashboard/content/${id}`}>
           <StyledTitle
             color="inherit"
             variant="subtitle2"
@@ -161,6 +161,7 @@ export default function HomePageCard({ post, index }) {
           >
             {media_description}
           </StyledTitle>
+          </Link>
 
           <StyledInfo>
             {POST_INFO.map((info, index) => (

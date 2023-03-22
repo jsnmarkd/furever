@@ -59,25 +59,25 @@ export default function HomePage() {
             Memorials
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Post
+            New Memorial
           </Button>
         </Stack>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Park" icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="#Park" icon={'ant-design:android-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Grooming" color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="#Grooming" color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Eat" color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary title="#Treats" color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Tricks" color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary title="#Tricks" color="error" icon={'ant-design:bug-filled'} />
           </Grid>
 
           <Grid item xs={12} md={0} lg={12}>
