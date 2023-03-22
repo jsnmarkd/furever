@@ -62,7 +62,7 @@ export default function ContentPage() {
               <ContentCard content={contents} />  
           </Grid>
           <Grid xs={6}>
-              <CommentBox2 />
+              <CommentBox2 comments={comments} />
           </Grid>
         </Grid>
         </Container>
