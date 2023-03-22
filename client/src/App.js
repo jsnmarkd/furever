@@ -7,12 +7,7 @@ import ThemeProvider from './theme';
 // components
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
-<<<<<<< HEAD
-
-
-=======
 import { AuthProvider } from './providers/AuthProvider';
->>>>>>> main
 // ----------------------------------------------------------------------
 
 export default function App() {
