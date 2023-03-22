@@ -3,7 +3,7 @@ import { React, useEffect, useRef, useState } from "react";
 
 
 
-export default function AddDogCard() {
+export default function UploadDogImg(props) {
   const [uploadURL, setUploadURL] = useState('');
 
 
@@ -17,9 +17,10 @@ export default function AddDogCard() {
       uploadPreset: 'boedy35d'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
+        console.log('Done! Here is the image info: ', result.info.url);
         console.log("resssssulllt:", result)
-        setUploadURL(result.url);
+        setUploadURL(result.info.url);
+        props.setUploadURL(result.info.url);
       }
     }
     )

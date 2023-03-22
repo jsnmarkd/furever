@@ -10,4 +10,10 @@ router.get("/", (req, res) => {
   });
 });
 
+router.post("/dogs/create", (req, res) => {
+console.log(req.body);
+res.json(req.body)
+
+});
+
 module.exports = router;

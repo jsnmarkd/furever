@@ -34,7 +34,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import AddDogCard from '../sections/@dashboard/myDogs/addDogCard';
+
 import AddDogForm from '../sections/@dashboard/myDogs/addDogForm';
 
 import { fDate } from '../utils/formatTime';
@@ -206,13 +206,14 @@ export default function MyDogsPage() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
+
             <Card>
               <Box>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                   MyDogs
                 </Typography>
               </Box>
-              <AddDogCard />
+            
               <AddDogForm  />
             </Card>
           </Modal>
