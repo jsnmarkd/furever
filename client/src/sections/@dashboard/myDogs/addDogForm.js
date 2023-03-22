@@ -6,7 +6,7 @@ import UploadDogImg from './UploadDogImg'
 
 // ----------------------------------------------------------------------
 
-export default function AddDogForm() {
+export default function AddDogForm(props) {
 
   const [uploadURL, setUploadURL] = useState('');
 
@@ -25,8 +25,9 @@ export default function AddDogForm() {
     const formJson = Object.fromEntries(formData.entries());
     formJson.dog_profile_picture = uploadURL
 
-    axios({method: "post", data: formJson, url: "http://localhost:8080/dogs"}).then((response) => {
+    axios({method: "post", data: formJson, url: "/dogs"}).then((response) => {
       console.log(response);
+      props.addNewDog(response.data);
     })
 
  

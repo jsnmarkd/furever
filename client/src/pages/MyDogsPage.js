@@ -175,6 +175,11 @@ export default function MyDogsPage() {
 
   const [userDogs, setUserDogs] = useState([]);
 
+  const addNewDog = (dog) => {
+    setUserDogs(userDogs.concat(dog));
+    setDogModalOpen(false);
+  } 
+
   useEffect(() => {
     axios
       .get('/dogs')
@@ -214,7 +219,7 @@ export default function MyDogsPage() {
                 </Typography>
               </Box>
             
-              <AddDogForm  />
+              <AddDogForm addNewDog={addNewDog} />
             </Card>
           </Modal>
         </Stack>
