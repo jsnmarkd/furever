@@ -14,7 +14,7 @@ import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
-
+import { useAuthContext } from '../../../providers/AuthProvider';
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 280;
@@ -32,9 +32,10 @@ const StyledAccount = styled('div')(({ theme }) => ({
 Nav.propTypes = {
   openNav: PropTypes.bool,
   onCloseNav: PropTypes.func,
+  user: PropTypes.object,
 };
 
-export default function Nav({ openNav, onCloseNav }) {
+export default function Nav({ openNav, onCloseNav, user }) {
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
@@ -45,6 +46,16 @@ export default function Nav({ openNav, onCloseNav }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  const getFilteredNavConfig = (user) => {
+    if (user.first_name) {
+      return navConfig;
+    } 
+      return navConfig.filter((item) => item.title !== 'user');
+  };
+
+  const filteredNavConfig = getFilteredNavConfig(user);
+  
 
   const renderContent = (
     <Scrollbar
@@ -59,23 +70,23 @@ export default function Nav({ openNav, onCloseNav }) {
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
-          <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
+         {user.first_name ? <StyledAccount>
+            <Avatar src={user.user_profile_picture} alt="photoURL" />
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
+                {user.first_name} {user.last_name}
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {account.role}
               </Typography>
             </Box>
-          </StyledAccount>
+          </StyledAccount> : null}
         </Link>
       </Box>
 
-      <NavSection data={navConfig} />
+      <NavSection data={filteredNavConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
 

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -7,13 +7,14 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@m
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../components/iconify';
-import { useAuth } from '../recoil/atoms';
-
+import { useAuthContext } from '../providers/AuthProvider';
+// client/src/pages/RegisterPage.js
+// client/src/providers/AuthProvider.js
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
   const navigate = useNavigate();
-  const { register } = useAuth();
+  const {register}  = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -49,8 +50,9 @@ export default function RegisterForm() {
     axios
       .post('http://localhost:8080/register', formData)
       .then((response) => {
-        const { username, email, firstName, lastName, password, passwordConfirmation } = formData; // Get the user data from the form data
-        register(username, email, firstName, lastName, password, passwordConfirmation); // Call the register function with the user data
+        console.log('resdata.user',response.data.user);
+        const { username, email, first_name, last_name} = response.data.user; // Get the user data from the form data
+        register(username, email, first_name, last_name); // Call the register function with the user data
         navigate('/dashboard', { replace: true });
       })
       .catch((error) => {

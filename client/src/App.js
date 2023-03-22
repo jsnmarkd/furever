@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { RecoilRoot } from 'recoil';
+// import { RecoilRoot } from 'recoil';
 // routes
 import Router from './routes';
 // theme
@@ -8,21 +8,23 @@ import ThemeProvider from './theme';
 // components
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
-
+import { AuthProvider } from './providers/AuthProvider';
 // ----------------------------------------------------------------------
 
 export default function App() {
   return (
-    
-    <HelmetProvider>
-      <BrowserRouter>
-        <ThemeProvider>
-          <ScrollToTop />
-          <StyledChart />
-          <Router />
-        </ThemeProvider>
-      </BrowserRouter>
-    </HelmetProvider>
-    
+
+    <AuthProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <ThemeProvider>
+            <ScrollToTop />
+            <StyledChart />
+            <Router />
+          </ThemeProvider>
+        </BrowserRouter>
+      </HelmetProvider>
+    </AuthProvider>
+
   );
 }

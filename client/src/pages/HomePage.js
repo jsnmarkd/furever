@@ -22,6 +22,8 @@ import {
 } from '../sections/@dashboard/app';
 // mock
 import POSTS from '../_mock/blog';
+// Import useAuthContext hook
+import { useAuthContext } from '../providers/AuthProvider';
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +38,9 @@ const SORT_OPTIONS = [
 export default function HomePage() {
   const theme = useTheme();
   const [contents, setContents] = useState([]);
+
+  // Get the user object
+  const { user } = useAuthContext();
 
   useEffect(() => {
     axios.get('http://localhost:8080/contents')
@@ -58,9 +63,11 @@ export default function HomePage() {
           <Typography variant="h4" gutterBottom>
             Memorials
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Post
-          </Button>
+          {user.first_name && (
+            <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+              New Post
+            </Button>
+          )}
         </Stack>
 
         <Grid container spacing={3}>
@@ -95,3 +102,4 @@ export default function HomePage() {
     </>
   );
 }
+

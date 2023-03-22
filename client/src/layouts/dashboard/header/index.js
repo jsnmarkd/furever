@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
+import { Box, Stack, AppBar, Toolbar, IconButton, Button } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
@@ -11,7 +12,7 @@ import Searchbar from './Searchbar';
 import ProfilePopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-
+import { useAuthContext } from '../../../providers/AuthProvider';
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 280;
@@ -43,6 +44,8 @@ Header.propTypes = {
 };
 
 export default function Header({ onOpenNav }) {
+  const { user } = useAuthContext();
+
   return (
     <StyledRoot>
       <StyledToolbar>
@@ -68,11 +71,25 @@ export default function Header({ onOpenNav }) {
             sm: 1,
           }}
         >
-          <LanguagePopover />
-          <NotificationsPopover />
-          <ProfilePopover />
+          {!user.first_name ? (
+            <Link to="/register" style={{ textDecoration: 'none' }}>
+              <Button variant="contained">
+                Register
+              </Button>
+            </Link>
+          ) : null}
+          {!user.first_name ? (
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Button variant="contained">
+                Log In
+              </Button>
+            </Link>
+          ) : null}
+          {user.first_name ? <NotificationsPopover /> : null}
+          {user.first_name ? <ProfilePopover /> : null}
         </Stack>
       </StyledToolbar>
     </StyledRoot>
   );
 }
+

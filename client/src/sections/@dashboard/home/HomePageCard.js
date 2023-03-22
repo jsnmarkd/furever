@@ -57,7 +57,7 @@ HomePageCard.propTypes = {
 };
 
 export default function HomePageCard({ post, index }) {
-  console.log(post);
+  // console.log(post);
   const { media_picture, comments, share, username, user_profile_picture, dog_name, dog_profile_picture, created_at, media_description, media_video } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;

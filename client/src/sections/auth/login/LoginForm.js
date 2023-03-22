@@ -5,13 +5,13 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@m
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
-import { useAuth } from '../../../recoil/atoms'; 
+import { useAuthContext } from '../../../providers/AuthProvider'; 
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get the login function from AuthProvider
+  const { login } = useAuthContext(); // Get the login function from AuthProvider
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
