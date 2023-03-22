@@ -10,11 +10,10 @@ function AuthProvider(props) {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState(null);
 
-  // Perform login process for the user & save authID, etc
-  // const login = function (email, password) {
-  //   setAuth(true);
-  //   setUser({});
-  // };
+  const login = function (username, email, firstName, lastName) {
+    setAuth(true);
+    setUser({ username, email, firstName, lastName });
+  };
 
   const register = function (username, email, firstName, lastName, password, passwordConfirmation) {
     setAuth(true);
@@ -28,7 +27,7 @@ function AuthProvider(props) {
   };
 
   // authContext will show these items
-  const userData = { auth, user, register, logout };
+  const userData = { auth, user, register, login, logout };
 
   // comonent to share context
   return (
