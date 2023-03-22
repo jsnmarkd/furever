@@ -8,9 +8,9 @@ router.get("/", (req, res) => {
     console.log(data);
     res.json({ dogs: data });
   });
-});
+}); 
 
-router.post("/dogs/create", (req, res) => {
+router.post("/", (req, res) => {
 console.log(req.body);
 res.json(req.body)
 
