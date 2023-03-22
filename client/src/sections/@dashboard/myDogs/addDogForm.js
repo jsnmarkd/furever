@@ -1,49 +1,98 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-// components
-import Iconify from '../../../components/iconify';
+
 
 // ----------------------------------------------------------------------
 
-export default function addDogForm() {
- 
+
+
+
+const InputField = ({ value, label, name, placeholder, type, onChange }) => (
+  <div className="form-group">
+    {label && <label htmlFor="input-field">{label}</label>}
+    <input
+      type={type}
+      value={value}
+      name={name}
+      className="form-control"
+      placeholder={placeholder}
+      onChange={onChange}
+    />
+  </div>
+);
+
+
+
+const AddDogForm = () => {
+  const [inputValue, setInputValue] = useState({ dog_name: "", dog_profile_picture: "", dog_description: "", date_birth: "", date_passing:"" });
+  const { dog_name, dog_profile_picture, dog_description, date_birth, date_passing} = inputValue;
+
+  const handleChange = (e) => {
+    const { dog_name, dog_profile_picture, dog_description, date_birth, date_passing } = e.target;
+    setInputValue((prev) => ({
+      ...prev,
+      [dog_name]: value,
+    }));
+    console.log(inputValue);
+  };
 
   return (
-    <>
-      <Stack spacing={3}>
-        <TextField name="name" label="Name" onChange={handleChange} value={formData.firstName} />
-
-        <TextField
-          name="Birthday"
-          label="Birthday"
-          type={date}
-          // InputProps={{
-          //   endAdornment: (
-          //     <InputAdornment position="end">
-          //       <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-          //         <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-          //       </IconButton>
-          //     </InputAdornment>
-          //   ),
-          // }}
-        />
-      </Stack>
-
-
-      <Stack spacing={3}>
-<TextField name="firstName" label="First Name" onChange={handleChange} value={formData.firstName} />
-        <TextField name="lastName" label="Last Name" onChange={handleChange} value={formData.lastName} />
-        <TextField name="username" label="Username" onChange={handleChange} value={formData.username} />
-        <TextField name="email" label="Email address" onChange={handleChange} value={formData.email} />
-</Stack>
-  
-
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
-        Add Dog
-      </LoadingButton>
-    </>
+     <Form>
+       <InputField
+         type="text"
+         value={dog_name}
+         placeholder="Dog's Name"
+         label="Name"
+         name="name"
+         onChange={handleChange}
+       />
+       <InputField
+         type="text"
+         value={dog_description}
+         placeholder="Add bio"
+         label="Bio"
+         name="Bio"
+         onChange={handleChange}
+       />
+        <InputField
+         type="text"
+         value={date_birth}
+         placeholder="Add birthday"
+         label="Birthday"
+         name="Birthday"
+         onChange={handleChange}
+       />
+          <InputField
+         type="text"
+         value={date_passing}
+         placeholder="Death anniversary"
+         label="Date of passing"
+         name="Date of passing"
+         onChange={handleChange}
+       />
+       <Button color="primary">Add</Button>{" "}
+       <Button color="secondary">Cancel</Button>
+     </Form>
   );
-}
+};
+
+export default {AddDogForm, InputField };
+
+
+<Box
+component="form"
+sx={{
+  '& .MuiTextField-root': { m: 1, width: '25ch' },
+}}
+noValidate
+autoComplete="off"
+>
+<div>
+<TextField
+  required
+  id="filled-required"
+  label="Required"
+  defaultValue="Name"
+  variant="filled"
+/>
+</div>
+</Box>

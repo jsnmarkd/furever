@@ -3,6 +3,7 @@ import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
 // @mui
 import {
   Card,
@@ -29,7 +30,11 @@ import {
   CardActions,
   CardMedia,
   Grid,
+  TextField,
 } from '@mui/material';
+
+import AddDogCard from '../sections/@dashboard/myDogs/addDogCard';
+
 // components
 import Label from '../components/label';
 import Iconify from '../components/iconify';
@@ -50,14 +55,7 @@ const TABLE_HEAD = [
   { id: 'y' },
 ];
 
-
-
-
-
-
 // ----------------------------------------------------------------------
-
-
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -104,7 +102,6 @@ export default function MyDogsPage() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -159,11 +156,11 @@ export default function MyDogsPage() {
   };
 
   const handleOpenDogModal = (event) => {
-    setDogModalOpen(event.currentTarget);
+    setDogModalOpen(true);
   };
 
   const handleCloseDogModal = () => {
-    setDogModalOpen(null);
+    setDogModalOpen(false);
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
@@ -172,22 +169,18 @@ export default function MyDogsPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
-
   const [userDogs, setUserDogs] = useState([]);
 
   useEffect(() => {
-    axios.get('/dogs')
-      .then(res => {
-       
+    axios
+      .get('/dogs')
+      .then((res) => {
         setUserDogs(res.data.dogs);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  // {userDogs.map((userDog, index) => <Card key={userDog.id} post={userDog} index={index} />)}
-
 
   return (
     <>
@@ -203,57 +196,57 @@ export default function MyDogsPage() {
           <Button onClick={handleOpenDogModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add Dog
           </Button>
-       <Modal
+          <Modal
             open={DogModalOpen}
             onClose={handleCloseDogModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-          <Card> 
-            {/* <CardHeader>
-              <CardContent>
+            <Card>
+              <Box>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  MyDogs
+                </Typography>
+              </Box>
 
-              </CardContent>
-            </CardHeader> */}
-            <Box>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                MyDogs
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              He was a lover of treats, belly rubs, and long walks in the park.
-              </Typography>
-        
-            </Box>
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiTextField-root': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <div>
+                  <TextField required id="filled-required" label="Required" defaultValue="Name" variant="filled" />
+                </div>
 
-            <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-   </Card>
-        </Modal>
+                <div>
+                  <TextField required id="filled-required" label="Required" defaultValue="Bio" variant="filled" />
+                </div>
+
+                <div>
+                  <TextField required id="filled-required" label="Required" defaultValue="Birthday" variant="filled" />
+                </div>
+                <div>
+                  <TextField
+                    required
+                    id="filled-required"
+                    label="Required"
+                    defaultValue="Date of passing"
+                    variant="filled"
+                  />
+                </div>
+              </Box>
+
+              <AddDogCard />
+            </Card>
+          </Modal>
         </Stack>
 
         <Card>
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
-
               <Table>
                 <UserListHead
                   order={order}
@@ -264,48 +257,40 @@ export default function MyDogsPage() {
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
-                
+
                 <TableBody>
-                
                   {userDogs.map((dog) => {
                     const selectedUser = selected.indexOf(dog.dog_name) !== -1;
-                    return ( 
-                     <TableRow hover key={dog.id} tabIndex={-1} role="checkbox" selected={selectedUser}>
-                     <TableCell padding="checkbox">
-                       <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, dog.dog_name)} />
-                     </TableCell>
+                    return (
+                      <TableRow hover key={dog.id} tabIndex={-1} role="checkbox" selected={selectedUser}>
+                        <TableCell padding="checkbox">
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, dog.dog_name)} />
+                        </TableCell>
 
+                        <TableCell component="th" scope="row" padding="none">
+                          <Stack direction="row" alignItems="center" spacing={2}>
+                            <Avatar alt={dog.dog_name} src={dog.dog_profile_picture} />
+                            <Typography variant="subtitle2" noWrap>
+                              {dog.dog_name}
+                            </Typography>
+                          </Stack>
+                        </TableCell>
 
-                     <TableCell component="th" scope="row" padding="none">
-                       <Stack direction="row" alignItems="center" spacing={2}>
-                         <Avatar alt={dog.dog_name} src={dog.dog_profile_picture} />
-                         <Typography variant="subtitle2" noWrap>
-                           {dog.dog_name}
-                         </Typography>
-                       </Stack>
-                     </TableCell>
+                        <TableCell align="left">{dog.dog_description}</TableCell>
 
-                     <TableCell align="left">{dog.dog_description}</TableCell>
+                        <TableCell align="left">{dog.date_birth}</TableCell>
 
-                     <TableCell align="left">{dog.date_birth}</TableCell>
+                        <TableCell align="left">{dog.date_passing}</TableCell>
 
-                     <TableCell align="left">{dog.date_passing}</TableCell>
+                        <TableCell align="right">
+                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
+                            <Iconify icon={'eva:more-vertical-fill'} />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
 
-
-
-                  
-
-
-                     <TableCell align="right">
-                       <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                         <Iconify icon={'eva:more-vertical-fill'} />
-                       </IconButton>
-                     </TableCell>
-                   </TableRow>
-
-                  )} )}
-              
-                 
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
                       <TableCell colSpan={6} />
@@ -339,7 +324,6 @@ export default function MyDogsPage() {
               </Table>
             </TableContainer>
           </Scrollbar>
-
         </Card>
       </Container>
 
