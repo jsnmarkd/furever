@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // import axios library
+import { useState } from 'react';
+
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../components/iconify';
+import {useAuthContext} from '../providers/AuthProvider';
 
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+  const {register}  = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -21,13 +24,8 @@ export default function RegisterForm() {
     password: '',
     passwordConfirmation: '',
     rememberMe: false,
-    error: null, // initialize error state to null
+    error: null,
   });
-
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
-    console.log(formData);
-  };
 
   const handleChange = (event) => {
     setFormData((prevData) => ({
@@ -52,6 +50,8 @@ export default function RegisterForm() {
       .post('http://localhost:8080/register', formData)
       .then((response) => {
         console.log(response.data);
+        const { username, email, firstName, lastName, password, passwordConfirmation } = formData; // Get the user data from the form data
+        register(username, email, firstName, lastName, password, passwordConfirmation); // Call the register function with the user data
         navigate('/dashboard', { replace: true });
       })
       .catch((error) => {
