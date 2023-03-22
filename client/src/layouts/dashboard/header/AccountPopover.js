@@ -3,11 +3,8 @@ import { useState } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 // mocks_
-import userProfile from '../../../_mock/userProfile';
-import React from 'react';
-import { useAuthContext } from '../../../providers/AuthProvider';
-//client/src/../../../ProfilePopover.js
-//client/src/providers/AuthProvider.js
+import account from '../../../_mock/account';
+
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
@@ -27,7 +24,7 @@ const MENU_OPTIONS = [
 
 // ----------------------------------------------------------------------
 
-export default function ProfilePopover() {
+export default function AccountPopover() {
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -57,7 +54,7 @@ export default function ProfilePopover() {
           }),
         }}
       >
-        <Avatar src={userProfile.user_profile_picture} alt="photoURL" />
+        <Avatar src={account.photoURL} alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -81,10 +78,10 @@ export default function ProfilePopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {userProfile.displayName}
+            {account.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {userProfile.email}
+            {account.email}
           </Typography>
         </Box>
 

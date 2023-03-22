@@ -18,8 +18,9 @@ router.post('/', (req, res, next) => {
       }
     })
     .then((user) => {
-      console.log('New user created:', user.rows[0]);
-      return res.status(200).send({ username, email, firstName, lastName, message: 'User sucessfully created' });
+      const newUser = user.rows[0];
+      console.log('New user created:', newUser);
+      return res.status(200).send({ ...newUser, message: 'User successfully created' });
     })
     .catch((error) => {
       console.error(error);

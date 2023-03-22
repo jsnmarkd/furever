@@ -8,7 +8,7 @@ import { bgBlur } from '../../../utils/cssStyles';
 import Iconify from '../../../components/iconify';
 //
 import Searchbar from './Searchbar';
-import ProfilePopover from './ProfilePopover';
+import ProfilePopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
 

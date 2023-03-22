@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
 // mock
-import userProfile from '../../../_mock/userProfile';
+import account from '../../../_mock/account';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
@@ -19,7 +19,7 @@ import navConfig from './config';
 
 const NAV_WIDTH = 280;
 
-const StyledProfile = styled('div')(({ theme }) => ({
+const StyledAccount = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
@@ -59,19 +59,19 @@ export default function Nav({ openNav, onCloseNav }) {
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
-          <StyledProfile>
-            <Avatar src={userProfile.photoURL} alt="photoURL" />
+          <StyledAccount>
+            <Avatar src={account.photoURL} alt="photoURL" />
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {userProfile.displayName}
+                {account.displayName}
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {userProfile.role}
+                {account.role}
               </Typography>
             </Box>
-          </StyledProfile>
+          </StyledAccount>
         </Link>
       </Box>
 
