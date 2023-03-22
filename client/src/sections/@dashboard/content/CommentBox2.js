@@ -3,7 +3,7 @@ import './CommentBox2.css';
 import { fDateTime } from '../../../utils/formatTime';
 
 export default function CommentBox2(props) {
-  const { comments } = props
+  const { comments } = props;
 
   const commentDiv = comments.map((comment) => (
     <div className="comments">
@@ -46,7 +46,7 @@ export default function CommentBox2(props) {
         <p className="comment-content">{comment.comment}</p>
       </div>
     </div>
-  )); 
+  ));
 
   return (
     <>
@@ -66,7 +66,7 @@ export default function CommentBox2(props) {
               </svg>
             </button>
             <hr />
-            <span/>
+            <span />
           </div>
           <div className="comment-container">
             <div className="user">
