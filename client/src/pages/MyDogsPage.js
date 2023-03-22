@@ -212,11 +212,8 @@ export default function MyDogsPage() {
                   MyDogs
                 </Typography>
               </Box>
-              <AddDogForm  />
-
-
-
               <AddDogCard />
+              <AddDogForm  />
             </Card>
           </Modal>
         </Stack>
