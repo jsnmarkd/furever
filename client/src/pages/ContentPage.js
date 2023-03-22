@@ -3,14 +3,14 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import { Container, Typography, Button, Stack, Box, TextField } from '@mui/material';
+import { Container, Typography, Button, Stack } from '@mui/material';
 import { styled } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Grid from '@mui/joy/Grid';
 // components
 import Iconify from '../components/iconify';
 
-import { ContentCard, CommentBox, CommentBox2 } from '../sections/@dashboard/content';
+import { ContentCard, CommentBox2 } from '../sections/@dashboard/content';
 
 export default function ContentPage() {
   const { id } = useParams();
