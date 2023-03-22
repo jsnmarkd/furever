@@ -1,11 +1,11 @@
-require("dotenv").config()
-const express = require("express")
-const cloudinary = require("cloudinary").v2
-const fse = require("fs-extra")
-const app = express()
-app.use(express.static("public"))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+// require("dotenv").config()
+// const express = require("express")
+// const cloudinary = require("cloudinary").v2
+// const fse = require("fs-extra")
+// const app = express()
+// app.use(express.static("public"))
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: false }))
 
 const cloudinaryConfig = cloudinary.config({
   cloud_name: process.env.CLOUDNAME,

@@ -4,6 +4,7 @@ import { sentenceCase } from 'change-case';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 // @mui
 import {
   Card,
@@ -34,6 +35,9 @@ import {
 } from '@mui/material';
 
 import AddDogCard from '../sections/@dashboard/myDogs/addDogCard';
+import AddDogForm from '../sections/@dashboard/myDogs/addDogForm';
+
+import { fDate } from '../utils/formatTime';
 
 // components
 import Label from '../components/label';
@@ -208,36 +212,9 @@ export default function MyDogsPage() {
                   MyDogs
                 </Typography>
               </Box>
+              <AddDogForm  />
 
-              <Box
-                component="form"
-                sx={{
-                  '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <div>
-                  <TextField required id="filled-required" label="Required" defaultValue="Name" variant="filled" />
-                </div>
 
-                <div>
-                  <TextField required id="filled-required" label="Required" defaultValue="Bio" variant="filled" />
-                </div>
-
-                <div>
-                  <TextField required id="filled-required" label="Required" defaultValue="Birthday" variant="filled" />
-                </div>
-                <div>
-                  <TextField
-                    required
-                    id="filled-required"
-                    label="Required"
-                    defaultValue="Date of passing"
-                    variant="filled"
-                  />
-                </div>
-              </Box>
 
               <AddDogCard />
             </Card>
@@ -278,9 +255,9 @@ export default function MyDogsPage() {
 
                         <TableCell align="left">{dog.dog_description}</TableCell>
 
-                        <TableCell align="left">{dog.date_birth}</TableCell>
+                        <TableCell align="left">{fDate(dog.date_birth)}</TableCell>
 
-                        <TableCell align="left">{dog.date_passing}</TableCell>
+                        <TableCell align="left">{fDate(dog.date_passing)}</TableCell>
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={handleOpenMenu}>

@@ -5,6 +5,7 @@ var logger = require('morgan');
 const cors = require('cors');
 
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register')
@@ -13,6 +14,7 @@ const mediaRouter = require('./routes/dog_media');
 const likesRouter = require('./routes/likes');
 const contentsRouter = require('./routes/contents');
 const usersDogsRouter = require('./routes/users_dogs');
+const cloudinaryRouter = require('./routes/users_dogs');
 var app = express();
 
 app.use(cors({
