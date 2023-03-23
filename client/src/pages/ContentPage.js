@@ -65,7 +65,7 @@ export default function ContentPage() {
               <ContentCard key={id} content={contents} />  
           </Grid>
           <Grid xs={6}>
-              <CommentBox2 key={id} userId={1} contentId={id} comments={comments} addComment={addComment} />
+              <CommentBox2 key={id} contentId={id} comments={comments} addComment={addComment} />
           </Grid>
         </Grid>
         </Container>

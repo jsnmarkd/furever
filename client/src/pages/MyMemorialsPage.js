@@ -28,7 +28,6 @@ export default function MyMemorialsPage() {
   const theme = useTheme();
   const [contents, setContents] = useState([]);
   const { user } = useAuthContext();
-  const userId = 4;
 
   useEffect(() => {
     axios
