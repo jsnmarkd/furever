@@ -17,6 +17,11 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'MyMemorials',
+    path: '/dashboard/MyMemorials',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'dashboard',
     path: '/dashboard/app',
     icon: icon('ic_analytics'),
