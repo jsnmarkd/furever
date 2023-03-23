@@ -51,7 +51,7 @@ export default function RegisterForm() {
       .then((response) => {
         console.log(response.data);
         const { username, email, firstName, lastName, password, passwordConfirmation } = formData; // Get the user data from the form data
-        register(username, email, firstName, lastName, password, passwordConfirmation); // Call the register function with the user data
+        register(response.data.user.id, username, email, firstName, lastName, password, passwordConfirmation); // Call the register function with the user data
         navigate('/dashboard', { replace: true });
       })
       .catch((error) => {

@@ -15,6 +15,7 @@ const getDogsByUserId = (id) => {
     WHERE users_dogs.user_id = $1;
     `, [id])
     .then((data) => {
+      console.log(data);
     return data.rows;
   });
 };

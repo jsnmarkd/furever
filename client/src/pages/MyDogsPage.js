@@ -4,7 +4,6 @@ import { sentenceCase } from 'change-case';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 // @mui
 import {
   Card,
@@ -34,6 +33,7 @@ import {
   TextField,
 } from '@mui/material';
 
+import { useAuthContext } from '../providers/AuthProvider';
 
 import AddDogForm from '../sections/@dashboard/myDogs/addDogForm';
 
@@ -91,6 +91,10 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function MyDogsPage() {
+
+  const { user } = useAuthContext();
+  console.log(user);
+
   const [open, setOpen] = useState(false);
 
   const [DogModalOpen, setDogModalOpen] = useState(false);
@@ -178,13 +182,13 @@ export default function MyDogsPage() {
   const addNewDog = (dog) => {
     setUserDogs(userDogs.concat(dog));
     setDogModalOpen(false);
-  } 
+  };
 
   useEffect(() => {
     axios
-      .get('/dogs')
+      .get(`/users_dogs/user/${user.id}`)
       .then((res) => {
-        setUserDogs(res.data.dogs);
+        setUserDogs(res.data.users_dogs);
       })
       .catch((err) => {
         console.log(err);
@@ -211,14 +215,13 @@ export default function MyDogsPage() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-
             <Card>
               <Box>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                   MyDogs
                 </Typography>
               </Box>
-            
+
               <AddDogForm addNewDog={addNewDog} />
             </Card>
           </Modal>
