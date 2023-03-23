@@ -3,7 +3,7 @@ const userQueries = require('../db/queries/users');
 const router = express.Router();
 
 // checks registration details once submitted
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   const { username, firstName, lastName, password, passwordConfirmation } = req.body;
   const email = req.body.email.toLowerCase()
 
@@ -14,9 +14,10 @@ router.post('/', (req, res, next) => {
         throw new Error('Email already exists');
       } else if (userExists && userExists.username === username) {
         throw new Error('Username already exists');
-      } else {
+      } else if (password.length < 6) {
+        throw new Error('Password must be 6 characters or longer')
+      } 
         return userQueries.addUser(username, email, password, firstName, lastName);
-      }
     })
     .then((result) => {
       const newUser = result.rows[0]
