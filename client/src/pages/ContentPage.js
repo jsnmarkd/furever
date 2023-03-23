@@ -18,7 +18,6 @@ export default function ContentPage() {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
 
-
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8080/contents/${id}`),
@@ -41,6 +40,10 @@ export default function ContentPage() {
     color: theme.vars.palette.text.tertiary,
   }));
 
+  const addComment = (comment) => {
+    setComments((prev) => [...prev, comment]);
+  };
+
   return (
     <>
       <Helmet>
@@ -62,7 +65,7 @@ export default function ContentPage() {
               <ContentCard key={id} content={contents} />  
           </Grid>
           <Grid xs={6}>
-              <CommentBox2 key={id} comments={comments} />
+              <CommentBox2 key={id} userId={1} contentId={id} comments={comments} addComment={addComment} />
           </Grid>
         </Grid>
         </Container>
