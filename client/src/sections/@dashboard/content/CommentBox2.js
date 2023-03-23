@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './CommentBox2.css';
 import { fDateTime } from '../../../utils/formatTime';
 
 export default function CommentBox2(props) {
-  const { comments } = props;
+  const { comments, contentId, userId, addComment } = props;
+
+  function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
+    // You can pass formData as a fetch body directly:
+    // fetch('/some-api', { method: form.method, body: formData }).then()
+    const formJson = Object.fromEntries(formData.entries());
+    formJson.content_id = contentId;
+    formJson.user_id = userId;
+    console.log("formJson:",formJson);
+    axios({ method: 'post', data: formJson, url: `/comments/content/${contentId}` }).then((response) => {
+      console.log("axios response",response);
+      addComment(response.data);
+      form.reset();
+    });
+  }
 
   const commentDiv = comments.map((comment) => (
     <div className="comments">
@@ -55,16 +76,16 @@ export default function CommentBox2(props) {
 
         {commentDiv}
 
-        <div className="text-box">
+        <form method="post" onSubmit={handleSubmit} className="text-box">
           <div className="box-container">
-            <textarea placeholder="Reply" />
+            <textarea placeholder="Reply" name="comment"/>
             <div>
               <div className="formatting">
-                <button name="bold" />
-                <button name="italic" />
-                <button name="underline" />
-                <button name="strikethrough" />
-                <button name="emoji" />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
                 <button type="submit" className="send" title="Send">
                   <svg fill="none" viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -86,7 +107,7 @@ export default function CommentBox2(props) {
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

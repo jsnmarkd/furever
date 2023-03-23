@@ -13,11 +13,11 @@ const getAllContent = () => {
         COUNT(DISTINCT comments.id) AS comment_count
       FROM 
         content_block
-        FULL OUTER JOIN dog_media 
+        LEFT JOIN dog_media 
           ON content_block.media_id = dog_media.id
-        FULL OUTER JOIN users 
+        LEFT JOIN users 
           ON content_block.user_id = users.id 
-        FULL OUTER JOIN dogs 
+        LEFT JOIN dogs 
           ON content_block.dog_id = dogs.id
         LEFT JOIN likes 
           ON content_block.id = likes.content_id
