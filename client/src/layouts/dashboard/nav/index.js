@@ -51,8 +51,9 @@ export default function Nav({ openNav, onCloseNav, user }) {
     if (user) {
       return navConfig;
     } 
-      return navConfig.filter((item) => item.title !== 'user');
+      return navConfig.filter((item) => item.title !== 'user' && item.title !== 'MyDogs');
   };
+  
 
   const filteredNavConfig = getFilteredNavConfig(user);
   

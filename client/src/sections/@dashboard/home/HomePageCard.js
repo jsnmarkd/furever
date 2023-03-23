@@ -57,14 +57,26 @@ HomePageCard.propTypes = {
 };
 
 export default function HomePageCard({ post, index }) {
-  // console.log(post);
-  const { media_picture, comments, share, username, user_profile_picture, dog_name, dog_profile_picture, created_at, media_description, media_video } = post;
+  const {
+    id,
+    media_picture,
+    comment_count,
+    like_count,
+    share,
+    username,
+    user_profile_picture,
+    dog_name,
+    dog_profile_picture,
+    created_at,
+    media_description,
+    media_video,
+  } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
   const POST_INFO = [
-    { number: 1, icon: 'eva:message-circle-fill' },
-    { number: 1, icon: 'eva:eye-fill' },
+    { number: comment_count, icon: 'eva:message-circle-fill' },
+    { number: like_count, icon: 'eva:heart-fill' },
     { number: share, icon: 'eva:share-fill' },
   ];
 
@@ -148,19 +160,21 @@ export default function HomePageCard({ post, index }) {
             {fDate(created_at)}
           </Typography>
 
-          <StyledTitle
-            color="inherit"
-            variant="subtitle2"
-            underline="hover"
-            sx={{
-              ...(latestPostLarge && { typography: 'h5', height: 60 }),
-              ...((latestPostLarge || latestPost) && {
-                color: 'common.white',
-              }),
-            }}
-          >
-            {media_description}
-          </StyledTitle>
+          <Link href={`/dashboard/content/${id}`}>
+            <StyledTitle
+              color="inherit"
+              variant="subtitle2"
+              underline="hover"
+              sx={{
+                ...(latestPostLarge && { typography: 'h5', height: 60 }),
+                ...((latestPostLarge || latestPost) && {
+                  color: 'common.white',
+                }),
+              }}
+            >
+              {media_description}
+            </StyledTitle>
+          </Link>
 
           <StyledInfo>
             {POST_INFO.map((info, index) => (

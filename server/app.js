@@ -2,18 +2,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser')
 const cors = require('cors');
+
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register')
-const dogsRouter = require('./routes/dogs');
 const mediaRouter = require('./routes/dog_media');
 const likesRouter = require('./routes/likes');
 const contentsRouter = require('./routes/contents');
 const usersDogsRouter = require('./routes/users_dogs');
 const loginRouter = require('./routes/login');
+const dogsRouter = require('./routes/dogs');
+
+const commentsRouter = require('./routes/comments');
 var app = express();
 
 app.use(cors({
@@ -22,9 +26,10 @@ app.use(cors({
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -35,5 +40,6 @@ app.use('/likes', likesRouter);
 app.use('/contents', contentsRouter);
 app.use('/users_dogs', usersDogsRouter);
 app.use('/login', loginRouter);
+app.use('/comments', commentsRouter);
 module.exports = app;
 

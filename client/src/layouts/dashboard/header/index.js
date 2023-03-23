@@ -78,7 +78,7 @@ export default function Header({ onOpenNav }) {
               </Button>
             </Link>
           ) : null}
-          {!user? (
+          {!user ? (
             <Link to="/login" style={{ textDecoration: 'none' }}>
               <Button variant="contained">
                 Log In

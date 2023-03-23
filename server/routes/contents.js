@@ -25,4 +25,12 @@ router.get("/user/:id", (req, res) => {
   });
 });
 
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  contents.getContentById(id).then((data) => {
+    console.log(data);
+    res.json({ contents: data });
+  });
+});
+
 module.exports = router;

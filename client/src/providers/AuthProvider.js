@@ -15,6 +15,7 @@ function AuthProvider(props) {
   const login = function (user) {
     setAuth(true);
     setUser(user);
+    console.log('set user',user)
   };
 
   const register = function (username, email, first_name, last_name, password, passwordConfirmation) {
