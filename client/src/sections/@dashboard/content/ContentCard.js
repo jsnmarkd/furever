@@ -70,16 +70,12 @@ export default function ContentCard({ content }) {
         <Tooltip title={dog_name} arrow>
           <StyledAvatar alt={dog_name} src={dog_profile_picture} sx={{ ...{ left: 70, width: 40, height: 40 } }} />
         </Tooltip>
-      </Box>
         <StyledInfo>
           {POST_INFO.map((info, index) => (
             <Box
               key={index}
               sx={{
-                display: 'flex',
                 alignItems: 'center',
-                position:'absolute',
-                left: 180,
                 height: 0,
               }}
             >
@@ -89,6 +85,7 @@ export default function ContentCard({ content }) {
             </Box>
           ))}
         </StyledInfo>
+      </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover">

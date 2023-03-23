@@ -12,6 +12,16 @@ const userExists = function (username, email) {
     })
 };
 
+const login = function (email, password) {
+  return getUserByEmail(email)
+  .then(user => {
+    if (bcrypt.compareSync(password, user.password)) {
+      return user;
+    }
+    return res.status(400).send(error);
+  })
+}
+
 const getAllUsers = () => {
   return db.query("SELECT * FROM users;").then((data) => {
     return data.rows;
@@ -25,8 +35,8 @@ const getUserById = (id) => {
 };
 
 const getUserByEmail = (email) => {
-  return db.query("SELECT * FROM users; WHERE email = $1", [email]).then((data) => {
-    return console.log('is it me??',data.rows[0]);
+  return db.query("SELECT * FROM users WHERE email = $1", [email]).then((data) => {
+    return data.rows[0];
   });
 };
 
@@ -39,8 +49,11 @@ const checkEmailExists = (email) => {
 };
 
 const addUser = (username, email, password, firstName, lastName) => {
-  return bcrypt.hash(password, 10).then((hashedPassword) => {
-    return db.query('INSERT INTO users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, email, hashedPassword, firstName, lastName]);
+
+  return bcrypt.hash(password, 10)
+  .then((hashedPassword) => {
+    return db
+    .query('INSERT INTO users (username, email, password, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, email, hashedPassword, firstName, lastName]);
   });
 };
 
@@ -51,4 +64,4 @@ const editUser = function (id, username, email, password, firstName, lastName, p
 };
 
 
-module.exports = { getAllUsers, getUserById, checkUsernameExists, checkEmailExists, addUser, userExists, getUserByEmail, editUser};
+module.exports = { getAllUsers, getUserById, checkUsernameExists, checkEmailExists, addUser, userExists, getUserByEmail, login, editUser};

@@ -25,7 +25,7 @@ import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
-
+import { useAuthContext } from '../../../providers/AuthProvider';
 // ----------------------------------------------------------------------
 
 const NOTIFICATIONS = [
@@ -78,6 +78,7 @@ const NOTIFICATIONS = [
 
 export default function NotificationsPopover() {
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
+  const { user, logout } = useAuthContext();
 
   const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
 
@@ -100,6 +101,8 @@ export default function NotificationsPopover() {
     );
   };
 
+  if (!user) return null;
+  
   return (
     <>
       <IconButton color={open ? 'primary' : 'default'} onClick={handleOpen} sx={{ width: 40, height: 40 }}>

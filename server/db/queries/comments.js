@@ -20,8 +20,18 @@ const getCommentsByContentId = (id) => {
     });
 };
 
-const postComment = (userId, contentId, comment) => {
-  return db.query(`INSERT INTO comments (user_id, content_id, comment) VALUES ($1, $2, $3)`);
+const addComment = (user_id, content_id, comment) => {
+  return db
+    .query(
+      `INSERT INTO comments (user_id, content_id, comment) VALUES ($1, $2, $3) RETURNING *`,
+      [user_id, content_id, comment]
+    )
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 }
 
-module.exports = { getCommentsByContentId, postComment };
+module.exports = { getCommentsByContentId, addComment };

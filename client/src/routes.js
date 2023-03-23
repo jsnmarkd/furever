@@ -12,6 +12,7 @@ import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import HomePage from './pages/HomePage';
 import MyDogsPage from './pages/MyDogsPage';
+import MyMemorialsPage from './pages/MyMemorialsPage';
 import ProfilePage from './pages/ProfilePage'
 
 import ContentPage from './pages/ContentPage';
@@ -28,6 +29,7 @@ export default function Router() {
         { path: 'home', element: <HomePage /> },
         { path: 'Profile', element: <ProfilePage /> },
         { path: 'MyDogs', element: <MyDogsPage /> },
+        { path: 'MyMemorials', element: <MyMemorialsPage /> },
         { path: 'content/:id', element: <ContentPage /> },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
@@ -36,11 +38,11 @@ export default function Router() {
       ],
     },
     {
-      path: 'login',
+      path: '/login',
       element: <LoginPage />,
     },
     {
-      path: 'register',
+      path: '/register',
       element: <RegisterPage />
     },
     {

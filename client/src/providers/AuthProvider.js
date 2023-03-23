@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 
+
 const authContext = createContext();
 
 function useAuthContext() {
@@ -11,10 +12,11 @@ function AuthProvider(props) {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")) || null);
 
   // Perform login process for the user & save authID, etc
-  // const login = function (email, password) {
-  //   setAuth(true);
-  //   setUser({});
-  // };
+  const login = function (user) {
+    setAuth(true);
+    setUser(user);
+    console.log('set user',user)
+  };
 
   const register = function (id, username, email, firstName, lastName, password, passwordConfirmation) {
     setAuth(true);
@@ -28,7 +30,7 @@ function AuthProvider(props) {
   };
 
   // authContext will show these items
-  const userData = { auth, user, setUser, register, logout };
+  const userData = { auth, user, setUser, register, logout, login };
 
   // comonent to share context
   return (

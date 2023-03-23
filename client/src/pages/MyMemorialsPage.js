@@ -8,23 +8,12 @@ import { Grid, Container, Typography, Button, Stack } from '@mui/material';
 import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
 import { HomePageCard } from '../sections/@dashboard/home';
-// sections
-import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppTrafficBySite,
-  AppWidgetSummary,
-  AppCurrentSubject,
-  AppConversionRates,
-} from '../sections/@dashboard/app';
 // mock
 import POSTS from '../_mock/blog';
-// Import useAuthContext hook
+import {
+  AppWidgetSummary,
+} from '../sections/@dashboard/app';
 import { useAuthContext } from '../providers/AuthProvider';
-
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
@@ -35,57 +24,56 @@ const SORT_OPTIONS = [
 
 // ----------------------------------------------------------------------
 
-export default function Page() {
+export default function MyMemorialsPage() {
   const theme = useTheme();
   const [contents, setContents] = useState([]);
-
-  // Get the user object
   const { user } = useAuthContext();
+  const userId = 4;
 
   useEffect(() => {
-    axios.get('http://localhost:8080/contents')
-      .then(res => {
+    axios
+      .get(`/contents/user/${user.id}`)
+      .then((res) => {
         setContents(res.data.contents);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  const dogNamesArr = contents.map((content) => {
+    return content.dog_name;
+  })
+
+  const colors = ['info', 'warning', 'error'];
+  const dogNames = dogNamesArr.map((dog) => {
+    const colorIndex = Math.floor(Math.random() * colors.length);
+    const color = colors[colorIndex];
+    return (
+      <Grid item xs={12} sm={6} md={3}>
+        <AppWidgetSummary title={dog} color={color} />
+      </Grid>
+    );
+  })
+
   return (
     <>
       <Helmet>
-        <title> Home </title>
+        <title> My Memorials </title>
       </Helmet>
 
       <Container maxWidth="xl">
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Memorials
+            MyMemorials
           </Typography>
-          {user && (  <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Memorial
           </Button>
-          )}
         </Stack>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Park" icon={'ant-design:android-filled'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Grooming" color="info" icon={'ant-design:apple-filled'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Treats" color="warning" icon={'ant-design:windows-filled'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Tricks" color="error" icon={'ant-design:bug-filled'} />
-          </Grid>
-
+          {dogNames}
           <Grid item xs={12} md={0} lg={12}>
             <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
               <BlogPostsSearch posts={POSTS} />
@@ -95,10 +83,11 @@ export default function Page() {
         </Grid>
 
         <Grid container spacing={3}>
-          {contents.map((content, index) => <HomePageCard key={content.id} post={content} index={index} />)}
+          {contents.map((content, index) => (
+            <HomePageCard key={content.id} post={content} index={index} />
+          ))}
         </Grid>
       </Container>
     </>
   );
 }
-

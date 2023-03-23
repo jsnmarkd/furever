@@ -11,10 +11,18 @@ router.get("/content/:id", (req, res) => {
 });
 
 router.post("/content/:id", (req, res) => {
-  const userId = 1;
-  const { contentId, comment } = req.body.comment;
   console.log(req.body);
-  comments.postComment(userId, contentId, comment).catch(err => console.log(err));
+
+  const userId = req.body.user_id;
+  const contentId = req.body.content_id;
+  const comment = req.body.comment;
+  
+  comments.addComment(userId, contentId, comment).then((comment) => {
+    res.status(200).json(comment)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  });
 });
 
 module.exports = router;

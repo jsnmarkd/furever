@@ -68,7 +68,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     axios
-      .get(`/users/2`)
+      .get(`/users/${user.id}`)
       .then((res) => {
         setUser(res.data.users[0]);
       })

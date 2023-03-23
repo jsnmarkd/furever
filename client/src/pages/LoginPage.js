@@ -1,14 +1,19 @@
 import { Helmet } from 'react-helmet-async';
+import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
 // hooks
+import { useState } from 'react';
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { LoginForm } from '../sections/auth/login';
+import LoginForm from '../sections/auth/login/LoginForm';
+// client/src/../sections/auth/login/LoginForm.js
+// client/src/pages/LoginForm.js
+import { useAuthContext } from '../providers/AuthProvider';
 
 // ----------------------------------------------------------------------
 
@@ -42,6 +47,8 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
+  const { login } = useAuthContext();
+  const [error, setError] = useState(null);
 
   return (
     <>
@@ -74,8 +81,12 @@ export default function LoginPage() {
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {''}
-              <Link variant="subtitle2">Get started</Link>
+              Don’t have an account?{' '}
+              <RouterLink to="/register" style={{ textDecoration: 'none' }}>
+                <Link variant="subtitle2" component="span">
+                  Get started
+                </Link>
+              </RouterLink>
             </Typography>
 
             <Stack direction="row" spacing={2}>
@@ -97,7 +108,7 @@ export default function LoginPage() {
                 OR
               </Typography>
             </Divider>
-
+            
             <LoginForm />
           </StyledContent>
         </Container>
