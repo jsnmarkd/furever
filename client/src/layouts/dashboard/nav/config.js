@@ -9,12 +9,17 @@ const navConfig = [
   {
     title: 'Home',
     path: '/dashboard/home',
-    icon: icon('ic_blog'),
+    icon: icon('ic_home'),
+  },
+  {
+    title: 'Profile',
+    path: '/dashboard/profile',
+    icon: icon('ic_user'),
   },
   {
     title: 'MyDogs',
     path: '/dashboard/MyDogs',
-    icon: icon('ic_user'),
+    icon: icon('ic_paw'),
   },
   {
     title: 'dashboard',
