@@ -9,7 +9,7 @@ function useAuthContext() {
 
 function AuthProvider(props) {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")) || null);
 
   // Perform login process for the user & save authID, etc
   const login = function (user) {
@@ -18,9 +18,10 @@ function AuthProvider(props) {
     console.log('set user',user)
   };
 
-  const register = function (username, email, first_name, last_name, password, passwordConfirmation) {
+  const register = function (id, username, email, firstName, lastName, password, passwordConfirmation) {
     setAuth(true);
-    setUser({ username, email, first_name, last_name });
+    setUser({ id, username, email, firstName, lastName });
+    localStorage.setItem("userData",JSON.stringify({ id, username, email, firstName, lastName }))
   };
 
   const logout = function () {
@@ -29,7 +30,7 @@ function AuthProvider(props) {
   };
 
   // authContext will show these items
-  const userData = { auth, user, register, logout, login };
+  const userData = { auth, user, setUser, register, logout, login };
 
   // comonent to share context
   return (

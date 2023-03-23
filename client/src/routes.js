@@ -13,6 +13,8 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import HomePage from './pages/HomePage';
 import MyDogsPage from './pages/MyDogsPage';
 import MyMemorialsPage from './pages/MyMemorialsPage';
+import ProfilePage from './pages/ProfilePage'
+
 import ContentPage from './pages/ContentPage';
 
 // ----------------------------------------------------------------------
@@ -25,6 +27,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/home" />, index: true },
         { path: 'home', element: <HomePage /> },
+        { path: 'Profile', element: <ProfilePage /> },
         { path: 'MyDogs', element: <MyDogsPage /> },
         { path: 'MyMemorials', element: <MyMemorialsPage /> },
         { path: 'content/:id', element: <ContentPage /> },

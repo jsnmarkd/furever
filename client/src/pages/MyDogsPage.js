@@ -91,7 +91,6 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function MyDogsPage() {
-
   const { user } = useAuthContext();
   console.log(user);
 
@@ -216,13 +215,15 @@ export default function MyDogsPage() {
             aria-describedby="modal-modal-description"
           >
             <Card>
-              <Box>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  MyDogs
-                </Typography>
-              </Box>
+              <Grid container spacing={2}  rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Box>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    MyDogs
+                  </Typography>
+                </Box>
 
-              <AddDogForm addNewDog={addNewDog} />
+                <AddDogForm addNewDog={addNewDog} />
+              </Grid>
             </Card>
           </Modal>
         </Stack>

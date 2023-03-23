@@ -13,7 +13,6 @@ import { AuthProvider } from './providers/AuthProvider';
 
 export default function App() {
   return (
-
     <AuthProvider>
       <HelmetProvider>
         <BrowserRouter>
@@ -25,6 +24,5 @@ export default function App() {
         </BrowserRouter>
       </HelmetProvider>
     </AuthProvider>
-
   );
 }
