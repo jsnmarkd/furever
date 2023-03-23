@@ -5,7 +5,8 @@ import { styled } from '@mui/material/styles';
 //
 import Header from './header';
 import Nav from './nav';
-import { useAuthContext } from '../../providers/AuthProvider'; 
+import { useAuthContext } from '../../providers/AuthProvider';
+
 // ----------------------------------------------------------------------
 
 const APP_BAR_MOBILE = 64;
@@ -32,6 +33,7 @@ const Main = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
+
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
   const { user } = useAuthContext();
@@ -39,9 +41,7 @@ export default function DashboardLayout() {
   return (
     <StyledRoot>
       <Header onOpenNav={() => setOpen(true)} />
-
-      <Nav openNav={open} onCloseNav={() => setOpen(false)} user={user}  />
-
+      <Nav openNav={open} onCloseNav={() => setOpen(false)} user={user} />
       <Main>
         <Outlet />
       </Main>

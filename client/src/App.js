@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+// import { RecoilRoot } from 'recoil';
 // routes
 import Router from './routes';
 // theme
@@ -12,6 +13,7 @@ import { AuthProvider } from './providers/AuthProvider';
 
 export default function App() {
   return (
+
     <AuthProvider>
       <HelmetProvider>
         <BrowserRouter>
@@ -23,5 +25,6 @@ export default function App() {
         </BrowserRouter>
       </HelmetProvider>
     </AuthProvider>
+
   );
 }

@@ -14,6 +14,7 @@ const mediaRouter = require('./routes/dog_media');
 const likesRouter = require('./routes/likes');
 const contentsRouter = require('./routes/contents');
 const usersDogsRouter = require('./routes/users_dogs');
+const loginRouter = require('./routes/login');
 const dogsRouter = require('./routes/dogs');
 
 const commentsRouter = require('./routes/comments');
@@ -38,6 +39,7 @@ app.use('/media', mediaRouter);
 app.use('/likes', likesRouter);
 app.use('/contents', contentsRouter);
 app.use('/users_dogs', usersDogsRouter);
+app.use('/login', loginRouter);
 app.use('/comments', commentsRouter);
 module.exports = app;
 
