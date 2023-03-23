@@ -24,7 +24,7 @@ const getUserById = (id) => {
   });
 };
 
-const getUserByEmail = (id) => {
+const getUserByEmail = (email) => {
   return db.query("SELECT * FROM users; WHERE email = $1", [email]).then((data) => {
     return console.log('is it me??',data.rows[0]);
   });
@@ -44,5 +44,11 @@ const addUser = (username, email, password, firstName, lastName) => {
   });
 };
 
+const editUser = function (id, username, email, password, firstName, lastName, profileUrl) {
+  return bcrypt.hash(password, 10).then((hashedPassword) => {
+    return db.query('UPDATE users SET username = $1, email = $2, password = $3, first_name = $4, last_name = $5, user_profile_picture = $6 WHERE id = $7 RETURNING *', [username, email, hashedPassword, firstName, lastName,profileUrl, id]);
+  });
+};
 
-module.exports = { getAllUsers, getUserById, checkUsernameExists, checkEmailExists, addUser, userExists, getUserByEmail};
+
+module.exports = { getAllUsers, getUserById, checkUsernameExists, checkEmailExists, addUser, userExists, getUserByEmail, editUser};

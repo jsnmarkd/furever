@@ -8,7 +8,7 @@ function useAuthContext() {
 
 function AuthProvider(props) {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")) || null);
 
   // Perform login process for the user & save authID, etc
   // const login = function (email, password) {
@@ -18,7 +18,7 @@ function AuthProvider(props) {
 
   const register = function (id, username, email, firstName, lastName, password, passwordConfirmation) {
     setAuth(true);
-    setUser({ username, email, firstName, lastName });
+    setUser({ id, username, email, firstName, lastName });
     localStorage.setItem("userData",JSON.stringify({ id, username, email, firstName, lastName }))
   };
 
@@ -28,7 +28,7 @@ function AuthProvider(props) {
   };
 
   // authContext will show these items
-  const userData = { auth, user:  JSON.parse(localStorage.getItem("userData")), register, logout };
+  const userData = { auth, user, setUser, register, logout };
 
   // comonent to share context
   return (

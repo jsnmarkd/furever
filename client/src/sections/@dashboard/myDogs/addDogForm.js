@@ -1,5 +1,5 @@
 import { useState, useId } from 'react';
-import { Box, TextField, } from '@mui/material';
+import { Box, TextField, Grid } from '@mui/material';
 import axios from 'axios'
 
 import UploadDogImg from './UploadDogImg'
@@ -35,6 +35,7 @@ export default function AddDogForm(props) {
 
   return (
     <>
+
     <Box
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -44,21 +45,18 @@ export default function AddDogForm(props) {
     >
       <form method="post" onSubmit={handleSubmit}>
       <div>
-        <TextField required id="filled-required" label="Required" defaultValue="Name" variant="filled" name="dog_name" />
+        <TextField required id="filled-required" label="Name" variant="filled" name="dog_name" />
       </div>
 
       <div>
-        <TextField required id="filled-required" label="Required" defaultValue="Birthday" variant="filled" name="date_birth" />
+        <TextField required id="filled-required" label="Birthday" variant="filled" name="date_birth" />
       </div>
       <div>
-        <TextField required id="filled-required" label="Required" defaultValue="Date of passing" variant="filled" name="date_passing"/>
+        <TextField required id="filled-required" label="Date of passing"  variant="filled" name="date_passing"/>
       </div>
 
       <div> 
-      <label htmlFor={bioTextAreaId}>
-        Write bio:
-        <textarea   id={bioTextAreaId}  name="dog_description" defaultValue="Bio" rows={4} cols={30}  />
-      </label>
+      <TextField required id="filled-required" label="Bio" variant="filled" name="Bio" multiline />
       </div> 
 
      { uploadURL && <img src={uploadURL} height="100" width="100" alt="Dog Profile" /> } 
@@ -66,6 +64,7 @@ export default function AddDogForm(props) {
       <button type="submit">Save Dog</button>
       </form>
     </Box>
+   
     </>
   );
 }
