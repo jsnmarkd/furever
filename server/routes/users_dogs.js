@@ -17,4 +17,20 @@ router.get("/user/:id", (req, res) => {
   });
 });
 
+// router.post("/user/:id", (req, res) => {
+//   const userId = req.params.id
+//   users_dogs.getDogsByUserId(userId).then((data) => {
+//     console.log(data);
+//     res.json({ users_dogs: data });
+//   });
+// });
+
+// <DataBrowserRouter>
+//   <Route
+//     path="/users_dogs"
+//     element={<ProjectsLayout />}
+//     action={ProjectsLayout.action}
+//   >
+// </DataBrowserRouter>;
+
 module.exports = router;

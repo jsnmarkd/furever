@@ -11,6 +11,8 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import HomePage from './pages/HomePage';
+import MyDogsPage from './pages/MyDogsPage';
+
 import ContentPage from './pages/ContentPage';
 
 // ----------------------------------------------------------------------
@@ -23,6 +25,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/home" />, index: true },
         { path: 'home', element: <HomePage /> },
+        { path: 'MyDogs', element: <MyDogsPage /> },
         { path: 'content/:id', element: <ContentPage /> },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
