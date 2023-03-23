@@ -4,14 +4,30 @@ const getAllContent = () => {
   return db
     .query(
       `
-      SELECT * FROM content_block
-      FULL OUTER JOIN dog_media 
-      ON content_block.media_id = dog_media.id
-      FULL OUTER JOIN users 
-      ON content_block.user_id = users.id 
-      FULL OUTER JOIN dogs 
-      ON content_block.dog_id = dogs.id
-      ;
+      SELECT 
+        content_block.*,
+        dog_media.*,
+        users.*,
+        dogs.*,
+        COUNT(DISTINCT likes.id) AS like_count,
+        COUNT(DISTINCT comments.id) AS comment_count
+      FROM 
+        content_block
+        FULL OUTER JOIN dog_media 
+          ON content_block.media_id = dog_media.id
+        FULL OUTER JOIN users 
+          ON content_block.user_id = users.id 
+        FULL OUTER JOIN dogs 
+          ON content_block.dog_id = dogs.id
+        LEFT JOIN likes 
+          ON content_block.id = likes.content_id
+        LEFT JOIN comments 
+          ON content_block.id = comments.content_id
+      GROUP BY 
+        content_block.id,
+        dog_media.id,
+        users.id,
+        dogs.id;
       `
     )
     .then((data) => {
@@ -40,9 +56,11 @@ const getContentByDogId = (id) => {
 };
 
 const getContentByUserId = (id) => {
-  return db.query(`SELECT * FROM content_block WHERE user_id = $1;`, [id]).then((data) => {
-    return data.rows;
-  });
+  return db
+    .query(`SELECT * FROM content_block WHERE user_id = $1;`, [id])
+    .then((data) => {
+      return data.rows;
+    });
 };
 
 const getContentById = (id) => {
@@ -57,10 +75,17 @@ const getContentById = (id) => {
       LEFT JOIN dogs 
       ON content_block.dog_id = dogs.id 
       WHERE content_block.id = $1;
-      `, [id])
+      `,
+      [id]
+    )
     .then((data) => {
-      return data.rows
+      return data.rows;
     });
 };
 
-module.exports = { getAllContent, getContentByDogId, getContentByUserId, getContentById };
+module.exports = {
+  getAllContent,
+  getContentByDogId,
+  getContentByUserId,
+  getContentById,
+};

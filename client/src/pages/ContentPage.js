@@ -15,18 +15,24 @@ import { ContentCard, CommentBox2 } from '../sections/@dashboard/content';
 export default function ContentPage() {
   const { id } = useParams();
   const [contents, setContents] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/contents/${id}`)
-      .then((res) => {
-        setContents(res.data.contents[0]);
+    Promise.all([
+      axios.get(`http://localhost:8080/contents/${id}`),
+      axios.get(`http://localhost:8080/comments/content/${id}`),
+    ]).then((res) => {
+        setContents(res[0].data.contents[0]);
+        setComments(res[1].data.comments);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  console.log(contents);
+  console.log("contents:",contents);
+  console.log("comments:",comments);
 
   const Item = styled(Sheet)(({ theme }) => ({
     ...theme.typography.body2,
@@ -53,10 +59,10 @@ export default function ContentPage() {
         <Container>
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
-              <ContentCard content={contents} />  
+              <ContentCard key={id} content={contents} />  
           </Grid>
           <Grid xs={6}>
-              <CommentBox2 />
+              <CommentBox2 key={id} comments={comments} />
           </Grid>
         </Grid>
         </Container>

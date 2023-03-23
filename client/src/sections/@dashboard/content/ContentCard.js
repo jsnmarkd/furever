@@ -7,6 +7,9 @@ import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+
+import Iconify from '../../../components/iconify';
+import { fShortenNumber } from '../../../utils/formatNumber';
 // ----------------------------------------------------------------------
 
 const StyledProductImg = styled('img')({
@@ -26,6 +29,14 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
   bottom: theme.spacing(-2),
 }));
 
+const StyledInfo = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-end',
+  marginTop: theme.spacing(3),
+  color: theme.palette.text.disabled,
+}));
+
 // ----------------------------------------------------------------------
 
 ContentCard.propTypes = {
@@ -35,7 +46,6 @@ ContentCard.propTypes = {
 export default function ContentCard({ content }) {
   const {
     media_picture,
-    comments,
     share,
     username,
     user_profile_picture,
@@ -44,26 +54,41 @@ export default function ContentCard({ content }) {
     created_at,
     media_description,
     media_video,
-  } = content
+  } = content;
+
+  const POST_INFO = [
+    { icon: 'eva:heart-fill' },
+  ];
+
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         <StyledProductImg alt={dog_name} src={media_picture} />
-        <Tooltip title={username} arrow >
-            <StyledAvatar
-              alt={username}
-              src={user_profile_picture}
-              sx={{ ...{ left: 24, width: 40, height: 40 } }}
-            />
+        <Tooltip title={username} arrow>
+          <StyledAvatar alt={username} src={user_profile_picture} sx={{ ...{ left: 24, width: 40, height: 40 } }} />
         </Tooltip>
-        <Tooltip title={dog_name} arrow >
-            <StyledAvatar
-              alt={dog_name}
-              src={dog_profile_picture}
-              sx={{ ...{ left: 70, width: 40, height: 40 } }}
-            />
+        <Tooltip title={dog_name} arrow>
+          <StyledAvatar alt={dog_name} src={dog_profile_picture} sx={{ ...{ left: 70, width: 40, height: 40 } }} />
         </Tooltip>
       </Box>
+        <StyledInfo>
+          {POST_INFO.map((info, index) => (
+            <Box
+              key={index}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                position:'absolute',
+                left: 180,
+                height: 0,
+              }}
+            >
+              <Button>
+                <Iconify icon={info.icon} sx={{ width: 35, height: 35, mr: 0.5 }} />
+              </Button>
+            </Box>
+          ))}
+        </StyledInfo>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover">
