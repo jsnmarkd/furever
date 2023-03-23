@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
@@ -6,17 +7,17 @@ import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
 import { useAuthContext } from '../../../providers/AuthProvider'; 
-
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const { login } = useAuthContext(); // Get the login function from AuthProvider
+  const { login } = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    error: null,
   });
 
   const handleChange = (event) => {
@@ -24,13 +25,31 @@ export default function LoginForm() {
       ...prevData,
       [event.target.name]: event.target.value,
     }));
+    console.log('form data change', event.target.name, event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(formData.email, formData.password);
-    navigate('/dashboard', { replace: true });
+  
+    setFormData((prevData) => ({ ...prevData, error: null }));
+  
+    axios
+      .post('http://localhost:8080/login', {
+        email: formData.email,
+        password: formData.password,
+      })
+      .then((response) => {
+        const { user } = response.data;
+        const { username, email, first_name, last_name } = user;
+        login(username, email, first_name, last_name);
+        navigate('/dashboard', { replace: true });
+      })
+      .catch((error) => {
+        console.error('error', error.response.data);
+        setFormData((prevData) => ({ ...prevData, error: error.response.data.error }));
+      });
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -57,9 +76,9 @@ export default function LoginForm() {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
         <Checkbox name="remember" label="Remember me" />
-        <Link variant="subtitle2" underline="hover">
+        {/* <Link variant="subtitle2" underline="hover">
           Forgot password?
-        </Link>
+        </Link> */}
       </Stack>
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained">
