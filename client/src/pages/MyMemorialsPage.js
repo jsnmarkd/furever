@@ -13,6 +13,7 @@ import POSTS from '../_mock/blog';
 import {
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
+import { useAuthContext } from '../providers/AuthProvider';
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
@@ -26,11 +27,12 @@ const SORT_OPTIONS = [
 export default function MyMemorialsPage() {
   const theme = useTheme();
   const [contents, setContents] = useState([]);
-  const userId = 3;
+  const { user } = useAuthContext();
+  const userId = 4;
 
   useEffect(() => {
     axios
-      .get(`/contents/user/${userId}`)
+      .get(`/contents/user/${user.id}`)
       .then((res) => {
         setContents(res.data.contents);
       })
