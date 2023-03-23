@@ -116,12 +116,12 @@ export default function ProfilePage() {
           name="firstName"
           label="First Name"
           onChange={handleChange}
-          value={user.firstName}
+          value={user.first_name}
           variant="filled"
         
         
         />
-        <TextField name="lastName" label="Last Name" onChange={handleChange} value={user.lastName}  variant="filled" />
+        <TextField name="lastName" label="Last Name" onChange={handleChange} value={user.last_name}  variant="filled" />
         <TextField name="username" label="Username" onChange={handleChange} value={user.username} variant="filled" />
         <TextField name="email" label="Email address" onChange={handleChange} value={user.email} variant="filled" />
         <TextField
@@ -144,86 +144,12 @@ export default function ProfilePage() {
       </Stack>
       
       <div>
-        <LoadingButton size="large" type="button">
-          Cancel
-        </LoadingButton>
         <LoadingButton size="large" type="submit" variant="contained">
           Save
         </LoadingButton>
       </div>
       </form>
 
-      {/* <form onSubmit={handleSubmit}>
-        <Stack spacing={3}>
-          <TextField name="firstName" label="First Name" onChange={handleChange} value={formData.firstName} />
-          <TextField name="lastName" label="Last Name" onChange={handleChange} value={formData.lastName} />
-          <TextField name="username" label="Username" onChange={handleChange} value={formData.username} />
-          <TextField name="email" label="Email address" onChange={handleChange} value={formData.email} />
-          <TextField
-            name="password"
-            label="Password"
-            type={showPassword ? 'text' : 'password'}
-            onChange={handleChange}
-            value={formData.password}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-            <TextField
-            name="change_password"
-            label="Change Password"
-            type={showPassword ? 'text' : 'password'}
-            onChange={handleChange}
-            value={formData.password}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            name="passwordConfirmation"
-            label="Confirm Password"
-            type={showPassword ? 'text' : 'password'}
-            onChange={handleChange}
-            value={formData.passwordConfirmation}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-
-        {formData.error && <div style={{ color: 'red' }}>{formData.error}</div>}
-
-        <LoadingButton  size="large" type="submit" >
-         Cancel
-        </LoadingButton>
-        <LoadingButton  size="large" type="submit" variant="contained">
-          Save
-        </LoadingButton>
-      </form>
-      */}
     </>
   );
 }
-
-// <TextField name="firstName" label="First Name" onChange={handleChange} value={users.firstName} />
-// <TextField name="lastName" label="Last Name" onChange={handleChange} value={users.lastName} />
-// <TextField name="username" label="Username" onChange={handleChange} value={users.username} />
-// <TextField name="email" label="Email address" onChange={handleChange} value={users.email} />

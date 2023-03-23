@@ -47,7 +47,9 @@ export default function AddDogForm(props) {
       <div>
         <TextField required id="filled-required" label="Name" variant="filled" name="dog_name" />
       </div>
-
+      <div> 
+      <TextField required id="filled-required" label="Bio" variant="filled" name="dog_description" multiline />
+      </div> 
       <div>
         <TextField required id="filled-required" label="Birthday" variant="filled" name="date_birth" />
       </div>
@@ -55,9 +57,7 @@ export default function AddDogForm(props) {
         <TextField required id="filled-required" label="Date of passing"  variant="filled" name="date_passing"/>
       </div>
 
-      <div> 
-      <TextField required id="filled-required" label="Bio" variant="filled" name="Bio" multiline />
-      </div> 
+
 
      { uploadURL && <img src={uploadURL} height="100" width="100" alt="Dog Profile" /> } 
       <UploadDogImg  name="dog_profile_picture" setUploadURL={setUploadURL}/>
