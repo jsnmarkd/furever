@@ -59,10 +59,10 @@ export default function ContentPage() {
         <Container>
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
-              <ContentCard content={contents} />  
+              <ContentCard key={id} content={contents} />  
           </Grid>
           <Grid xs={6}>
-              <CommentBox2 comments={comments} />
+              <CommentBox2 key={id} comments={comments} />
           </Grid>
         </Grid>
         </Container>

@@ -10,4 +10,11 @@ router.get("/content/:id", (req, res) => {
   });
 });
 
+router.post("/content/:id", (req, res) => {
+  const userId = 1;
+  const { contentId, comment } = req.body.comment;
+  console.log(req.body);
+  comments.postComment(userId, contentId, comment).catch(err => console.log(err));
+});
+
 module.exports = router;
