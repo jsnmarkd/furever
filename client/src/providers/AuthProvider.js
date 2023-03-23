@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 
+
 const authContext = createContext();
 
 function useAuthContext() {
@@ -11,9 +12,9 @@ function AuthProvider(props) {
   const [user, setUser] = useState({});
 
   // Perform login process for the user & save authID, etc
-  const login = function (email, password) {
+  const login = function (user) {
     setAuth(true);
-    setUser({});
+    setUser(user);
   };
 
   const register = function (username, email, first_name, last_name, password, passwordConfirmation) {
@@ -27,7 +28,7 @@ function AuthProvider(props) {
   };
 
   // authContext will show these items
-  const userData = { auth, user, register, logout };
+  const userData = { auth, user, register, logout, login };
 
   // comonent to share context
   return (

@@ -29,11 +29,11 @@ export default function Router() {
       ],
     },
     {
-      path: 'login',
+      path: '/login',
       element: <LoginPage />,
     },
     {
-      path: 'register',
+      path: '/register',
       element: <RegisterPage />
     },
     {

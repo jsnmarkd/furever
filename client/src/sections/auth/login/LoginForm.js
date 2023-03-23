@@ -25,12 +25,11 @@ export default function LoginForm() {
       ...prevData,
       [event.target.name]: event.target.value,
     }));
-    console.log('form data change', event.target.name, event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+    
     setFormData((prevData) => ({ ...prevData, error: null }));
   
     axios
@@ -40,12 +39,16 @@ export default function LoginForm() {
       })
       .then((response) => {
         const { user } = response.data;
-        const { username, email, first_name, last_name } = user;
-        login(username, email, first_name, last_name);
+        console.log('front end user', user)
+
+        
+        login(user);
         navigate('/dashboard', { replace: true });
+        // console.log('great sucesss')
+        // navigate('/dashboard', { replace: true });
       })
       .catch((error) => {
-        console.error('error', error.response.data);
+        console.error('error', error);
         setFormData((prevData) => ({ ...prevData, error: error.response.data.error }));
       });
   };

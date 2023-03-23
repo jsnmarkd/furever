@@ -63,7 +63,7 @@ export default function HomePage() {
           <Typography variant="h4" gutterBottom>
             Memorials
           </Typography>
-          {user.first_name && (
+          {user && (
             <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
               New Post
             </Button>

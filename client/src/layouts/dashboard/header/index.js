@@ -71,22 +71,22 @@ export default function Header({ onOpenNav }) {
             sm: 1,
           }}
         >
-          {!user.first_name ? (
+          {!user ? (
             <Link to="/register" style={{ textDecoration: 'none' }}>
               <Button variant="contained">
                 Register
               </Button>
             </Link>
           ) : null}
-          {!user.first_name ? (
+          {!user? (
             <Link to="/login" style={{ textDecoration: 'none' }}>
               <Button variant="contained">
                 Log In
               </Button>
             </Link>
           ) : null}
-          {user.first_name ? <NotificationsPopover /> : null}
-          {user.first_name ? <ProfilePopover /> : null}
+          {user ? <NotificationsPopover /> : null}
+          {user ? <ProfilePopover /> : null}
         </Stack>
       </StyledToolbar>
     </StyledRoot>

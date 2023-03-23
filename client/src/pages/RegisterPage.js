@@ -1,9 +1,9 @@
-import axios from 'axios'; 
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { Link, Stack, IconButton, Button, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../components/iconify';
@@ -14,7 +14,7 @@ import { useAuthContext } from '../providers/AuthProvider';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
-  const {register}  = useAuthContext();
+  const { register } = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -50,8 +50,8 @@ export default function RegisterForm() {
     axios
       .post('http://localhost:8080/register', formData)
       .then((response) => {
-        console.log('resdata.user',response.data.user);
-        const { username, email, first_name, last_name} = response.data.user; // Get the user data from the form data
+        console.log('--------------------')
+        const { username, email, first_name, last_name } = response.data.user; // Get the user data from the form data
         register(username, email, first_name, last_name); // Call the register function with the user data
         navigate('/dashboard', { replace: true });
       })
@@ -114,6 +114,11 @@ export default function RegisterForm() {
       <LoadingButton fullWidth size="large" type="submit" variant="contained">
         Register
       </LoadingButton>
+      <Link to="/login" style={{ textDecoration: 'none' }}>
+        <Button fullWidth size="large" variant="contained" onClick={() => navigate('/login')}>
+          Log In
+        </Button>
+      </Link>
     </form>
   );
 }

@@ -4,7 +4,7 @@ const likes = require("../db/queries/likes");
 
 router.get("/", (req, res) => {
   likes.getAllLikes().then((data) => {
-    console.log(data);
+   
     res.json({ likes: data });
   });
 });

@@ -48,7 +48,7 @@ export default function Nav({ openNav, onCloseNav, user }) {
   }, [pathname]);
 
   const getFilteredNavConfig = (user) => {
-    if (user.first_name) {
+    if (user) {
       return navConfig;
     } 
       return navConfig.filter((item) => item.title !== 'user');
@@ -70,7 +70,7 @@ export default function Nav({ openNav, onCloseNav, user }) {
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
-         {user.first_name ? <StyledAccount>
+         {user ? <StyledAccount>
             <Avatar src={user.user_profile_picture} alt="photoURL" />
 
             <Box sx={{ ml: 2 }}>

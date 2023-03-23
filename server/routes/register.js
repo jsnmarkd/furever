@@ -4,7 +4,8 @@ const router = express.Router();
 
 // checks registration details once submitted
 router.post('/', (req, res, next) => {
-  const { username, email, firstName, lastName, password, passwordConfirmation } = req.body;
+  const { username, firstName, lastName, password, passwordConfirmation } = req.body;
+  const email = req.body.email.toLowerCase()
 
   userQueries
     .userExists(username, email)
@@ -17,8 +18,8 @@ router.post('/', (req, res, next) => {
         return userQueries.addUser(username, email, password, firstName, lastName);
       }
     })
-    .then((user) => {
-      const newUser = user.rows[0];
+    .then((result) => {
+      const newUser = result.rows[0]
       console.log('New user created:', newUser);
       return res.status(200).send({ user: newUser, message: 'User successfully created' });
     })

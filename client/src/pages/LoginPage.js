@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
 // hooks
+import { useState } from 'react';
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
@@ -47,6 +48,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
   const { login } = useAuthContext();
+  const [error, setError] = useState(null);
 
   return (
     <>
