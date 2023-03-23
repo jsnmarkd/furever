@@ -36,9 +36,10 @@ router.post('/', (req, res) => {
   .getUserByEmail(email)
   .then((result) => {
     if (!result) {
-      throw new Error('Email not found');
+      res.status(400).send({ error: 'Email not found' });
     }
-    return userQueries.login(email, password);
+    return userQueries
+    .login(email, password);
   })
   .then((user) => {
     const loggedUser = user;
@@ -47,13 +48,9 @@ router.post('/', (req, res) => {
   })
   .catch((error) => {
     console.log(error);
-    res.status(400).send({ error: 'Password does not match or email not found' });
+    res.status(400).send({ error: 'Password does not match ' });
   });
 });
-
-
-
-
 
 
 module.exports = router;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
@@ -24,14 +24,14 @@ export default function LoginForm() {
     setFormData((prevData) => ({
       ...prevData,
       [event.target.name]: event.target.value,
+      error: null,
     }));
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     setFormData((prevData) => ({ ...prevData, error: null }));
-  
+
     axios
       .post('http://localhost:8080/login', {
         email: formData.email,
@@ -39,24 +39,30 @@ export default function LoginForm() {
       })
       .then((response) => {
         const { user } = response.data;
-        console.log('front end user', user)
+        console.log('front end user', user);
 
-        
         login(user);
         navigate('/dashboard', { replace: true });
-        // console.log('great sucesss')
-        // navigate('/dashboard', { replace: true });
       })
       .catch((error) => {
         console.error('error', error);
         setFormData((prevData) => ({ ...prevData, error: error.response.data.error }));
       });
   };
+
   
 
   return (
     <form onSubmit={handleSubmit}>
+
       <Stack spacing={3}>
+      {formData.error && (
+  <Alert severity="error">
+    <div style={{ color: 'red' }}>
+      {formData.error}
+    </div>
+  </Alert>
+)}
         <TextField name="email" label="Email address" onChange={handleChange} value={formData.email} />
 
         <TextField

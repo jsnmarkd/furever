@@ -18,12 +18,8 @@ const login = function (email, password) {
     if (bcrypt.compareSync(password, user.password)) {
       return user;
     }
-    throw new Error('Password does not match');
+    return res.status(400).send(error);
   })
-  .catch(e => {
-      console.error(e);
-      throw e;
-    });
 }
 
 const getAllUsers = () => {
