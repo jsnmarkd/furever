@@ -1,5 +1,5 @@
 import { useState, useId } from 'react';
-import { Box, TextField, Grid, Button } from '@mui/material';
+import { Box, TextField, Grid, Button, Container} from '@mui/material';
 import axios from 'axios'
 
 import { useAuthContext } from '../../../providers/AuthProvider';
@@ -43,27 +43,32 @@ export default function AddDogForm(props) {
       }}
       noValidate
       autoComplete="off"
+      
     >
+      <Container  >
       <form method="post" onSubmit={handleSubmit}>
       <div>
-        <TextField  fullWidth required id="filled-required" label="Name" variant="filled" name="dog_name"  />
+        <TextField  fullWidth required id="filled-required" label="Name"  name="dog_name"  />
       </div>
       <div> 
-      <TextField required id="filled-required" label="Bio" variant="filled" name="dog_description" multiline rows={4} sx={{ mt: 2 }} />
+      <TextField fullWidth required id="filled-required" label="Bio" name="dog_description" multiline rows={4} sx={{ mt: 2 }} />
       </div> 
       <div>
-        <TextField required id="filled-required" label="Birthday" variant="filled" name="date_birth" />
+        <TextField fullWidth required id="filled-required" label="Birthday"  name="date_birth" />
       </div>
       <div>
-        <TextField required id="filled-required" label="Date of passing"  variant="filled" name="date_passing"/>
+        <TextField fullWidth required id="filled-required" label="Date of passing"   name="date_passing"/>
       </div>
 
 
-
-     { uploadURL && <img src={uploadURL} height="100" width="100" alt="Dog Profile" /> } 
+      <div>
+     { uploadURL && <img src={uploadURL} height="200" width="200" alt="Dog Profile" /> } 
       <UploadDogImg  name="dog_profile_picture" setUploadURL={setUploadURL}/>
       <Button type="submit" variant="contained" color="info" >Save Dog</Button>
+      </div>
+
       </form>
+      </Container>
     </Box>
    
     </>
