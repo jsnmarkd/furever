@@ -68,7 +68,7 @@ export default function Page() {
         <div>
           {user && (
             <MemorialModal>
-              <Button variant="contained" size="large" color="info" startIcon={<Iconify icon="eva:plus-fill" />}>
+              <Button variant="contained" size="large" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />} mb={9}>
                 New Memorial
               </Button>
             </MemorialModal>

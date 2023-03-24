@@ -4,10 +4,18 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { styled } from '@mui/material/styles';
 
-
-
 // @mui
-import {  Link, Stack, IconButton, Button, InputAdornment, TextField, Checkbox, Container, Typography } from '@mui/material';
+import {
+  Link,
+  Stack,
+  IconButton,
+  Button,
+  InputAdornment,
+  TextField,
+  Checkbox,
+  Container,
+  Typography,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../components/iconify';
@@ -100,92 +108,87 @@ export default function RegisterForm() {
 
   return (
     <>
-    <Helmet>
-    <title> Register | Furever </title>
-  </Helmet>
+      <Helmet>
+        <title> Register | Furever </title>
+      </Helmet>
 
-  <StyledRoot>
-     
+      <StyledRoot>
+        {mdUp && (
+          <StyledSection>
+            <img src="/assets/illustrations/furever_login.svg" alt="login" />
+          </StyledSection>
+        )}
 
-     {mdUp && (
-       <StyledSection>
-       
-         <img src="/assets/illustrations/furever_login.svg" alt="login" />
-       </StyledSection>
-     )}
-
-  <Container maxWidth="sm">
+        <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
               Join Furever
-            </Typography>
-         
-           
+            </Typography>{' '}
+            <div>
+              <Typography variant="body2" sx={{ mb: 5 }}>
+                Already Registered?{' '}
+                <Link
+                  to="/login"
+                  style={{ textDecoration: 'none' }}
+                  onClick={() => navigate('/login')}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Login here.
+                </Link>
+              </Typography>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={3}>
+                <TextField name="firstName" label="First Name" onChange={handleChange} value={formData.firstName} />
+                <TextField name="lastName" label="Last Name" onChange={handleChange} value={formData.lastName} />
+                <TextField name="username" label="Username" onChange={handleChange} value={formData.username} />
+                <TextField name="email" label="Email address" onChange={handleChange} value={formData.email} />
+                <TextField
+                  name="password"
+                  label="Password"
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                  value={formData.password}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                          <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  name="passwordConfirmation"
+                  label="Confirm Password"
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                  value={formData.passwordConfirmation}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                          <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Stack>
 
-    <form onSubmit={handleSubmit}>
-      <Stack spacing={3}>
-        <TextField name="firstName" label="First Name" onChange={handleChange} value={formData.firstName} />
-        <TextField name="lastName" label="Last Name" onChange={handleChange} value={formData.lastName} />
-        <TextField name="username" label="Username" onChange={handleChange} value={formData.username} />
-        <TextField name="email" label="Email address" onChange={handleChange} value={formData.email} />
-        <TextField
-          name="password"
-          label="Password"
-          type={showPassword ? 'text' : 'password'}
-          onChange={handleChange}
-          value={formData.password}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          name="passwordConfirmation"
-          label="Confirm Password"
-          type={showPassword ? 'text' : 'password'}
-          onChange={handleChange}
-          value={formData.passwordConfirmation}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Stack>
+              <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
+                <Checkbox name="rememberMe" checked={formData.rememberMe} onChange={handleChange} />
+              </Stack>
+              {formData.error && <div style={{ color: 'red' }}>{formData.error}</div>}
 
-      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <Checkbox name="rememberMe" checked={formData.rememberMe} onChange={handleChange} />
-      </Stack>
-      {formData.error && (
-        <div style={{ color: 'red' }}>
-          {formData.error}
-        </div>
-      )}
-
-      <LoadingButton  size="large" type="submit" variant="contained">
-        Register
-      </LoadingButton>
-      <div>
-      <Link to="/login" style={{ textDecoration: 'none' }} onClick={() => navigate('/login')} sx={{cursor: 'pointer' }}>
-      Already Registered? Log in here.
-        {/* <Button  size="large" variant="contained" onClick={() => navigate('/login')}>
-          Log In
-        </Button> */}
-      </Link>
-      </div>
-    </form>
-    </StyledContent>
-    </Container>
-    </StyledRoot>
+              <LoadingButton color="secondary" size="large" type="submit" variant="contained">
+                Register
+              </LoadingButton>
+            </form>
+          </StyledContent>
+        </Container>
+      </StyledRoot>
     </>
   );
 }

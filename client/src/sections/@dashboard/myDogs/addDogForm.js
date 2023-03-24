@@ -57,7 +57,7 @@ export default function AddDogForm(props) {
               <TextField fullWidth required id="filled-required" label="Date of passing" name="date_passing" />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="secondary">
                 Save Dog
               </Button>
             </Grid>
