@@ -1,18 +1,55 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { styled } from '@mui/material/styles';
+
+
 
 // @mui
-import { Link, Stack, IconButton, Button, InputAdornment, TextField, Checkbox } from '@mui/material';
+import {  Link, Stack, IconButton, Button, InputAdornment, TextField, Checkbox, Container, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../components/iconify';
 import { useAuthContext } from '../providers/AuthProvider';
+
+import useResponsive from '../hooks/useResponsive';
 // client/src/pages/RegisterPage.js
 // client/src/providers/AuthProvider.js
 // ----------------------------------------------------------------------
 
+// ----------------------------------------------------------------------
+
+const StyledRoot = styled('div')(({ theme }) => ({
+  [theme.breakpoints.up('md')]: {
+    display: 'flex',
+  },
+}));
+
+const StyledSection = styled('div')(({ theme }) => ({
+  width: '100%',
+  maxWidth: 480,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  boxShadow: theme.customShadows.card,
+  backgroundColor: theme.palette.background.default,
+}));
+
+const StyledContent = styled('div')(({ theme }) => ({
+  maxWidth: 480,
+  margin: 'auto',
+  minHeight: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  padding: theme.spacing(12, 0),
+}));
+
+// ----------------------------------------------------------------------
+
 export default function RegisterForm() {
+  const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const { register } = useAuthContext();
 
@@ -62,6 +99,29 @@ export default function RegisterForm() {
   };
 
   return (
+    <>
+    <Helmet>
+    <title> Register | Furever </title>
+  </Helmet>
+
+  <StyledRoot>
+     
+
+     {mdUp && (
+       <StyledSection>
+       
+         <img src="/assets/illustrations/furever_login.svg" alt="login" />
+       </StyledSection>
+     )}
+
+  <Container maxWidth="sm">
+          <StyledContent>
+            <Typography variant="h4" gutterBottom>
+              Join Furever
+            </Typography>
+         
+           
+
     <form onSubmit={handleSubmit}>
       <Stack spacing={3}>
         <TextField name="firstName" label="First Name" onChange={handleChange} value={formData.firstName} />
@@ -111,14 +171,21 @@ export default function RegisterForm() {
         </div>
       )}
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained">
+      <LoadingButton  size="large" type="submit" variant="contained">
         Register
       </LoadingButton>
-      <Link to="/login" style={{ textDecoration: 'none' }}>
-        <Button fullWidth size="large" variant="contained" onClick={() => navigate('/login')}>
+      <div>
+      <Link to="/login" style={{ textDecoration: 'none' }} onClick={() => navigate('/login')} sx={{cursor: 'pointer' }}>
+      Already Registered? Log in here.
+        {/* <Button  size="large" variant="contained" onClick={() => navigate('/login')}>
           Log In
-        </Button>
+        </Button> */}
       </Link>
+      </div>
     </form>
+    </StyledContent>
+    </Container>
+    </StyledRoot>
+    </>
   );
 }

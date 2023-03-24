@@ -63,7 +63,7 @@ export default function Page() {
           <Typography variant="h4" gutterBottom>
             Memorials
           </Typography>
-          {user && (  <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {user && (  <Button variant="contained"  size="large" color="info" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Memorial
           </Button>
           )}

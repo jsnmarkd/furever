@@ -67,7 +67,7 @@ export default function MyMemorialsPage() {
           <Typography variant="h4" gutterBottom>
             MyMemorials
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" color="info"  size="large"  startIcon={<Iconify icon="eva:plus-fill" />}>
             New Memorial
           </Button>
         </Stack>

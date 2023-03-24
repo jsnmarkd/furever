@@ -31,13 +31,22 @@ export default function UploadDogImg(props) {
     uploadWidgetRef.current.open();
   }
   
-  return ( <button type="button" onClick={showUploadWidget} >
-    Upload Photo
-  </button>
-  )
+  return ( <>
+ <Button variant="contained" component="label">
+  Upload
+  <input hidden  type="button" onClick={showUploadWidget} />
+</Button>
+<IconButton color="primary" aria-label="upload picture" component="label">
+  <input hidden  type="button" onClick={showUploadWidget} />
+  <PhotoCamera />
+</IconButton>
+  </> )
 
 }
 
+/* <button type="button" onClick={showUploadWidget} >
+Upload Photo
+</button> */
 //   <Button type="button" onClick={showUploadWidget} variant="contained" component="label">
 //   Upload Photo
 //   <input hidden accept="image/*" multiple type="file" />
