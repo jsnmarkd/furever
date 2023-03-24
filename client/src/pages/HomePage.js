@@ -60,14 +60,15 @@ export default function Page() {
 
       <Container maxWidth="xl">
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
-            Memorials
-          </Typography>
+          <img src="/assets/furever_cover.svg" alt="Furever logo and dog" width="1800" height="600" />
+       
+        </Stack>
+        <div>
           {user && (  <Button variant="contained"  size="large" color="info" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Memorial
           </Button>
           )}
-        </Stack>
+            </div>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
