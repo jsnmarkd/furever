@@ -10,6 +10,13 @@ router.get("/", (req, res) => {
   });
 }); 
 
+router.get("/user/:id", (req, res) => {
+  const userId = req.params.id;
+  dogs.getDogsByUserId(userId).then((data) => {
+    res.json({ dogs: data });
+  });
+});
+
 router.post("/", (req, res) => {
    console.log(req.body);
   const dogName = req.body.dog_name
@@ -17,9 +24,10 @@ router.post("/", (req, res) => {
   const dogBirth = req.body.date_birth
   const dogDeath = req.body.date_passing
   const dogImg = req.body.dog_profile_picture
+  const dogUserId = req.body.user_id
 
   // const { dog_name, date_birth, date_passing, dog_description, dog_profile_picture } = req.body
-  dogs.addDog(dogName,dogBio, dogImg, dogBirth, dogDeath ).then((newDog) => {
+  dogs.addDog(dogName,dogBio, dogImg, dogBirth, dogDeath, dogUserId).then((newDog) => {
     res.status(200).json(newDog)
   
 

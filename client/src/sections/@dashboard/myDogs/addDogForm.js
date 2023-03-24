@@ -2,13 +2,14 @@ import { useState, useId } from 'react';
 import { Box, TextField, Grid } from '@mui/material';
 import axios from 'axios'
 
-import UploadDogImg from './UploadDogImg'
-
+import { useAuthContext } from '../../../providers/AuthProvider';
+import UploadDogImg from './UploadDogImg';
 // ----------------------------------------------------------------------
 
 export default function AddDogForm(props) {
 
   const [uploadURL, setUploadURL] = useState('');
+  const { user } = useAuthContext();
 
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
@@ -22,7 +23,8 @@ export default function AddDogForm(props) {
     // You can pass formData as a fetch body directly:
     // fetch('/some-api', { method: form.method, body: formData }).then()
     const formJson = Object.fromEntries(formData.entries());
-    formJson.dog_profile_picture = uploadURL
+    formJson.dog_profile_picture = uploadURL;
+    formJson.user_id = user.id;
 
     axios({method: "post", data: formJson, url: "/dogs"}).then((response) => {
       console.log(response);
