@@ -8,13 +8,15 @@ function useAuthContext() {
 };
 
 function AuthProvider(props) {
-  const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")) || null);
+  const localStorageUser = JSON.parse(localStorage.getItem("userData"));
+  const [auth, setAuth] = useState(!! localStorageUser);
+  const [user, setUser] = useState(localStorageUser || null);
 
   // Perform login process for the user & save authID, etc
   const login = function (user) {
     setAuth(true);
     setUser(user);
+    localStorage.setItem("userData",JSON.stringify(user))
     console.log('set user',user)
   };
 

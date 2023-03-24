@@ -1,38 +1,60 @@
-import { React, useEffect, useRef, useState } from "react";
+import { React, useEffect, useRef, useState } from 'react';
+import { Box, TextField, Grid } from '@mui/material';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
 
 export default function UploadDogImg(props) {
   const [uploadURL, setUploadURL] = useState('');
 
-
-
   const uploadWidgetRef = useRef();
 
-
   useEffect(() => {
-    uploadWidgetRef.current = window.cloudinary.createUploadWidget({
-      cloudName:'dq5ggqhz4',
-      uploadPreset: 'boedy35d'
-    }, (error, result) => {
-      if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info.url);
-        console.log("resssssulllt:", result)
-        setUploadURL(result.info.url);
-        props.setUploadURL(result.info.url);
+    uploadWidgetRef.current = window.cloudinary.createUploadWidget(
+      {
+        cloudName: 'dq5ggqhz4',
+        uploadPreset: 'boedy35d',
+      },
+      (error, result) => {
+        if (!error && result && result.event === 'success') {
+          console.log('Done! Here is the image info: ', result.info.url);
+          console.log('resssssulllt:', result);
+          setUploadURL(result.info.url);
+          props.setUploadURL(result.info.url);
+        }
       }
-    }
-    )
-
-  }, [])
+    );
+  }, []);
 
   function showUploadWidget() {
-    uploadWidgetRef.current.open()
+    uploadWidgetRef.current.open();
   }
-  return <button type="button" onClick={showUploadWidget}>
-    Upload Photo
-  </button>
+  
+  return ( <>
+ <Button variant="contained" component="label">
+  Upload
+  <input hidden  type="button" onClick={showUploadWidget} />
+</Button>
+<IconButton color="primary" aria-label="upload picture" component="label">
+  <input hidden  type="button" onClick={showUploadWidget} />
+  <PhotoCamera />
+</IconButton>
+  </> )
+
 }
 
-
+/* <button type="button" onClick={showUploadWidget} >
+Upload Photo
+</button> */
+//   <Button type="button" onClick={showUploadWidget} variant="contained" component="label">
+//   Upload Photo
+//   <input hidden accept="image/*" multiple type="file" />
+// </Button>
+// <IconButton color="primary" aria-label="upload picture" component="label">
+//   <input hidden accept="image/*" type="file" />
+//   <PhotoCamera />
+// </IconButton>
 
 
 // import { Avatar, Button as MuiButton } from "@material-ui/core";
@@ -98,13 +120,6 @@ export default function UploadDogImg(props) {
 //     </CenteredContent>
 //   );
 // };
-
-
-
-
-
-
-
 
 // import AvatarUpload from ./imageUpload;
 // import React, {useState} from "react";

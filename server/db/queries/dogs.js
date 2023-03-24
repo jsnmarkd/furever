@@ -12,12 +12,29 @@ const getDogById = (id) => {
   });
 };
 
-const addDog = (dog_name, dog_description, dog_profile_picture, date_birth, date_passing) => {
-  const sql = `INSERT INTO dogs (dog_name, dog_description, dog_profile_picture, date_birth, date_passing)
-  VALUES ($1, $2, $3, $4, $5)
+const getDogsByUserId = (id) => {
+  return db
+    .query(
+      `
+    SELECT * FROM dogs 
+    LEFT JOIN users 
+    ON dogs.user_id = users.id 
+    WHERE dogs.user_id = $1;
+    `,
+      [id]
+    )
+    .then((data) => {
+      console.log(data);
+      return data.rows;
+    });
+};
+
+const addDog = (dog_name, dog_description, dog_profile_picture, date_birth, date_passing, user_id) => {
+  const sql = `INSERT INTO dogs (dog_name, dog_description, dog_profile_picture, date_birth, date_passing, user_id)
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;`;
   return db
-    .query(sql, [dog_name, dog_description, dog_profile_picture, date_birth, date_passing ])
+    .query(sql, [dog_name, dog_description, dog_profile_picture, date_birth, date_passing, user_id])
     .then((result) => {
       return result.rows[0];
     })
@@ -40,4 +57,4 @@ const updateDog = function (dog_name, dog_description, dog_profile_picture, date
 };
 
 
-module.exports = { getAllDogs, getDogById, addDog, updateDog };
+module.exports = { getAllDogs, getDogById, addDog, updateDog, getDogsByUserId };

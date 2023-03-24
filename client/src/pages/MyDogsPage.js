@@ -185,9 +185,9 @@ export default function MyDogsPage() {
 
   useEffect(() => {
     axios
-      .get(`/users_dogs/user/${user.id}`)
+      .get(`/dogs/user/${user.id}`)
       .then((res) => {
-        setUserDogs(res.data.users_dogs);
+        setUserDogs(res.data.dogs);
       })
       .catch((err) => {
         console.log(err);
@@ -205,7 +205,7 @@ export default function MyDogsPage() {
           <Typography variant="h4" gutterBottom>
             MyDogs
           </Typography>
-          <Button onClick={handleOpenDogModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button onClick={handleOpenDogModal} variant="contained" color="info" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add Dog
           </Button>
           <Modal

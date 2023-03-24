@@ -16,6 +16,14 @@ const GREY = {
   900: '#161C24',
 };
 
+const PINK = {
+  50: '#fce4ec',
+  100: '#f8bbd0',
+  200: '#f48fb1',
+  300: '#f06292',
+  
+};
+
 const PRIMARY = {
   lighter: '#D1E9FC',
   light: '#76B0F1',
@@ -24,6 +32,8 @@ const PRIMARY = {
   darker: '#061B64',
   contrastText: '#fff',
 };
+
+
 
 const SECONDARY = {
   lighter: '#D6E4FF',
@@ -79,6 +89,7 @@ const palette = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
+  pink: PINK,
   divider: alpha(GREY[500], 0.24),
   text: {
     primary: GREY[800],

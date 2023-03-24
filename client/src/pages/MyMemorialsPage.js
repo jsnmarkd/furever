@@ -28,7 +28,6 @@ export default function MyMemorialsPage() {
   const theme = useTheme();
   const [contents, setContents] = useState([]);
   const { user } = useAuthContext();
-  const userId = 4;
 
   useEffect(() => {
     axios
@@ -45,7 +44,7 @@ export default function MyMemorialsPage() {
     return content.dog_name;
   })
 
-  const colors = ['info', 'warning', 'error'];
+  const colors = ['info', 'warning', 'error', 'success'];
   const dogNames = dogNamesArr.map((dog) => {
     const colorIndex = Math.floor(Math.random() * colors.length);
     const color = colors[colorIndex];
@@ -59,7 +58,7 @@ export default function MyMemorialsPage() {
   return (
     <>
       <Helmet>
-        <title> My Memorials </title>
+        <title> MyMemorials | Furever</title>
       </Helmet>
 
       <Container maxWidth="xl">
@@ -67,7 +66,7 @@ export default function MyMemorialsPage() {
           <Typography variant="h4" gutterBottom>
             MyMemorials
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" color="info"  size="large"  startIcon={<Iconify icon="eva:plus-fill" />}>
             New Memorial
           </Button>
         </Stack>
