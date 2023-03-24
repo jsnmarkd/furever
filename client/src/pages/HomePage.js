@@ -65,7 +65,7 @@ export default function Page() {
           <img src="/assets/furever_cover.svg" alt="Furever logo and dog" width="1800" height="600" />
        
         </Stack>
-        <div>
+        <Stack direction="row" mb={2}>
           {user && (
             <MemorialModal>
               <Button variant="contained" size="large" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />} mb={9}>
@@ -73,7 +73,7 @@ export default function Page() {
               </Button>
             </MemorialModal>
           )}
-        </div>
+        </Stack>
 
 
         <Grid container spacing={3}>

@@ -97,7 +97,7 @@ export default function ProfilePage() {
           {/* { uploadImgURL && <img src={uploadImgURL} height="100" width="100" alt="Dog Profile" /> }  */}
           <UploadDogImg name="user_profile_picture" setUploadURL={setUploadImgURL} />
           <form onSubmit={handleSubmit}>
-            <Stack spacing={3}>
+            <Stack spacing={3} mt={3} mb={3} sx={{ width: '50%' }} >
               <TextField
                 name="firstName"
                 label="First Name"
@@ -146,7 +146,7 @@ export default function ProfilePage() {
             </Stack>
 
             <div>
-              <IconButton aria-label="fingerprint" color="secondary" type="submit" variant="contained">
+              <IconButton aria-label="fingerprint" color="secondary" type="submit" variant="contained" >
                 Save
                 <Fingerprint />
               </IconButton>
