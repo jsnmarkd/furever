@@ -178,7 +178,7 @@ export default function MemorialModal({ children }) {
                 onChange={handleTagsChange}
               /> */}
 
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
+              <Button type="submit" size="large"  variant="contained" sx={{ mt: 2 }}>
                 Submit
               </Button>
             </Box>

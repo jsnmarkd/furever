@@ -14,6 +14,7 @@ import {
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
 import { useAuthContext } from '../providers/AuthProvider';
+import MemorialModal from '../components/MemorialModal';
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
@@ -66,10 +67,18 @@ export default function MyMemorialsPage() {
           <Typography variant="h4" gutterBottom>
             MyMemorials
           </Typography>
-          <Button variant="contained" color="secondary"  size="large"  startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Memorial
-          </Button>
+    
+        <div>
+          {user && (
+            <MemorialModal>
+              <Button variant="contained" size="large" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />} mb={9}>
+                New Memorial
+              </Button>
+            </MemorialModal>
+          )}
+        </div>
         </Stack>
+
 
         <Grid container spacing={3}>
           {dogNames}
