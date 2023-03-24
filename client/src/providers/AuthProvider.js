@@ -17,7 +17,7 @@ function AuthProvider(props) {
     setAuth(true);
     setUser(user);
     localStorage.setItem("userData",JSON.stringify(user))
-    console.log('set user',user)
+    // console.log('set user',user)
   };
 
   const register = function (id, username, email, firstName, lastName, password, passwordConfirmation) {

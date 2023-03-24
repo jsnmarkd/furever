@@ -24,7 +24,7 @@ const getDogsByUserId = (id) => {
       [id]
     )
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       return data.rows;
     });
 };
@@ -56,5 +56,17 @@ const updateDog = function (dog_name, dog_description, dog_profile_picture, date
     });
 };
 
+const getUsersDogs = (id) => {
+  return db
+  .query(
+    `
+    SELECT * FROM dogs WHERE user_id = $1
+    `, [id]
+  )
+  .then((result) =>{
+    return result.rows[0]
+  })
+}
 
-module.exports = { getAllDogs, getDogById, addDog, updateDog, getDogsByUserId };
+
+module.exports = { getAllDogs, getDogById, addDog, updateDog, getDogsByUserId, getUsersDogs };

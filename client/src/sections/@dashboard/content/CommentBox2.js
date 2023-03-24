@@ -23,9 +23,9 @@ export default function CommentBox2(props) {
     formJson.user_id = user.id;
     formJson.user_profile_picture = user.user_profile_picture;
     formJson.username = user.username;
-    console.log("formJson:",formJson);
+    // console.log("formJson:",formJson);
     axios({ method: 'post', data: formJson, url: `/comments/content/${contentId}` }).then((response) => {
-      console.log("axios response",response);
+      // console.log("axios response",response);
       addComment(response.data);
       form.reset();
     });

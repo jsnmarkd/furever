@@ -83,7 +83,7 @@ export default function Nav({ openNav, onCloseNav, user }) {
 
               <Box sx={{ ml: 2 }}>
                 <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                  {user.first_name} {user.last_name}
+                  {user.username}
                 </Typography>
 
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>

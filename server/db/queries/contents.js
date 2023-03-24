@@ -111,6 +111,8 @@ const getContentById = (id) => {
     });
 };
 
+
+
 module.exports = {
   getAllContent,
   getContentByDogId,
