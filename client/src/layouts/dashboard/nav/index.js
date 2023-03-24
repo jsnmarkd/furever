@@ -9,7 +9,10 @@ import account from '../../../_mock/account';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
-import Logo from '../../../components/logo';
+import Logo from '../../../components/logo/FureverLogo';
+
+//  import Logo from '../components/logo';
+
 import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
@@ -26,7 +29,6 @@ const StyledAccount = styled('div')(({ theme }) => ({
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
   // backgroundColor: alpha(theme.palette.grey[500], 0.12),
   backgroundColor: alpha(theme.palette.pink[200], 0.12),
-
 }));
 
 // ----------------------------------------------------------------------

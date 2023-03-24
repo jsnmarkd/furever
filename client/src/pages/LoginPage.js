@@ -7,7 +7,7 @@ import { Link, Container, Typography, Divider, Stack, Button } from '@mui/materi
 import { useState } from 'react';
 import useResponsive from '../hooks/useResponsive';
 // components
-import Logo from '../components/logo';
+
 import Iconify from '../components/iconify';
 // sections
 import LoginForm from '../sections/auth/login/LoginForm';
