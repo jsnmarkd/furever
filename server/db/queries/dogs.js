@@ -29,12 +29,12 @@ const getDogsByUserId = (id) => {
     });
 };
 
-const addDog = (dog_name, dog_description, dog_profile_picture, date_birth, date_passing) => {
-  const sql = `INSERT INTO dogs (dog_name, dog_description, dog_profile_picture, date_birth, date_passing)
-  VALUES ($1, $2, $3, $4, $5)
+const addDog = (dog_name, dog_description, dog_profile_picture, date_birth, date_passing, user_id) => {
+  const sql = `INSERT INTO dogs (dog_name, dog_description, dog_profile_picture, date_birth, date_passing, user_id)
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;`;
   return db
-    .query(sql, [dog_name, dog_description, dog_profile_picture, date_birth, date_passing ])
+    .query(sql, [dog_name, dog_description, dog_profile_picture, date_birth, date_passing, user_id])
     .then((result) => {
       return result.rows[0];
     })

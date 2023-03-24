@@ -58,7 +58,7 @@ export default function MyMemorialsPage() {
   return (
     <>
       <Helmet>
-        <title> My Memorials </title>
+        <title> MyMemorials | Furever</title>
       </Helmet>
 
       <Container maxWidth="xl">
