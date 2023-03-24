@@ -223,7 +223,7 @@ export default function MyDogsPage() {
           <Typography variant="h4" gutterBottom>
             MyDogs
           </Typography>
-          <Button onClick={handleOpenDogModal} variant="contained" color="info" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button onClick={handleOpenDogModal} variant="contained" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add Dog
           </Button>
           <Modal

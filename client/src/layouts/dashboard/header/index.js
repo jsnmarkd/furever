@@ -73,14 +73,14 @@ export default function Header({ onOpenNav }) {
         >
           {!user ? (
             <Link to="/register" style={{ textDecoration: 'none' }}>
-              <Button variant="contained">
+              <Button variant="contained" color="primary">
                 Register
               </Button>
             </Link>
           ) : null}
           {!user ? (
             <Link to="/login" style={{ textDecoration: 'none' }}>
-              <Button variant="contained">
+              <Button variant="contained" color="secondary">
                 Log In
               </Button>
             </Link>

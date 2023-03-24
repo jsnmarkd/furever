@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Avatar, Button, Container } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Avatar, Button, Container, Typography } from '@mui/material';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import { LoadingButton } from '@mui/lab';
 import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
@@ -39,31 +39,6 @@ export default function ProfilePage() {
     }));
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (formData.password !== formData.passwordConfirmation) {
-  //     setFormData((prevData) => ({ ...prevData, error: 'Passwords do not match' }));
-  //     return;
-  //   }
-  //   const emailRegex = /\S+@\S+\.\S+/;
-  //   if (!emailRegex.test(formData.email)) {
-  //     setFormData((prevData) => ({ ...prevData, error: 'Invalid email address' }));
-  //     return;
-  //   }
-  //   setFormData((prevData) => ({ ...prevData, error: null }));
-  //   axios
-  //     .post('http://localhost:8080/register', formData)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       const { username, email, firstName, lastName, password, passwordConfirmation } = formData; // Get the user data from the form data
-  //       register(response.data.user.id, username, email, firstName, lastName, password, passwordConfirmation); // Call the register function with the user data
-  //       navigate('/dashboard', { replace: true });
-  //     })
-  //     .catch((error) => {
-  //       console.error('error', error.response.data);
-  //       setFormData((prevData) => ({ ...prevData, error: error.response.data.error }));
-  //     });
-  // };
 
   const [uploadImgURL, setUploadImgURL] = useState('');
 
@@ -115,6 +90,9 @@ export default function ProfilePage() {
         </Helmet>
 
         <Container maxWidth="xl">
+        <Typography variant="h4" gutterBottom>
+            Profile
+          </Typography>
           <Avatar alt={user.username} src={user.user_profile_picture} sx={{ width: 150, height: 150 }} />
           {/* { uploadImgURL && <img src={uploadImgURL} height="100" width="100" alt="Dog Profile" /> }  */}
           <UploadDogImg name="user_profile_picture" setUploadURL={setUploadImgURL} />

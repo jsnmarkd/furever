@@ -90,7 +90,7 @@ export default function LoginForm() {
         </Link> */}
       </Stack>
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained">
+      <LoadingButton color="secondary" size="large" type="submit" variant="contained">
         Login
       </LoadingButton>
     </form>

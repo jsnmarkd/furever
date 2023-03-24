@@ -27,8 +27,8 @@ const PINK = {
 const PRIMARY = {
   lighter: '#D1E9FC',
   light: '#76B0F1',
-  main: '#2065D1',
-  dark: '#103996',
+  main: '#C5D84F',
+  dark: '#D6DF9F',
   darker: '#061B64',
   contrastText: '#fff',
 };
@@ -38,8 +38,8 @@ const PRIMARY = {
 const SECONDARY = {
   lighter: '#D6E4FF',
   light: '#84A9FF',
-  main: '#3366FF',
-  dark: '#1939B7',
+  main: '#F6C88A',
+  dark: '#FFE5C3',
   darker: '#091A7A',
   contrastText: '#fff',
 };
