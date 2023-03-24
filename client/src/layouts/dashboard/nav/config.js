@@ -27,7 +27,7 @@ const navConfig = [
     icon: icon('ic_dog'),
   },
   {
-    title: 'product',
+    title: 'Products',
     path: '/dashboard/products',
     icon: icon('ic_bone'),
   },
