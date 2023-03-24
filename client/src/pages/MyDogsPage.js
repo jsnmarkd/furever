@@ -3,6 +3,7 @@ import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { SxProps } from '@mui/system';
 
 // @mui
 import {
@@ -31,6 +32,7 @@ import {
   CardMedia,
   Grid,
   TextField,
+  Theme,
 } from '@mui/material';
 
 import { useAuthContext } from '../providers/AuthProvider';
@@ -89,6 +91,20 @@ function applySortFilter(array, comparator, query) {
   }
   return stabilizedThis.map((el) => el[0]);
 }
+
+const style: SxProps<Theme> = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: "60vw",
+  height: 'auto',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 
 export default function MyDogsPage() {
   const { user } = useAuthContext();
@@ -194,6 +210,8 @@ export default function MyDogsPage() {
       });
   }, []);
 
+  
+
   return (
     <>
       <Helmet>
@@ -214,17 +232,14 @@ export default function MyDogsPage() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Card>
-              <Grid container spacing={2}  rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Box>
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                    MyDogs
-                  </Typography>
-                </Box>
+         
+            <Card sx={style}>
+              <Grid  spacing={2}  rowSpacing={1} columnSpacing={{ xs: 5, sm: 7, md: 6 }}>
 
                 <AddDogForm addNewDog={addNewDog} />
               </Grid>
             </Card>
+         
           </Modal>
         </Stack>
 
