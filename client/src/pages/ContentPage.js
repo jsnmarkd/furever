@@ -11,12 +11,16 @@ import Grid from '@mui/joy/Grid';
 import Iconify from '../components/iconify';
 
 import { ContentCard, CommentBox2 } from '../sections/@dashboard/content';
+import { useAuthContext } from '../providers/AuthProvider';
 
 export default function ContentPage() {
+  const { user } = useAuthContext();
   const { id } = useParams();
   const [contents, setContents] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
+
+  console.log("user:", user);
 
   useEffect(() => {
     Promise.all([

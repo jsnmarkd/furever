@@ -49,14 +49,16 @@ export default function Nav({ openNav, onCloseNav, user }) {
 
   const getFilteredNavConfig = (user) => {
     if (user) {
-      return navConfig;
-    } 
-      return navConfig.filter((item) => item.title !== 'user' && item.title !== 'MyDogs');
+      return navConfig.filter((item) => item.title !== 'login');
+    }
+
+    return navConfig.filter(
+      (item) =>
+        item.title !== 'user' && item.title !== 'MyDogs' && item.title !== 'MyMemorials' && item.title !== 'Profile'
+    );
   };
-  
 
   const filteredNavConfig = getFilteredNavConfig(user);
-  
 
   const renderContent = (
     <Scrollbar
@@ -71,19 +73,21 @@ export default function Nav({ openNav, onCloseNav, user }) {
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
-         {user ? <StyledAccount>
-            <Avatar src={user.user_profile_picture} alt="photoURL" />
+          {user ? (
+            <StyledAccount>
+              <Avatar src={user.user_profile_picture} alt="photoURL" />
 
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {user.first_name} {user.last_name}
-              </Typography>
+              <Box sx={{ ml: 2 }}>
+                <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+                  {user.first_name} {user.last_name}
+                </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
-              </Typography>
-            </Box>
-          </StyledAccount> : null}
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {account.role}
+                </Typography>
+              </Box>
+            </StyledAccount>
+          ) : null}
         </Link>
       </Box>
 
@@ -98,7 +102,6 @@ export default function Nav({ openNav, onCloseNav, user }) {
             src="/assets/illustrations/illustration_avatar.png"
             sx={{ width: 100, position: 'absolute', top: -50 }}
           />
-
         </Stack>
       </Box>
     </Scrollbar>
