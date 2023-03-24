@@ -1,13 +1,13 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 // @mui
 import { Box, Card, Link, Typography, Stack, Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // components
 
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-
 import Iconify from '../../../components/iconify';
 import { fShortenNumber } from '../../../utils/formatNumber';
 // ----------------------------------------------------------------------
@@ -45,8 +45,10 @@ ContentCard.propTypes = {
 
 export default function ContentCard({ content }) {
   const {
+    id,
     media_picture,
     share,
+    user_id,
     username,
     user_profile_picture,
     dog_name,
@@ -56,10 +58,42 @@ export default function ContentCard({ content }) {
     media_video,
   } = content;
 
-  const POST_INFO = [
-    { icon: 'eva:heart-fill' },
-  ];
+  const content_id = id
 
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`/likes/liked?user_id=${user_id}&content_id=${content_id}`)
+      .then((res) => {
+        setLiked(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user_id, content_id]);
+
+  const handleLike = () => {
+    axios({ method: 'post', data: { user_id, content_id }, url: '/likes'})
+      .then(() => {
+        setLiked(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleUnlike = () => {
+    axios
+      .delete('/likes', { data: { user_id, content_id } })
+      .then(() => {
+        setLiked(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  // axios({ method: 'post', data: formJson, url: `/comments/content/${contentId}` })
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -71,19 +105,17 @@ export default function ContentCard({ content }) {
           <StyledAvatar alt={dog_name} src={dog_profile_picture} sx={{ ...{ left: 70, width: 40, height: 40 } }} />
         </Tooltip>
         <StyledInfo>
-          {POST_INFO.map((info, index) => (
-            <Box
-              key={index}
-              sx={{
-                alignItems: 'center',
-                height: 0,
-              }}
-            >
-              <Button>
-                <Iconify icon={info.icon} sx={{ width: 35, height: 35, mr: 0.5 }} />
+          <Box sx={{ alignItems: 'center', height: 0 }}>
+            {liked ? (
+              <Button onClick={handleUnlike}>
+                <Iconify icon={'eva:heart-fill'} sx={{ width: 35, height: 35, mr: 0.5 }} />
               </Button>
-            </Box>
-          ))}
+            ) : (
+              <Button onClick={handleLike}>
+                <Iconify icon={'eva:heart-outline'} sx={{ width: 35, height: 35, mr: 0.5 }} />
+              </Button>
+            )}
+          </Box>
         </StyledInfo>
       </Box>
 
