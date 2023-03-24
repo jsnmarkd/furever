@@ -10,7 +10,6 @@ export default function AddDogForm(props) {
 
   const [uploadURL, setUploadURL] = useState('');
 
-  const bioTextAreaId = useId();
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();

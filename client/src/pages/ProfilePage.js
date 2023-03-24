@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Avatar, Button } from '@mui/material';
+import Fingerprint from '@mui/icons-material/Fingerprint';
 import { LoadingButton } from '@mui/lab';
 import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
 
@@ -107,7 +108,7 @@ export default function ProfilePage() {
 
   return user && (
     <>
-      <Avatar alt={user.username} src={user.user_profile_picture} />
+      <Avatar alt={user.username} src={user.user_profile_picture} sx={{ width: 150, height: 150}} />
       {/* { uploadImgURL && <img src={uploadImgURL} height="100" width="100" alt="Dog Profile" /> }  */}
       <UploadDogImg name="user_profile_picture" setUploadURL={setUploadImgURL} />
       <form onSubmit={handleSubmit}>
@@ -144,9 +145,14 @@ export default function ProfilePage() {
       </Stack>
       
       <div>
-        <LoadingButton size="large" type="submit" variant="contained">
+           <IconButton aria-label="fingerprint" color="secondary" type="submit" variant="contained">
+              Save
+              <Fingerprint />
+            </IconButton>
+      
+        {/* <LoadingButton size="large" type="submit" variant="contained">
           Save
-        </LoadingButton>
+        </LoadingButton> */}
       </div>
       </form>
 

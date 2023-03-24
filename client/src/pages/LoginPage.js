@@ -67,17 +67,15 @@ export default function LoginPage() {
 
         {mdUp && (
           <StyledSection>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
-            </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+          
+            <img src="/assets/illustrations/furever_login.svg" alt="login" />
           </StyledSection>
         )}
 
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Sign in to Furever
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
