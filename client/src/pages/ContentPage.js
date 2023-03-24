@@ -37,7 +37,7 @@ export default function ContentPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
 
   const Item = styled(Sheet)(({ theme }) => ({
