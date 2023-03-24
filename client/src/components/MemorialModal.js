@@ -1,11 +1,15 @@
+// client/src../sections/@dashboard/myDogs/MemorialModal.js
+// client/src/components/MemorialModal.js
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { SxProps } from '@mui/system';
-import { Theme, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import axios from 'axios';
+import { Checkbox, FormControlLabel, FormGroup, Theme, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
 import { useAuthContext } from '../providers/AuthProvider';
 
 const style: SxProps<Theme> = {
@@ -14,7 +18,7 @@ const style: SxProps<Theme> = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: "60vw",
-  height:'auto' ,
+  height: 'auto',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -28,10 +32,16 @@ export default function MemorialModal({ children }) {
   const [tags, setTags] = useState('');
   const [userDogs, setUserDogs] = useState([]);
   const { user } = useAuthContext();
+  const [uploadImgURL, setUploadImgURL] = useState('');
+  const [isVideo, setIsVideo] = useState(false);
+
+  const handleMediaTypeChange = (event) => {
+    setIsVideo(event.target.checked);
+  };
 
   const handleTagsChange = (event) => {
     setTags(event.target.value);
-  };  
+  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,15 +57,17 @@ export default function MemorialModal({ children }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ dog, description, tags });
-  
+
     // Find the selected dog object
     const selectedDog = userDogs.find((userDog) => userDog.dog_name === dog);
-  
+
     axios
       .post('/memorial/new', {
         dog_id: selectedDog.dog_id,
         dog_name: selectedDog.dog_name,
         description,
+        uploadImgURL,
+        isVideo,
       })
       .then((response) => {
         console.log('data from post', response.data);
@@ -70,8 +82,8 @@ export default function MemorialModal({ children }) {
   console.log('front end auth context', user)
   useEffect(() => {
     axios
-    .post('/memorial', user)    
-    // get dogs
+      .post('/memorial', user)
+      // get dogs
       .then((response) => {
         // show dog names on drop down menu
         setUserDogs(response.data);
@@ -80,7 +92,8 @@ export default function MemorialModal({ children }) {
         console.error(error);
       });
   }, []);
-  
+
+
 
   return (
     <div>
@@ -91,48 +104,83 @@ export default function MemorialModal({ children }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} component="form" onSubmit={handleSubmit}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Create New Memorial
-          </Typography>
+        <Box sx={style}>
+          {userDogs.length === 0 ? (
+            <>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                You must own a dog before creating a post
+              </Typography>
+              <Button
+                component={Link}
+                to="/dashboard/mydogs"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 2 }}
+                onClick={handleClose}
+              >
+                + Add Dog
+              </Button>
+            </>
+          ) : (
+            <Box component="form" onSubmit={handleSubmit}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Create New Memorial
+              </Typography>
 
-          <FormControl fullWidth sx={{ mt: 2 }}>
-            <InputLabel id="dog-select-label">Dog</InputLabel>
-            <Select
-              labelId="dog-select-label"
-              id="dog-select"
-              value={dog}
-              onChange={handleDogChange}
-            >
-              {userDogs.map((userDog) => (
-                <MenuItem key={userDog.dog_id} value={userDog.dog_name}>
-                  {userDog.dog_name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+              <FormControl fullWidth sx={{ mt: 2 }}>
+                <InputLabel id="dog-select-label">Dog</InputLabel>
+                <Select
+                  labelId="dog-select-label"
+                  id="dog-select"
+                  value={dog}
+                  onChange={handleDogChange}
+                >
+                  {userDogs.map((userDog) => (
+                    <MenuItem key={userDog.dog_id} value={userDog.dog_name}>
+                      {userDog.dog_name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
-          <TextField
-            fullWidth
-            multiline
-            rows={4}
-            sx={{ mt: 2 }}
-            label="Description"
-            value={description}
-            onChange={handleDescriptionChange}
-          />
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                sx={{ mt: 2 }}
+                label="Description"
+                value={description}
+                onChange={handleDescriptionChange}
+              />
+              <UploadDogImg name="user_profile_picture" setUploadURL={setUploadImgURL} />
 
-          {/* <TextField
-            fullWidth
-            sx={{ mt: 2 }}
-            label="Tags"
-            value={tags}
-            onChange={handleTagsChange}
-          /> */}
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isVideo}
+                      onChange={handleMediaTypeChange}
+                      name="isVideo"
+                      color="primary"
+                    />
+                  }
+                  label="Video"
+                />
+              </FormGroup>
 
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
-            Submit
-          </Button>
+              {/* <TextField
+                fullWidth
+                sx={{ mt: 2 }}
+                label="Tags"
+                value={tags}
+                onChange={handleTagsChange}
+              /> */}
+
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
+                Submit
+              </Button>
+            </Box>
+          )}
         </Box>
       </Modal>
     </div>

@@ -28,10 +28,17 @@ router.post("/", (req, res) => {
 
 // take the post and insert into create a post
 router.post("/new", (req, res) => {
-  const {dog_id, media_picture, media_video, media_description} = req.body;
+  const { dog_id, description, uploadImgURL, isVideo } = req.body;
+  console.log('data sent from new memorial form to backend', req.body);
+
+  // Assign uploadImgURL to media_video or media_picture based on isVideo
+  const media_picture = isVideo ? null : uploadImgURL;
+  const media_video = isVideo ? uploadImgURL : null;
+  const media_description = description;
+
   // insert into db
   return dogMedia
-    .createDogMedia(dog_id, media_picture || null, media_video || null, media_description)
+    .createDogMedia(dog_id, media_picture, media_video, media_description)
     .then((result) => {
       res.status(200).json(result);
     })
