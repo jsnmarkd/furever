@@ -13,7 +13,8 @@ const style: SxProps<Theme> = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: "60vw",
+  height:'auto' ,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -46,15 +47,18 @@ export default function MemorialModal({ children }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ dog, description, tags });
+  
+    // Find the selected dog object
+    const selectedDog = userDogs.find((userDog) => userDog.dog_name === dog);
+  
     axios
       .post('/memorial/new', {
-        userId: user.id, 
-        dogName: dog, 
-        description, 
-        tags, 
+        dog_id: selectedDog.dog_id,
+        dog_name: selectedDog.dog_name,
+        description,
       })
       .then((response) => {
-        console.log(response);
+        console.log('data from post', response.data);
         handleClose();
       })
       .catch((error) => {
@@ -118,13 +122,13 @@ export default function MemorialModal({ children }) {
             onChange={handleDescriptionChange}
           />
 
-          <TextField
+          {/* <TextField
             fullWidth
             sx={{ mt: 2 }}
             label="Tags"
             value={tags}
             onChange={handleTagsChange}
-          />
+          /> */}
 
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
             Submit
