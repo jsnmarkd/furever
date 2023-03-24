@@ -1,13 +1,12 @@
 import { useState, useId } from 'react';
-import { Box, TextField, Grid, Button, Container} from '@mui/material';
-import axios from 'axios'
+import { Box, TextField, Grid, Button, Container } from '@mui/material';
+import axios from 'axios';
 
 import { useAuthContext } from '../../../providers/AuthProvider';
 import UploadDogImg from './UploadDogImg';
 // ----------------------------------------------------------------------
 
 export default function AddDogForm(props) {
-
   const [uploadURL, setUploadURL] = useState('');
   const { user } = useAuthContext();
 
@@ -26,51 +25,52 @@ export default function AddDogForm(props) {
     formJson.dog_profile_picture = uploadURL;
     formJson.user_id = user.id;
 
-    axios({method: "post", data: formJson, url: "/dogs"}).then((response) => {
+    axios({ method: 'post', data: formJson, url: '/dogs' }).then((response) => {
       console.log(response);
       props.addNewDog(response.data);
-    })
-
- 
+    });
   }
 
   return (
-    <>
+    <form method="post" onSubmit={handleSubmit} noValidate autoComplete="off">
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={6}>
+          <Grid container direction="column" spacing={2}>
+            <Grid item xs={12}>
+              <TextField fullWidth required id="filled-required" label="Name" name="dog_name" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                required
+                id="filled-required"
+                label="Bio"
+                name="dog_description"
+                multiline
+                rows={4}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField fullWidth required id="filled-required" label="Birthday" name="date_birth" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField fullWidth required id="filled-required" label="Date of passing" name="date_passing" />
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary">
+                Save Dog
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
 
-    <Box
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-      
-    >
-      <Container  >
-      <form method="post" onSubmit={handleSubmit}>
-      <div>
-        <TextField  fullWidth required id="filled-required" label="Name"  name="dog_name"  />
-      </div>
-      <div> 
-      <TextField fullWidth required id="filled-required" label="Bio" name="dog_description" multiline rows={4} sx={{ mt: 2 }} />
-      </div> 
-      <div>
-        <TextField fullWidth required id="filled-required" label="Birthday"  name="date_birth" />
-      </div>
-      <div>
-        <TextField fullWidth required id="filled-required" label="Date of passing"   name="date_passing"/>
-      </div>
-
-
-      <div>
-     { uploadURL && <img src={uploadURL} height="200" width="200" alt="Dog Profile" /> } 
-      <UploadDogImg  name="dog_profile_picture" setUploadURL={setUploadURL}/>
-      <Button type="submit" variant="contained" color="info" >Save Dog</Button>
-      </div>
-
-      </form>
-      </Container>
-    </Box>
-   
-    </>
+        <Grid item xs={6}>
+          <div>
+            {uploadURL && <img src={uploadURL} height="200" width="200" alt="Dog Profile" />}
+            <UploadDogImg name="dog_profile_picture" setUploadURL={setUploadURL} />
+          </div>
+        </Grid>
+      </Grid>
+    </form>
   );
 }

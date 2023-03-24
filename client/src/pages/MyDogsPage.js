@@ -234,16 +234,17 @@ export default function MyDogsPage() {
           >
          
             <Card sx={style}>
-              <Grid  spacing={2}  rowSpacing={1} columnSpacing={{ xs: 5, sm: 7, md: 6 }}>
+
+                
 
                 <AddDogForm addNewDog={addNewDog} />
-              </Grid>
+            
             </Card>
          
           </Modal>
         </Stack>
-
         <Card>
+
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
