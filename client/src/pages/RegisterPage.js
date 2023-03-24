@@ -87,7 +87,7 @@ export default function RegisterForm() {
     axios
       .post('http://localhost:8080/register', formData)
       .then((response) => {
-        console.log('rrs data', response)
+        // console.log('rrs data', response)
         const user = response.data.user; // Get the user data from the form data
         register(user); // Call the register function with the user data
         navigate('/dashboard', { replace: true });

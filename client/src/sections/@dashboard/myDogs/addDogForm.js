@@ -18,7 +18,7 @@ export default function AddDogForm(props) {
     // Read the form data
     const form = e.target;
     const formData = new FormData(form);
-    console.log(formData.get('dog_profile_picture'));
+    // console.log(formData.get('dog_profile_picture'));
 
     // You can pass formData as a fetch body directly:
     // fetch('/some-api', { method: form.method, body: formData }).then()

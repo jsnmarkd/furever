@@ -5,7 +5,7 @@ const comments = require("../db/queries/comments");
 router.get("/content/:id", (req, res) => {
   const id = req.params.id;
   comments.getCommentsByContentId(id).then((data) => {
-    console.log(data);
+    // console.log(data);
     res.json({ comments: data });
   });
 });

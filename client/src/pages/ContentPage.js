@@ -38,8 +38,7 @@ export default function ContentPage() {
         console.log(err);
       });
   }, []);
-  console.log("contents:",contents);
-  console.log("comments:",comments);
+
 
   const Item = styled(Sheet)(({ theme }) => ({
     ...theme.typography.body2,
