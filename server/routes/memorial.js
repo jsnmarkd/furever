@@ -1,23 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const dogs = require("../db/queries/dog_media");
-const userDogs = require("../db/queries/users_dogs");
+const userDogs = require("../db/queries/dogs");
 const dogMedia = require('../db/queries/dog_media')
 
-router.get("/", (req, res) => {
-  console.log('req', req.body)
-  dogs.getAllDogs().then((data) => {
-  });
-}); 
-
-
+// sends user dogs to front end
 router.post("/", (req, res) => {
-  console.log('req body inside post req.', req.body);
   const userId = req.body.id;
   console.log('user id inside req', userId);
   return userDogs
   .getDogsByUserId(userId)
   .then((result) => {
+    console.log('backend dogs reuslt', result)
     res.status(200).json(result);
   })
   .catch((error) => {

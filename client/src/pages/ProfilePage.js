@@ -96,10 +96,10 @@ export default function ProfilePage() {
    
   
     formJson.profileUrl = uploadImgURL
-    console.log("Formmmm:", formJson);
+    // console.log("Formmmm:", formJson);
 
     axios.post(`/users/${user.id}`, formJson).then((response) => {
-      console.log(response);
+      // console.log(response);
       setUser(response.data.user);
     })
 
