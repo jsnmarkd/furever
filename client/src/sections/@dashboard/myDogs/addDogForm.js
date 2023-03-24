@@ -1,5 +1,5 @@
 import { useState, useId } from 'react';
-import { Box, TextField, Grid } from '@mui/material';
+import { Box, TextField, Grid, Button } from '@mui/material';
 import axios from 'axios'
 
 import { useAuthContext } from '../../../providers/AuthProvider';
@@ -46,10 +46,10 @@ export default function AddDogForm(props) {
     >
       <form method="post" onSubmit={handleSubmit}>
       <div>
-        <TextField required id="filled-required" label="Name" variant="filled" name="dog_name" />
+        <TextField  fullWidth required id="filled-required" label="Name" variant="filled" name="dog_name"  />
       </div>
       <div> 
-      <TextField required id="filled-required" label="Bio" variant="filled" name="dog_description" multiline />
+      <TextField required id="filled-required" label="Bio" variant="filled" name="dog_description" multiline rows={4} sx={{ mt: 2 }} />
       </div> 
       <div>
         <TextField required id="filled-required" label="Birthday" variant="filled" name="date_birth" />
@@ -62,7 +62,7 @@ export default function AddDogForm(props) {
 
      { uploadURL && <img src={uploadURL} height="100" width="100" alt="Dog Profile" /> } 
       <UploadDogImg  name="dog_profile_picture" setUploadURL={setUploadURL}/>
-      <button type="submit">Save Dog</button>
+      <Button type="submit" variant="contained" color="info" >Save Dog</Button>
       </form>
     </Box>
    
