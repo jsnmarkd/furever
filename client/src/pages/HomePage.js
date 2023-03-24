@@ -8,6 +8,8 @@ import { Grid, Container, Typography, Button, Stack } from '@mui/material';
 import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
 import { HomePageCard } from '../sections/@dashboard/home';
+import MemorialModal from '../components/MemorialModal';
+
 // sections
 import {
   AppTasks,
@@ -63,9 +65,13 @@ export default function Page() {
           <Typography variant="h4" gutterBottom>
             Memorials
           </Typography>
-          {user && (  <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Memorial
-          </Button>
+
+          {user && (
+            <MemorialModal>
+              <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+                New Memorial
+              </Button>
+            </MemorialModal>
           )}
         </Stack>
 

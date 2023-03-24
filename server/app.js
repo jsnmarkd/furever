@@ -16,6 +16,7 @@ const contentsRouter = require('./routes/contents');
 const usersDogsRouter = require('./routes/users_dogs');
 const loginRouter = require('./routes/login');
 const dogsRouter = require('./routes/dogs');
+const memorialRouter = require('./routes/memorial');
 
 const commentsRouter = require('./routes/comments');
 var app = express();
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
+app.use('/memorial', memorialRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
 app.use('/dogs', dogsRouter);

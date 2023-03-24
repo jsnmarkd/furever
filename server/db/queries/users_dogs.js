@@ -15,9 +15,19 @@ const getDogsByUserId = (id) => {
     WHERE users_dogs.user_id = $1;
     `, [id])
     .then((data) => {
-      console.log(data);
     return data.rows;
   });
 };
 
-module.exports = { getAllUsersDogs, getDogsByUserId };
+const getUsersDogs = (id) => {
+  return db
+  .query(
+    `
+    SELECT * FROM dogs WHERE user_id = $1
+    `, [id]
+  )
+  .then((result) =>{
+    return result.rows[0]
+  })
+}
+module.exports = { getAllUsersDogs, getDogsByUserId, getUsersDogs};

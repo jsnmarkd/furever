@@ -1,8 +1,5 @@
 import { React, useEffect, useRef, useState } from "react";
 
-
-
-
 export default function UploadDogImg(props) {
   const [uploadURL, setUploadURL] = useState('');
 
