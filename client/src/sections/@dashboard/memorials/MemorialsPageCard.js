@@ -69,7 +69,6 @@ export default function MemorialsPageCard({ post, index }) {
     dog_profile_picture,
     created_at,
     media_description,
-    media_video,
   } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;

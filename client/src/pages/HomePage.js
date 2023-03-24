@@ -3,24 +3,16 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography, Button, Stack } from '@mui/material';
+import { Grid, Container, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
-import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
+import { BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
 import { HomePageCard } from '../sections/@dashboard/home';
 import MemorialModal from '../components/MemorialModal';
 
 // sections
 import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppTrafficBySite,
-  AppWidgetSummary,
-  AppCurrentSubject,
-  AppConversionRates,
+  AppWidgetSummary
 } from '../sections/@dashboard/app';
 // mock
 import POSTS from '../_mock/blog';
@@ -63,19 +55,22 @@ export default function Page() {
       <Container maxWidth="xl">
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <img src="/assets/furever_cover.svg" alt="Furever logo and dog" width="1800" height="600" />
-       
         </Stack>
-        <div>
+        <Stack direction="row-reverse" alignItems="center" justifyContent="space-between" mb={5}>
           {user && (
             <MemorialModal>
-              <Button variant="contained" size="large" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />} mb={9}>
+              <Button
+                variant="contained"
+                size="large"
+                color="secondary"
+                startIcon={<Iconify icon="eva:plus-fill" />}
+                mb={9}
+              >
                 New Memorial
               </Button>
             </MemorialModal>
           )}
-        </div>
-
-
+        </Stack>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="#Park" icon={'ant-design:android-filled'} />
@@ -102,7 +97,9 @@ export default function Page() {
         </Grid>
 
         <Grid container spacing={3}>
-          {contents.map((content, index) => <HomePageCard key={content.id} post={content} index={index} />)}
+          {contents.map((content, index) => (
+            <HomePageCard key={content.id} post={content} index={index} />
+          ))}
         </Grid>
       </Container>
     </>
