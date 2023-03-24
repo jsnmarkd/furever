@@ -185,9 +185,9 @@ export default function MyDogsPage() {
 
   useEffect(() => {
     axios
-      .get(`/users_dogs/user/${user.id}`)
+      .get(`/dogs/user/${user.id}`)
       .then((res) => {
-        setUserDogs(res.data.users_dogs);
+        setUserDogs(res.data.dogs);
       })
       .catch((err) => {
         console.log(err);

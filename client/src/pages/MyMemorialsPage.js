@@ -44,7 +44,7 @@ export default function MyMemorialsPage() {
     return content.dog_name;
   })
 
-  const colors = ['info', 'warning', 'error'];
+  const colors = ['info', 'warning', 'error', 'success'];
   const dogNames = dogNamesArr.map((dog) => {
     const colorIndex = Math.floor(Math.random() * colors.length);
     const color = colors[colorIndex];
