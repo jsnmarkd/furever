@@ -23,7 +23,7 @@ const getCommentsByContentId = (id) => {
 const addComment = (user_id, content_id, comment) => {
   return db
     .query(
-      `INSERT INTO comments (user_id, content_id, comment) VALUES ($1, $2, $3) RETURNING *`,
+      `INSERT INTO comments (user_id, content_id, comment) VALUES ($1, $2, $3) RETURNING *;`,
       [user_id, content_id, comment]
     )
     .then((result) => {

@@ -22,6 +22,10 @@ export default function ContentPage() {
 
   console.log("user:", user);
 
+  const addComment = (comment) => {
+    setComments(comments.concat(comment));
+  };
+
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8080/contents/${id}`),
@@ -43,10 +47,6 @@ export default function ContentPage() {
     textAlign: 'center',
     color: theme.vars.palette.text.tertiary,
   }));
-
-  const addComment = (comment) => {
-    setComments((prev) => [...prev, comment]);
-  };
 
   return (
     <>
