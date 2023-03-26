@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import './CommentBox2.css';
 import { fDateTime } from '../../../utils/formatTime';
@@ -8,7 +8,6 @@ export default function CommentBox2(props) {
   const { comments, contentId, addComment } = props;
   const { user } = useAuthContext();
 
-  console.log("user:",user);
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
@@ -23,9 +22,7 @@ export default function CommentBox2(props) {
     formJson.user_id = user.id;
     formJson.user_profile_picture = user.user_profile_picture;
     formJson.username = user.username;
-    // console.log("formJson:",formJson);
     axios({ method: 'post', data: formJson, url: `/comments/content/${contentId}` }).then((response) => {
-      // console.log("axios response",response);
       addComment(response.data);
       form.reset();
     });

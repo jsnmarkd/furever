@@ -4,23 +4,16 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Container, Typography, Button, Stack } from '@mui/material';
-import { styled } from '@mui/joy/styles';
-import Sheet from '@mui/joy/Sheet';
 import Grid from '@mui/joy/Grid';
 // components
 import Iconify from '../components/iconify';
 
 import { ContentCard, CommentBox2 } from '../sections/@dashboard/content';
-import { useAuthContext } from '../providers/AuthProvider';
 
 export default function ContentPage() {
-  const { user } = useAuthContext();
   const { id } = useParams();
   const [contents, setContents] = useState([]);
   const [comments, setComments] = useState([]);
-  const [likes, setLikes] = useState([]);
-
-  console.log("user:", user);
 
   const addComment = (comment) => {
     setComments(comments.concat(comment));
@@ -38,14 +31,6 @@ export default function ContentPage() {
         console.log(err);
       });
   });
-
-
-  const Item = styled(Sheet)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.vars.palette.text.tertiary,
-  }));
 
   return (
     <>
