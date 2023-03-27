@@ -2,11 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
-import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
+import { BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
 import { HomePageCard } from '../sections/@dashboard/home';
 // mock
 import POSTS from '../_mock/blog';
@@ -26,7 +25,6 @@ const SORT_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function MyMemorialsPage() {
-  const theme = useTheme();
   const [contents, setContents] = useState([]);
   const { user } = useAuthContext();
 
@@ -41,12 +39,13 @@ export default function MyMemorialsPage() {
       });
   }, []);
 
-  const dogNamesArr = contents.map((content) => {
-    return content.dog_name;
+  const dogNamesSet = new Set();
+  contents.forEach((content) => {
+    dogNamesSet.add(content.dog_name);
   });
 
   const colors = ['info', 'warning', 'error', 'success'];
-  const dogNames = dogNamesArr.map((dog) => {
+  const dogNames = Array.from(dogNamesSet).map((dog) => {
     const colorIndex = Math.floor(Math.random() * colors.length);
     const color = colors[colorIndex];
     return (
@@ -55,6 +54,7 @@ export default function MyMemorialsPage() {
       </Grid>
     );
   });
+
 
   return (
     <>
@@ -67,29 +67,26 @@ export default function MyMemorialsPage() {
           <Typography variant="h4" gutterBottom>
             MyMemorials
           </Typography>
-
-          <div>
-            {user && (
-              <MemorialModal>
-                <Button
-                  variant="contained"
-                  size="large"
-                  color="secondary"
-                  startIcon={<Iconify icon="eva:plus-fill" />}
-                  mb={9}
-                >
-                  New Memorial
-                </Button>
-              </MemorialModal>
-            )}
-          </div>
         </Stack>
-
-
 
         <Grid container spacing={3}>
           {dogNames}
           <Grid item xs={12} md={0} lg={12}>
+            <Stack direction="row-reverse" alignItems="center" justifyContent="space-between" mb={5}>
+              {user && (
+                <MemorialModal>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    color="secondary"
+                    startIcon={<Iconify icon="eva:plus-fill" />}
+                    mb={9}
+                  >
+                    New Memorial
+                  </Button>
+                </MemorialModal>
+              )}
+            </Stack>
             <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
               <BlogPostsSearch posts={POSTS} />
               <BlogPostsSort options={SORT_OPTIONS} />

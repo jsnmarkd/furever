@@ -58,7 +58,7 @@ HomePageCard.propTypes = {
 
 export default function HomePageCard({ post, index }) {
   const {
-    id,
+    media_id,
     media_picture,
     comment_count,
     like_count,
@@ -69,7 +69,6 @@ export default function HomePageCard({ post, index }) {
     dog_profile_picture,
     created_at,
     media_description,
-    media_video,
   } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
@@ -160,7 +159,7 @@ export default function HomePageCard({ post, index }) {
             {fDate(created_at)}
           </Typography>
 
-          <Link href={`/dashboard/content/${id}`}>
+          <Link href={`/dashboard/content/${media_id}`}>
             <StyledTitle
               color="inherit"
               variant="subtitle2"

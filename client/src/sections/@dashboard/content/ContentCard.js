@@ -9,7 +9,6 @@ import React, {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import Iconify from '../../../components/iconify';
-import { fShortenNumber } from '../../../utils/formatNumber';
 // ----------------------------------------------------------------------
 
 const StyledProductImg = styled('img')({
@@ -47,15 +46,12 @@ export default function ContentCard({ content }) {
   const {
     id,
     media_picture,
-    share,
     user_id,
     username,
     user_profile_picture,
     dog_name,
     dog_profile_picture,
-    created_at,
     media_description,
-    media_video,
   } = content;
 
   const content_id = id
@@ -93,7 +89,7 @@ export default function ContentCard({ content }) {
         console.log(err);
       });
   };
-  // axios({ method: 'post', data: formJson, url: `/comments/content/${contentId}` })
+  
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -119,9 +115,9 @@ export default function ContentCard({ content }) {
         </StyledInfo>
       </Box>
 
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
+      <Stack spacing={2} sx={{ p: 5 }}>
+        <Link color="inherit" underline="hover" >
+          <Typography variant="subtitle2">
             {media_description}
           </Typography>
         </Link>
@@ -134,10 +130,7 @@ export default function ContentCard({ content }) {
               sx={{
                 color: 'brown',
               }}
-            >
-              hey
-            </Typography>
-            &nbsp;
+            />
           </Typography>
         </Stack>
       </Stack>
