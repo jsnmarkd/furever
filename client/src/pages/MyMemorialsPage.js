@@ -10,11 +10,11 @@ import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashb
 import { HomePageCard } from '../sections/@dashboard/home';
 // mock
 import POSTS from '../_mock/blog';
-import {
-  AppWidgetSummary,
-} from '../sections/@dashboard/app';
+import { AppWidgetSummary } from '../sections/@dashboard/app';
 import { useAuthContext } from '../providers/AuthProvider';
 import MemorialModal from '../components/MemorialModal';
+import Slideshow from '../sections/slideshow/Slideshow';
+
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
@@ -43,7 +43,7 @@ export default function MyMemorialsPage() {
 
   const dogNamesArr = contents.map((content) => {
     return content.dog_name;
-  })
+  });
 
   const colors = ['info', 'warning', 'error', 'success'];
   const dogNames = dogNamesArr.map((dog) => {
@@ -54,7 +54,7 @@ export default function MyMemorialsPage() {
         <AppWidgetSummary title={dog} color={color} />
       </Grid>
     );
-  })
+  });
 
   return (
     <>
@@ -67,19 +67,27 @@ export default function MyMemorialsPage() {
           <Typography variant="h4" gutterBottom>
             MyMemorials
           </Typography>
-    
-        <div>
-          {user && (
-            <MemorialModal>
-              <Button variant="contained" size="large" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />} mb={9}>
-                New Memorial
-              </Button>
-            </MemorialModal>
-          )}
-        </div>
+
+          <div>
+            {user && (
+              <MemorialModal>
+                <Button
+                  variant="contained"
+                  size="large"
+                  color="secondary"
+                  startIcon={<Iconify icon="eva:plus-fill" />}
+                  mb={9}
+                >
+                  New Memorial
+                </Button>
+              </MemorialModal>
+            )}
+          </div>
         </Stack>
-
-
+    
+        <Stack>
+          <Slideshow />
+        </Stack>
         <Grid container spacing={3}>
           {dogNames}
           <Grid item xs={12} md={0} lg={12}>
@@ -89,7 +97,6 @@ export default function MyMemorialsPage() {
             </Stack>
           </Grid>
         </Grid>
-
         <Grid container spacing={3}>
           {contents.map((content, index) => (
             <HomePageCard key={content.id} post={content} index={index} />

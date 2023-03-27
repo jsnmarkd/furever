@@ -9,6 +9,7 @@ import ThemeProvider from './theme';
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
 import { AuthProvider } from './providers/AuthProvider';
+
 // ----------------------------------------------------------------------
 
 export default function App() {

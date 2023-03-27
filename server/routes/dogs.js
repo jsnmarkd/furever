@@ -38,6 +38,46 @@ router.post("/", (req, res) => {
 });
 
 
+
+
+
+// router.post("/", (req, res) => {
+
+
+//  const properties = {
+//   width: 500,
+//   height: 500,
+//   videoDuration: 15,
+//   slideDuration: 3000,
+//   transitionDuration: 1000,
+//   videos: ['beach-boat', '3dogs', 'reindeer'],
+// } = req.body
+
+//  dogs.Slideshow().then((newSlideshow) => {
+//    res.status(200).json(newSlideshow)
+ 
+
+// })
+// .catch((err) => {
+//  res.status(500).json({ error: err.message });
+// });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // router.get("/", (req, res) => {
 //   const user = req.session.user
 //   if (!user) {

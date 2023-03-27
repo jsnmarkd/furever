@@ -35,6 +35,8 @@ import {
   Theme,
 } from '@mui/material';
 
+import Slideshow from '../sections/slideshow/Slideshow';
+
 import { useAuthContext } from '../providers/AuthProvider';
 
 import AddDogForm from '../sections/@dashboard/myDogs/addDogForm';
@@ -97,14 +99,13 @@ const style: SxProps<Theme> = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: "60vw",
+  width: '60vw',
   height: 'auto',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
-
 
 export default function MyDogsPage() {
   const { user } = useAuthContext();
@@ -210,8 +211,6 @@ export default function MyDogsPage() {
       });
   }, []);
 
-  
-
   return (
     <>
       <Helmet>
@@ -223,28 +222,30 @@ export default function MyDogsPage() {
           <Typography variant="h4" gutterBottom>
             MyDogs
           </Typography>
-          <Button onClick={handleOpenDogModal} variant="contained" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button
+            onClick={handleOpenDogModal}
+            variant="contained"
+            color="secondary"
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
             Add Dog
           </Button>
+
           <Modal
             open={DogModalOpen}
             onClose={handleCloseDogModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-         
             <Card sx={style}>
-
-                
-
-                <AddDogForm addNewDog={addNewDog} />
-            
+              <AddDogForm addNewDog={addNewDog} />
             </Card>
-         
           </Modal>
         </Stack>
         <Card>
-
+          <div>
+          <Slideshow />
+          </div>
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
