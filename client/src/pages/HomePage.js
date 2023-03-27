@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Fuse from 'fuse.js';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
@@ -6,7 +7,7 @@ import { Grid, Container, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 import { BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
-import { HomePageCard } from '../sections/@dashboard/home';
+import { HomePageCard, SearchCard } from '../sections/@dashboard/home';
 import MemorialModal from '../components/MemorialModal';
 
 // sections
@@ -30,19 +31,39 @@ const SORT_OPTIONS = [
 
 export default function Page() {
   const [contents, setContents] = useState([]);
+  const [query, setQuery] = useState('');
 
   // Get the user object
   const { user } = useAuthContext();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/contents')
-      .then(res => {
+    axios
+      .get('http://localhost:8080/contents')
+      .then((res) => {
         setContents(res.data.contents);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const fuse = new Fuse(contents, {
+    keys: ['dog_name', 'media_description'],
+  });
+  const results = fuse.search(query);
+  const contentResults = results.length > 0 ? results.map(result => result.item) : contents ;
+
+  // console.log('fuse search', results);
+  // console.log('contentResults', contentResults);
+
+  const handleOnSearch = ({ currentTarget = {} }) => {
+    const { value } = currentTarget;
+    setQuery(value);
+  }
+
+
+  // console.log('Posts:', POSTS);
+  // console.log('contents', contents);
 
   return (
     <>
@@ -88,15 +109,15 @@ export default function Page() {
 
           <Grid item xs={12} md={0} lg={12}>
             <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
-              <BlogPostsSearch posts={POSTS} />
+              <SearchCard posts={contents} value={query} onChange={handleOnSearch} />
               <BlogPostsSort options={SORT_OPTIONS} />
             </Stack>
           </Grid>
         </Grid>
 
         <Grid container spacing={3}>
-          {contents.map((content, index) => (
-            <HomePageCard key={`homepage-${content.id}`} post={content} index={index} />
+          {contentResults.map((content, index) => (
+            <HomePageCard post={content} index={index} />
           ))}
         </Grid>
       </Container>
