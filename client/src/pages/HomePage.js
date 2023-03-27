@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
@@ -30,7 +29,6 @@ const SORT_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function Page() {
-  const theme = useTheme();
   const [contents, setContents] = useState([]);
 
   // Get the user object
@@ -73,19 +71,19 @@ export default function Page() {
         </Stack>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Park" icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="#HolidayMoments" icon={'ant-design:android-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Grooming" color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="#FaveToys" color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Treats" color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary title="#TreatsAndTricks" color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#Tricks" color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary title="#CuddleTime" color="error" icon={'ant-design:bug-filled'} />
           </Grid>
 
           <Grid item xs={12} md={0} lg={12}>
@@ -98,7 +96,7 @@ export default function Page() {
 
         <Grid container spacing={3}>
           {contents.map((content, index) => (
-            <HomePageCard key={content.id} post={content} index={index} />
+            <HomePageCard key={`homepage-${content.id}`} post={content} index={index} />
           ))}
         </Grid>
       </Container>

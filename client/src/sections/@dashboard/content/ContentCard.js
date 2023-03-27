@@ -115,9 +115,9 @@ export default function ContentCard({ content }) {
         </StyledInfo>
       </Box>
 
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
+      <Stack spacing={2} sx={{ p: 5 }}>
+        <Link color="inherit" underline="hover" >
+          <Typography variant="subtitle2">
             {media_description}
           </Typography>
         </Link>

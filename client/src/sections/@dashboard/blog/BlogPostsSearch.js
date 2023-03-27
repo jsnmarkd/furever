@@ -15,7 +15,7 @@ const StyledPopper = styled((props) => <Popper placement="bottom-start" {...prop
 // ----------------------------------------------------------------------
 
 BlogPostsSearch.propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.array,
 };
 
 export default function BlogPostsSearch({ posts }) {
