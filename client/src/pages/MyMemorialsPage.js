@@ -13,7 +13,7 @@ import POSTS from '../_mock/blog';
 import { AppWidgetSummary } from '../sections/@dashboard/app';
 import { useAuthContext } from '../providers/AuthProvider';
 import MemorialModal from '../components/MemorialModal';
-import Slideshow from '../sections/slideshow/Slideshow';
+
 
 // ----------------------------------------------------------------------
 
@@ -84,10 +84,9 @@ export default function MyMemorialsPage() {
             )}
           </div>
         </Stack>
-    
-        <Stack>
-          <Slideshow />
-        </Stack>
+
+
+
         <Grid container spacing={3}>
           {dogNames}
           <Grid item xs={12} md={0} lg={12}>
@@ -103,6 +102,7 @@ export default function MyMemorialsPage() {
           ))}
         </Grid>
       </Container>
+      
     </>
   );
 }
