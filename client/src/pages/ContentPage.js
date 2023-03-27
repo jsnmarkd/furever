@@ -30,7 +30,7 @@ export default function ContentPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  });
 
   return (
     <>
@@ -49,10 +49,10 @@ export default function ContentPage() {
         </Stack>
         <Container>
           <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-            <Grid xs={6}>
+            <Grid item xs={12} sm={6}>
               <ContentCard key={`content-${id}`} content={contents} />
             </Grid>
-            <Grid xs={6}>
+            <Grid item xs={12} sm={6} sx={{ mt: { xs: 2, sm: 0 } }}>
               <CommentBox2 key={`comments-${id}`} contentId={id} comments={comments} addComment={addComment} />
             </Grid>
           </Grid>

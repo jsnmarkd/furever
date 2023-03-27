@@ -39,12 +39,13 @@ export default function MyMemorialsPage() {
       });
   }, []);
 
-  const dogNamesArr = contents.map((content) => {
-    return content.dog_name;
-  })
+  const dogNamesSet = new Set();
+  contents.forEach((content) => {
+    dogNamesSet.add(content.dog_name);
+  });
 
   const colors = ['info', 'warning', 'error', 'success'];
-  const dogNames = dogNamesArr.map((dog) => {
+  const dogNames = Array.from(dogNamesSet).map((dog) => {
     const colorIndex = Math.floor(Math.random() * colors.length);
     const color = colors[colorIndex];
     return (
@@ -52,7 +53,8 @@ export default function MyMemorialsPage() {
         <AppWidgetSummary title={dog} color={color} />
       </Grid>
     );
-  })
+  });
+
 
   return (
     <>

@@ -1,6 +1,6 @@
 INSERT INTO users (username, email, password, first_name, last_name, user_profile_picture, bio) VALUES 
-('lovedogs23', 'lovedogs23@gmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Sarah', 'Jones', 'https://picsum.photos/200', 'Dog lover and avid walker. Miss my best friend so much.'),
-('dogmomma', 'dogmomma@hotmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Emily', 'Lee', 'https://picsum.photos/200', 'My heart aches every day for my sweet boy.'),
-('puppers4ever', 'puppers4ever@yahoo.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Ryan', 'Chen', 'https://picsum.photos/200', 'My dogs are my life, even in death.'),
-('ruffrider', 'ruffrider@gmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'David', 'Nguyen', 'https://picsum.photos/200', 'My dog was the coolest dude. Miss him a lot.'),
-('barkingmad', 'barkingmad@gmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Grace', 'Davis', 'https://picsum.photos/200', 'Lost my furry soulmate. This app is helping me cope.');
+('lovedogs23', 'lovedogs23@gmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Sarah', 'Jones', 'https://placedog.net/640/480?id=12', 'Dog lover and avid walker. Miss my best friend so much.'),
+('dogmomma', 'dogmomma@hotmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Emily', 'Lee', 'https://placedog.net/640/480?id=11', 'My heart aches every day for my sweet boy.'),
+('puppers4ever', 'puppers4ever@yahoo.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Ryan', 'Chen', 'https://placedog.net/640/480?id=13', 'My dogs are my life, even in death.'),
+('ruffrider', 'ruffrider@gmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'David', 'Nguyen', 'https://placedog.net/640/480?id=14', 'My dog was the coolest dude. Miss him a lot.'),
+('barkingmad', 'barkingmad@gmail.com', '$2a$10$ceDKcNoRPMmJBdi5H1raJuiP74ZtS7.BtK2cU19uTSyL4Z5y6.8yG', 'Grace', 'Davis', 'https://placedog.net/640/480?id=15', 'Lost my furry soulmate. This app is helping me cope.');
