@@ -58,21 +58,21 @@ npm start
 
 ## Authors
 <div align='center'>
-  <div>
-    👤 **Jason Divinagracia**
 
-    * Github: [@jsnmarkd](https://github.com/jsnmarkd)
-  </div>
-  <div>
-    👤 **Denny Doan**
+👤 **Jason Divinagracia**
 
-    * Github: [@ireckless03](https://github.com/ireckless03)
-  </div>
-  <div>
-    👤 **Elisabeth Clarke**
-  
-    * Github: [@TheBlackElder](https://github.com/TheBlackElder)
-  </div>
+* Github: [@jsnmarkd](https://github.com/jsnmarkd)
+
+
+👤 **Denny Doan**
+
+* Github: [@ireckless03](https://github.com/ireckless03)
+
+
+👤 **Elisabeth Clarke**
+
+* Github: [@TheBlackElder](https://github.com/TheBlackElder)
+
 </div>
 ## Dependencies
 
