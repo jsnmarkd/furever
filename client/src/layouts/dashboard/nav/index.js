@@ -103,7 +103,7 @@ export default function Nav({ openNav, onCloseNav, user }) {
         <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
           <Box
             component="img"
-            src="/assets/illustrations/furever_logo.png"
+            src="/assets/illustrations/final_furever_logo.svg"
             sx={{ width: 125, position: 'absolute', top: -50 }}
           />
         </Stack>

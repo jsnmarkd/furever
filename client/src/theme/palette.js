@@ -21,7 +21,12 @@ const PINK = {
   100: '#f8bbd0',
   200: '#f48fb1',
   300: '#f06292',
-  
+};
+
+const ORANGE = {
+  50: '#fff3e0',
+  100: '#FFE5C3',
+  200: '#F6C88A',
 };
 
 const PRIMARY = {
@@ -90,11 +95,14 @@ const palette = {
   error: ERROR,
   grey: GREY,
   pink: PINK,
+  orange: ORANGE,
   divider: alpha(GREY[500], 0.24),
   text: {
     primary: GREY[800],
     secondary: GREY[600],
     disabled: GREY[500],
+    tertiary: ORANGE[200],
+
   },
   background: {
     paper: '#fff',
@@ -104,8 +112,8 @@ const palette = {
   action: {
     active: GREY[600],
     hover: alpha(GREY[500], 0.08),
-    selected: alpha(GREY[500], 0.16),
-    disabled: alpha(GREY[500], 0.8),
+    selected: alpha(ORANGE[200], 0.16),
+    disabled: alpha(ORANGE[200], 0.8),
     disabledBackground: alpha(GREY[500], 0.24),
     focus: alpha(GREY[500], 0.24),
     hoverOpacity: 0.08,

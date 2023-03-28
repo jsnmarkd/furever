@@ -42,7 +42,7 @@ export default function ProductsPage() {
           </Stack>
         </Stack>
 
-        <ProductList products={PRODUCTS} />
+        <ProductList products={PRODUCTS}  />
    
       </Container>
     </>

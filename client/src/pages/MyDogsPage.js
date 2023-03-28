@@ -23,15 +23,7 @@ import {
   Typography,
   IconButton,
   TableContainer,
-  TablePagination,
   Modal,
-  Box,
-  CardHeader,
-  CardContent,
-  CardActions,
-  CardMedia,
-  Grid,
-  TextField,
   Theme,
 } from '@mui/material';
 
@@ -44,11 +36,11 @@ import AddDogForm from '../sections/@dashboard/myDogs/addDogForm';
 import { fDate } from '../utils/formatTime';
 
 // components
-import Label from '../components/label';
+
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
-import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
+import { UserListHead } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
 
@@ -58,7 +50,7 @@ const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'bio', label: 'Bio', alignRight: false },
   { id: 'birthday', label: 'Birthday', alignRight: false },
-  { id: 'dateOfDeath', label: 'Date of Death', alignRight: false },
+  { id: 'dateOfDeath', label: 'Death Anniversary', alignRight: false },
   { id: 'x' },
   { id: 'y' },
 ];
@@ -165,19 +157,19 @@ export default function MyDogsPage() {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event) => {
-    setPage(0);
-    setRowsPerPage(parseInt(event.target.value, 10));
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setPage(0);
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  // };
 
-  const handleFilterByName = (event) => {
-    setPage(0);
-    setFilterName(event.target.value);
-  };
+  // const handleFilterByName = (event) => {
+  //   setPage(0);
+  //   setFilterName(event.target.value);
+  // };
 
   const handleOpenDogModal = (event) => {
     setDogModalOpen(true);
@@ -218,7 +210,6 @@ export default function MyDogsPage() {
       </Helmet>
 
       <Container>
-        
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             MyDogs
@@ -244,7 +235,6 @@ export default function MyDogsPage() {
           </Modal>
         </Stack>
         <Card>
-         
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -326,11 +316,11 @@ export default function MyDogsPage() {
           </Scrollbar>
         </Card>
         <div>
-        <Typography mt={3} variant="h4" gutterBottom>
-           Create Slideshow
+          <Typography mt={3} variant="h4" gutterBottom>
+            Create Slideshow
           </Typography>
           <Slideshow />
-          </div>
+        </div>
       </Container>
 
       <Popover

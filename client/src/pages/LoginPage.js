@@ -62,7 +62,7 @@ export default function LoginPage() {
         {mdUp && (
           <StyledSection>
           
-            <img src="/assets/illustrations/furever_login.svg" alt="login" />
+            <img src="/assets/illustrations/reg_furever_photos.svg" alt="login" />
           </StyledSection>
         )}
 

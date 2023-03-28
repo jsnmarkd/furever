@@ -47,6 +47,7 @@ const StyledCover = styled('img')({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
+
 });
 
 // ----------------------------------------------------------------------

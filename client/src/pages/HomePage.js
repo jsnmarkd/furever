@@ -77,7 +77,7 @@ export default function Page() {
 
       <Container maxWidth="xl">
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <img src="/assets/furever_cover.svg" alt="Furever logo and dog" width="1800" height="600" />
+          <img src="/assets/home_cover_furever.svg" alt="Furever logo and dog" width="1800" height="600" />
         </Stack>
         <Stack direction="row-reverse" alignItems="center" justifyContent="space-between" mb={5}>
           {user && (
@@ -101,6 +101,7 @@ export default function Page() {
               icon={'ant-design:android-filled'}
               value="#HolidayMoments"
               onClick={handleOnClick}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
@@ -111,6 +112,7 @@ export default function Page() {
               icon={'ant-design:apple-filled'}
               value="#FaveToys"
               onClick={handleOnClick}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
@@ -121,6 +123,7 @@ export default function Page() {
               icon={'ant-design:windows-filled'}
               value="#TreatsAndTricks"
               onClick={handleOnClick}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
@@ -131,6 +134,7 @@ export default function Page() {
               icon={'ant-design:bug-filled'}
               value="#CuddleTime"
               onClick={handleOnClick}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
