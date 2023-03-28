@@ -75,7 +75,7 @@ npm start
 
 - [Axios](https://axios-http.com/docs/intro)
 - [React](https://reactjs.org/)
-- PostgreSQL 9.x
+- [PostgreSQL](https://www.postgresql.org/)
 - [MUI](https://mui.com/)
 - [apexcharts](https://apexcharts.com)
 - [change-case](https://github.com/blakeembrey/change-case/tree/master/packages/camel-case#readme)
