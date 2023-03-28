@@ -1,12 +1,10 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Avatar, Button, Container, Typography } from '@mui/material';
+import { Stack, IconButton, InputAdornment, TextField, Checkbox, Avatar, Button, Container, Typography } from '@mui/material';
 import Fingerprint from '@mui/icons-material/Fingerprint';
-import { LoadingButton } from '@mui/lab';
 import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
 
 // components
@@ -21,16 +19,16 @@ export default function ProfilePage() {
   const { user, setUser } = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    rememberMe: false,
-    error: null,
-  });
+  // const [formData, setFormData] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   passwordConfirmation: '',
+  //   rememberMe: false,
+  //   error: null,
+  // });
 
   const handleChange = (event) => {
     setUser((prevData) => ({

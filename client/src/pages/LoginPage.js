@@ -47,8 +47,8 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
-  const { login } = useAuthContext();
-  const [error, setError] = useState(null);
+  // const { login } = useAuthContext();
+  // const [error, setError] = useState(null);
 
   return (
     <>

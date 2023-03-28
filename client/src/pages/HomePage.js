@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import { Grid, Container, Button, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
-import { BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
+import { BlogPostsSort } from '../sections/@dashboard/blog';
 import { HomePageCard, SearchCard } from '../sections/@dashboard/home';
 import MemorialModal from '../components/MemorialModal';
 
