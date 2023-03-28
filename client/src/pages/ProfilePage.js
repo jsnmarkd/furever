@@ -22,57 +22,79 @@ export default function ProfilePage() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
+    firstName: user ? user.first_name : '',
+    lastName: user ? user.last_name : '',
+    username: user ? user.username : '',
+    email: user ? user.email : '',
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
     rememberMe: false,
     error: null,
   });
 
+  console.log('user', user)
+  
   const handleChange = (event) => {
-    setUser((prevData) => ({
+    setFormData((prevData) => ({
       ...prevData,
       [event.target.name]: event.target.type === 'checkbox' ? event.target.checked : event.target.value,
     }));
   };
-
-
-  const [uploadImgURL, setUploadImgURL] = useState('');
-
-
+  
+  
+  const [uploadImgURL, setUploadImgURL] = useState(user.user_profile_picture);
+  
+  
   useEffect(() => {
     axios
-      .get(`/users/${user.id}`)
-      .then((res) => {
-        setUser(res.data.users[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .get(`/users/${user.id}`)
+    .then((res) => {
+      setUser(res.data.users);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }, []);
-
-
- 
+  
+  
+  
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
-
+    
     // Read the form data
     const form = e.target;
     const formData = new FormData(form);
     // console.log(formData.get('user_profile_picture'));
-
+    
     // You can pass formData as a fetch body directly:
     // fetch('/some-api', { method: form.method, body: formData }).then()
     const formJson = Object.fromEntries(formData.entries());
-   
+    
   
     formJson.profileUrl = uploadImgURL
     // console.log("Formmmm:", formJson);
+    if (formJson.newPassword && formJson.newPassword.length < 6) {
+      setFormData((prevData) => ({
+        ...prevData,
+        error: "New password must be 6 or more characters",
+      }));
+      return;
+    }
 
+    if (formJson.newPassword && formJson.newPassword !== formJson.confirmPassword) {
+      setFormData((prevData) => ({
+        ...prevData,
+        error: "Passwords do not match",
+      }));
+      return;
+    }
+      setFormData((prevData) => ({
+        ...prevData,
+        error: null,
+      }));
+    
     axios.post(`/users/${user.id}`, formJson).then((response) => {
       // console.log(response);
       setUser(response.data.user);
@@ -102,37 +124,39 @@ export default function ProfilePage() {
                 name="firstName"
                 label="First Name"
                 onChange={handleChange}
-                value={user.first_name}
+                value={formData.firstName}
                 variant="filled"
               />
               <TextField
                 name="lastName"
                 label="Last Name"
                 onChange={handleChange}
-                value={user.last_name}
+                value={formData.lastName}
                 variant="filled"
               />
               <TextField
                 name="username"
                 label="Username"
+                disabled
                 onChange={handleChange}
-                value={user.username}
+                value={formData.username}
                 variant="filled"
               />
               <TextField
                 name="email"
                 label="Email address"
+                disabled
                 onChange={handleChange}
-                value={user.email}
+                value={formData.email}
                 variant="filled"
               />
               <TextField
-                name="password"
-                label="Password"
+                name="oldPassword"
+                label="Old Password"
                 variant="filled"
                 type={showPassword ? 'text' : 'password'}
                 onChange={handleChange}
-                value={user.password}
+                value={formData.oldPassword}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -143,6 +167,41 @@ export default function ProfilePage() {
                   ),
                 }}
               />
+              <TextField
+                name="newPassword"
+                label="New Password"
+                variant="filled"
+                type={showPassword ? 'text' : 'password'}
+                onChange={handleChange}
+                value={formData.newPassword}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                        <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                name="confirmPassword"
+                label="Confirm Password"
+                variant="filled"
+                type={showPassword ? 'text' : 'password'}
+                onChange={handleChange}
+                value={formData.confirmPassword}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                        <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              {formData.error && <div style={{ color: 'red' }}>{formData.error}</div>}
             </Stack>
 
             <div>
