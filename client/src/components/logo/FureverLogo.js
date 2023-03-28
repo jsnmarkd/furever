@@ -19,7 +19,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   // OR using local (public folder)
   // -------------------------------------------------------
   const logo = (
-    <Icon component="img" src="/assets/furrever.svg" sx={{ width: 250, height: 100, cursor: 'pointer' }} />
+    <Icon component="img" src="/assets/logo_furever_text.svg" sx={{ width: 250, height: 100, cursor: 'pointer' }} />
   );
 
 

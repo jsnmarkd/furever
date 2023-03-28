@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dogs = require("../db/queries/dog_media");
 const userDogs = require("../db/queries/dogs");
-const dogMedia = require('../db/queries/dog_media')
+const dogMedia = require('../db/queries/dog_media');
 
 // sends user dogs to front end
 router.post("/", (req, res) => {

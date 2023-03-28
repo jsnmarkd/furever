@@ -52,8 +52,8 @@ export default function Searchbar() {
           </IconButton>
         )}
 
-        <Slide direction="down" in={open} mountOnEnter unmountOnExit>
-          <StyledSearchbar>
+        <Slide direction="down" in={open} mountOnEnter unmountOnExit >
+          <StyledSearchbar >
             <Input
               autoFocus
               fullWidth

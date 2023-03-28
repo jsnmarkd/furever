@@ -36,7 +36,7 @@ export default function UploadDogImg(props) {
   Upload
   <input hidden  type="button" onClick={showUploadWidget} />
 </Button>
-<IconButton color="primary" aria-label="upload picture" component="label" color="secondary">
+<IconButton color="primary" aria-label="upload picture" component="label" >
   <input hidden  type="button" onClick={showUploadWidget} />
   <PhotoCamera />
 </IconButton>

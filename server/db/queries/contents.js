@@ -111,11 +111,19 @@ const getContentById = (id) => {
     });
 };
 
-
+const addContent = (user_id, dog_id, media_id) => {
+  return db.query(
+    `INSERT INTO content_block (user_id, dog_id, media_id) VALUES ($1, $2, $3) RETURNING *;`
+  ,
+  [user_id, dog_id, media_id]).then((data) => {
+    return data.rows;
+  });
+};
 
 module.exports = {
   getAllContent,
   getContentByDogId,
   getContentByUserId,
   getContentById,
+  addContent,
 };

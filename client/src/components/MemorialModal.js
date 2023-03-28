@@ -8,7 +8,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { SxProps } from '@mui/system';
-import { Checkbox, FormControlLabel, FormGroup, Theme, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Theme,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
 import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
 import { useAuthContext } from '../providers/AuthProvider';
 
@@ -17,7 +27,7 @@ const style: SxProps<Theme> = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: "60vw",
+  width: '60vw',
   height: 'auto',
   bgcolor: 'background.paper',
   border: '2px solid #000',
@@ -60,18 +70,33 @@ export default function MemorialModal({ children }) {
 
     // Find the selected dog object
     const selectedDog = userDogs.find((userDog) => userDog.dog_name === dog);
-
+    console.log("sel Dog", selectedDog);
     axios
-      .post('/memorial/new', {
-        dog_id: selectedDog.dog_id,
-        dog_name: selectedDog.dog_name,
-        description,
-        uploadImgURL,
+      .post('http://localhost:8080/media', {
+        dog_id: selectedDog.id,
+        // dog_name: selectedDog.dog_name,
+        media_description: description,
+        media_picture: uploadImgURL,
         isVideo,
       })
       .then((response) => {
         console.log('data from post', response.data);
-        handleClose();
+        console.log('data from post id', response.data[0].id);
+        const newMemorialId = response.data[0].id;
+        axios
+          .post('http://localhost:8080/contents', {
+            user_id: user.id,
+            dog_id: selectedDog.id,
+            media_id: newMemorialId,
+          })
+          .then((res) => {
+            console.log('second POST request response', res);
+            handleClose();
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error(error);
+          });;
       })
       .catch((error) => {
         console.error(error);
@@ -79,23 +104,21 @@ export default function MemorialModal({ children }) {
   };
 
   // to get dog info for menu
-  console.log('front end auth context', user)
+  // console.log('front end auth context', user)
   useEffect(() => {
     axios
-    // sends user info to backend
+      // sends user info to backend
       .post('/memorial', user)
       // get dogs
       .then((response) => {
         // show dog names on drop down menu
-        console.log('front end dogs result',response)
+        console.log('front end dogs result', response);
         setUserDogs(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-
-
 
   return (
     <div>
@@ -131,12 +154,7 @@ export default function MemorialModal({ children }) {
 
               <FormControl fullWidth sx={{ mt: 2 }}>
                 <InputLabel id="dog-select-label">Dog</InputLabel>
-                <Select
-                  labelId="dog-select-label"
-                  id="dog-select"
-                  value={dog}
-                  onChange={handleDogChange}
-                >
+                <Select labelId="dog-select-label" id="dog-select" value={dog} onChange={handleDogChange}>
                   {userDogs.map((userDog) => (
                     <MenuItem key={userDog.dog_id} value={userDog.dog_name}>
                       {userDog.dog_name}
@@ -159,12 +177,7 @@ export default function MemorialModal({ children }) {
               <FormGroup>
                 <FormControlLabel
                   control={
-                    <Checkbox
-                      checked={isVideo}
-                      onChange={handleMediaTypeChange}
-                      name="isVideo"
-                      color="primary"
-                    />
+                    <Checkbox checked={isVideo} onChange={handleMediaTypeChange} name="isVideo" color="primary" />
                   }
                   label="Video"
                 />
@@ -178,7 +191,7 @@ export default function MemorialModal({ children }) {
                 onChange={handleTagsChange}
               /> */}
 
-              <Button type="submit" size="large"  variant="contained" sx={{ mt: 2 }}>
+              <Button type="submit" size="large" variant="contained" sx={{ mt: 2 }}>
                 Submit
               </Button>
             </Box>

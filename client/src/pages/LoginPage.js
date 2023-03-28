@@ -47,8 +47,8 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
-  const { login } = useAuthContext();
-  const [error, setError] = useState(null);
+  // const { login } = useAuthContext();
+  // const [error, setError] = useState(null);
 
   return (
     <>
@@ -62,7 +62,7 @@ export default function LoginPage() {
         {mdUp && (
           <StyledSection>
           
-            <img src="/assets/illustrations/furever_login.svg" alt="login" />
+            <img src="/assets/illustrations/reg_furever_photos.svg" alt="login" />
           </StyledSection>
         )}
 

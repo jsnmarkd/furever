@@ -115,7 +115,7 @@ export default function RegisterForm() {
       <StyledRoot>
         {mdUp && (
           <StyledSection>
-            <img src="/assets/illustrations/furever_login.svg" alt="login" />
+            <img src="/assets/illustrations/group_furever_photos.svg" alt="login" />
           </StyledSection>
         )}
 

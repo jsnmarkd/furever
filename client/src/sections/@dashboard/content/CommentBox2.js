@@ -79,7 +79,7 @@ export default function CommentBox2(props) {
 
         {commentDiv}
 
-        <form method="post" onSubmit={handleSubmit} className="text-box">
+        <form method="post" onSubmit={handleSubmit} className="text-box" >
           <div className="box-container">
             <textarea placeholder="Reply" name="comment" />
             <div>

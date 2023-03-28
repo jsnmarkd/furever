@@ -17,6 +17,14 @@ export default function ContentPage() {
 
   const addComment = (comment) => {
     setComments(comments.concat(comment));
+    axios
+      .get(`http://localhost:8080/comments/content/${id}`)
+      .then((res) => {
+        setComments(res.data.comments);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -30,7 +38,7 @@ export default function ContentPage() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, [id]);
 
   return (
     <>
@@ -43,7 +51,7 @@ export default function ContentPage() {
           <Typography variant="h4" gutterBottom>
             {`${contents.dog_name}'s Memorial`}
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />}>
             Edit Memorial
           </Button>
         </Stack>
