@@ -30,7 +30,7 @@ AppWidgetSummary.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+export default function AppWidgetSummary({ title, total, icon, onClick, value, color = 'primary', sx, ...other }) {
   return (
     <Card
       sx={{
@@ -42,6 +42,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         ...sx,
       }}
       {...other}
+      onClick={() => onClick && onClick(value)}
     >
       {/* <StyledIcon
         sx={{
@@ -58,7 +59,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
 
       <Typography variant="h3">{fShortenNumber(total)}</Typography> */}
 
-      <Typography variant="h3" sx={{ opacity: 0.72 }}>
+      <Typography variant="h4" sx={{ opacity: 0.72 }}>
         {title}
       </Typography>
     </Card>

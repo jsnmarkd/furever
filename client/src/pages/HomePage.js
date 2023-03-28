@@ -61,6 +61,10 @@ export default function Page() {
     setQuery(value);
   }
 
+  const handleOnClick = (value) => {
+    
+    setQuery(value);
+  };
 
   // console.log('Posts:', POSTS);
   // console.log('contents', contents);
@@ -92,19 +96,42 @@ export default function Page() {
         </Stack>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#HolidayMoments" icon={'ant-design:android-filled'} />
+            <AppWidgetSummary
+              title="#HolidayMoments"
+              icon={'ant-design:android-filled'}
+              value="#HolidayMoments"
+              onClick={handleOnClick}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#FaveToys" color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary
+              title="#FaveToys"
+              color="info"
+              icon={'ant-design:apple-filled'}
+              value="#FaveToys"
+              onClick={handleOnClick}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#TreatsAndTricks" color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary
+              title="#TreatsAndTricks"
+              color="warning"
+              icon={'ant-design:windows-filled'}
+              value="#TreatsAndTricks"
+              onClick={handleOnClick}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="#CuddleTime" color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary
+              title="#CuddleTime"
+              color="error"
+              icon={'ant-design:bug-filled'}
+              value="#CuddleTime"
+              onClick={handleOnClick}
+            />
           </Grid>
 
           <Grid item xs={12} md={0} lg={12}>

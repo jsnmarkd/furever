@@ -82,68 +82,70 @@ export default function HomePageCard({ post, index }) {
   return (
     <Grid item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
       <Card sx={{ position: 'relative' }}>
-        <StyledCardMedia
-          sx={{
-            ...((latestPostLarge || latestPost) && {
-              pt: 'calc(100% * 4 / 3)',
-              '&:after': {
-                top: 0,
-                content: "''",
-                width: '100%',
-                height: '100%',
+        <Link href={`/dashboard/content/${media_id}`}>
+          <StyledCardMedia
+            sx={{
+              ...((latestPostLarge || latestPost) && {
+                pt: 'calc(100% * 4 / 3)',
+                '&:after': {
+                  top: 0,
+                  content: "''",
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72),
+                },
+              }),
+              ...(latestPostLarge && {
+                pt: {
+                  xs: 'calc(100% * 4 / 3)',
+                  sm: 'calc(100% * 3 / 4.66)',
+                },
+              }),
+            }}
+          >
+            <SvgColor
+              color="paper"
+              src="/assets/icons/shape-avatar.svg"
+              sx={{
+                width: 80,
+                height: 36,
+                zIndex: 9,
+                bottom: -15,
                 position: 'absolute',
-                bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72),
-              },
-            }),
-            ...(latestPostLarge && {
-              pt: {
-                xs: 'calc(100% * 4 / 3)',
-                sm: 'calc(100% * 3 / 4.66)',
-              },
-            }),
-          }}
-        >
-          <SvgColor
-            color="paper"
-            src="/assets/icons/shape-avatar.svg"
-            sx={{
-              width: 80,
-              height: 36,
-              zIndex: 9,
-              bottom: -15,
-              position: 'absolute',
-              color: 'background.paper',
-              ...((latestPostLarge || latestPost) && { display: 'none' }),
-            }}
-          />
-          <StyledAvatar
-            alt={username}
-            src={user_profile_picture}
-            sx={{
-              ...((latestPostLarge || latestPost) && {
-                zIndex: 9,
-                top: 24,
-                left: 24,
-                width: 40,
-                height: 40,
-              }),
-            }}
-          />
-          <StyledAvatar
-            alt={dog_name}
-            src={dog_profile_picture}
-            sx={{
-              ...((latestPostLarge || latestPost) && {
-                zIndex: 9,
-                top: 24,
-                left: 50,
-                width: 40,
-                height: 40,
-              }),
-            }}
-          />
-          <StyledCover alt={media_description} src={media_picture} />
-        </StyledCardMedia>
+                color: 'background.paper',
+                ...((latestPostLarge || latestPost) && { display: 'none' }),
+              }}
+            />
+            <StyledAvatar
+              alt={username}
+              src={user_profile_picture}
+              sx={{
+                ...((latestPostLarge || latestPost) && {
+                  zIndex: 9,
+                  top: 24,
+                  left: 24,
+                  width: 40,
+                  height: 40,
+                }),
+              }}
+            />
+            <StyledAvatar
+              alt={dog_name}
+              src={dog_profile_picture}
+              sx={{
+                ...((latestPostLarge || latestPost) && {
+                  zIndex: 9,
+                  top: 24,
+                  left: 50,
+                  width: 40,
+                  height: 40,
+                }),
+              }}
+            />
+            <StyledCover alt={media_description} src={media_picture} />
+          </StyledCardMedia>
+        </Link>
 
         <CardContent
           sx={{
