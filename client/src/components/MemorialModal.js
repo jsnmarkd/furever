@@ -105,20 +105,20 @@ export default function MemorialModal({ children }) {
 
   // to get dog info for menu
   // console.log('front end auth context', user)
-  // useEffect(() => {
-  //   axios
-  //     // sends user info to backend
-  //     .post('/memorial', user)
-  //     // get dogs
-  //     .then((response) => {
-  //       // show dog names on drop down menu
-  //       console.log('front end dogs result', response);
-  //       setUserDogs(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      // sends user info to backend
+      .post('/memorial', user)
+      // get dogs
+      .then((response) => {
+        // show dog names on drop down menu
+        console.log('front end dogs result', response);
+        setUserDogs(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <div>
