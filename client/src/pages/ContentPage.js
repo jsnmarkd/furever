@@ -43,7 +43,7 @@ export default function ContentPage() {
           <Typography variant="h4" gutterBottom>
             {`${contents.dog_name}'s Memorial`}
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" color="secondary" startIcon={<Iconify icon="eva:plus-fill" />}>
             Edit Memorial
           </Button>
         </Stack>

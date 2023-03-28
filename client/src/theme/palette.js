@@ -27,6 +27,7 @@ const ORANGE = {
   50: '#fff3e0',
   100: '#FFE5C3',
   200: '#F6C88A',
+
 };
 
 const PRIMARY = {
@@ -38,7 +39,9 @@ const PRIMARY = {
   contrastText: '#fff',
 };
 
-
+const PINKER = {
+  main: '#f48fb1',
+};
 
 const SECONDARY = {
   lighter: '#D6E4FF',
@@ -95,6 +98,7 @@ const palette = {
   error: ERROR,
   grey: GREY,
   pink: PINK,
+  pinker: PINKER,
   orange: ORANGE,
   divider: alpha(GREY[500], 0.24),
   text: {
@@ -102,6 +106,7 @@ const palette = {
     secondary: GREY[600],
     disabled: GREY[500],
     tertiary: ORANGE[200],
+
 
   },
   background: {

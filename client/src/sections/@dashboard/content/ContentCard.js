@@ -100,14 +100,14 @@ export default function ContentCard({ content }) {
         <Tooltip title={dog_name} arrow>
           <StyledAvatar alt={dog_name} src={dog_profile_picture} sx={{ ...{ left: 70, width: 40, height: 40 } }} />
         </Tooltip>
-        <StyledInfo>
+        <StyledInfo >
           <Box sx={{ alignItems: 'center', height: 0 }}>
             {liked ? (
-              <Button onClick={handleUnlike}>
-                <Iconify icon={'eva:heart-fill'} sx={{ width: 35, height: 35, mr: 0.5 }} />
+              <Button onClick={handleUnlike} color="pinker">
+                <Iconify icon={'eva:heart-fill'}  sx={{ width: 35, height: 35, mr: 0.5}} />
               </Button>
             ) : (
-              <Button onClick={handleLike}>
+              <Button onClick={handleLike} color="pinker">
                 <Iconify icon={'eva:heart-outline'} sx={{ width: 35, height: 35, mr: 0.5 }} />
               </Button>
             )}
