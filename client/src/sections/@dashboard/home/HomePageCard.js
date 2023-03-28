@@ -163,7 +163,7 @@ export default function HomePageCard({ post, index }) {
 
           <Link href={`/dashboard/content/${media_id}`}>
             <StyledTitle
-              color="inherit"
+              color="black"
               variant="subtitle2"
               underline="hover"
               sx={{
