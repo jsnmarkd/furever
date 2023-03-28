@@ -52,6 +52,7 @@ export default function ContentCard({ content }) {
     dog_name,
     dog_profile_picture,
     media_description,
+    media_id
   } = content;
 
   const content_id = id
@@ -60,18 +61,20 @@ export default function ContentCard({ content }) {
 
   useEffect(() => {
     axios
-      .get(`/likes/liked?user_id=${user_id}&content_id=${content_id}`)
+      .get(`/likes/liked?user_id=${user_id}&content_id=${media_id}`)
       .then((res) => {
+        console.log('res.data for /likes/liked:', res.data);
         setLiked(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [user_id, content_id]);
+  }, [user_id, media_id]);
 
   const handleLike = () => {
-    axios({ method: 'post', data: { user_id, content_id }, url: '/likes'})
-      .then(() => {
+    axios({ method: 'post', data: { user_id, content_id: media_id }, url: '/likes'})
+      .then((res) => {
+        console.log('handleLike:', res.data);
         setLiked(true);
       })
       .catch((err) => {
@@ -81,8 +84,9 @@ export default function ContentCard({ content }) {
 
   const handleUnlike = () => {
     axios
-      .delete('/likes', { data: { user_id, content_id } })
-      .then(() => {
+      .delete('/likes', { data: { user_id, content_id: media_id } })
+      .then((res) => {
+        console.log('handleUnlike:', res.data);
         setLiked(false);
       })
       .catch((err) => {

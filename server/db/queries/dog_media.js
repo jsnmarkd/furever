@@ -14,7 +14,7 @@ const getDogById = (id) => {
 
 const createDogMedia = (dogId, mediaPicture, mediaVideo, mediaDescription) => {
   return db.query(
-    "INSERT INTO dog_media (dog_id, media_picture, media_video, media_description, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING *;",
+    "INSERT INTO dog_media (dog_id, media_picture, media_video, media_description) VALUES ($1, $2, $3, $4) RETURNING *;",
     [dogId, mediaPicture, mediaVideo, mediaDescription]
   ).then((data) => {
     return data.rows;
