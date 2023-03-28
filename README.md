@@ -57,7 +57,6 @@ npm start
 ```
 
 ## Authors
-<div align='center'>
 
 👤 **Jason Divinagracia**
 
@@ -73,7 +72,6 @@ npm start
 
 * Github: [@TheBlackElder](https://github.com/TheBlackElder)
 
-</div>
 ## Dependencies
 
 - [Axios](https://axios-http.com/docs/intro)
