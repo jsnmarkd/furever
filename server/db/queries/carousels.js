@@ -23,12 +23,14 @@ const addCarousel = (user_id, carousel_pic) => {
   RETURNING *;`;
   return db
     .query(sql, [user_id, carousel_pic])
-    .then((result) => {
-      return result.rows[0];
+    .then((data) => {
+      return data.rows[0];
     })
     .catch((err) => {
       console.log(err.message);
     });
 };
+
+
 
 module.exports = { addCarousel, getCarouselsByUserId };

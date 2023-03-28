@@ -3,6 +3,8 @@ const router = express.Router();
 const carousels = require("../db/queries/carousels");
 
 
+
+
 router.get("/user/:id", (req, res) => {
   const userId = req.params.id;
   carousels.getCarouselsByUserId(userId).then((data) => {
@@ -10,12 +12,11 @@ router.get("/user/:id", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/user/:id", (req, res) => {
   console.log(req.body);
   const userId = req.body.user_id;
   const carouselPic = req.body.carousel_pic;
 
-  // const { dog_name, date_birth, date_passing, dog_description, dog_profile_picture } = req.body
   carousels
     .addCarousel(userId, carouselPic)
     .then((carousel) => {

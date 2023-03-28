@@ -218,7 +218,6 @@ export default function MyDogsPage() {
       </Helmet>
 
       <Container>
-        
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             MyDogs
@@ -244,7 +243,6 @@ export default function MyDogsPage() {
           </Modal>
         </Stack>
         <Card>
-         
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -326,11 +324,11 @@ export default function MyDogsPage() {
           </Scrollbar>
         </Card>
         <div>
-        <Typography mt={3} variant="h4" gutterBottom>
-           Create Slideshow
+          <Typography mt={3} variant="h4" gutterBottom>
+            Create Slideshow
           </Typography>
           <Slideshow />
-          </div>
+        </div>
       </Container>
 
       <Popover
