@@ -109,7 +109,7 @@ const style: SxProps<Theme> = {
 
 export default function MyDogsPage() {
   const { user } = useAuthContext();
-  console.log(user);
+  // console.log(user);
 
   const [open, setOpen] = useState(false);
 

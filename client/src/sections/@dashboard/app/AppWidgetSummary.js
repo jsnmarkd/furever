@@ -1,24 +1,20 @@
 // @mui
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../../utils/formatNumber';
-// components
-import Iconify from '../../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-const StyledIcon = styled('div')(({ theme }) => ({
-  margin: 'auto',
-  display: 'flex',
-  borderRadius: '50%',
-  alignItems: 'center',
-  width: theme.spacing(8),
-  height: theme.spacing(8),
-  justifyContent: 'center',
-  marginBottom: theme.spacing(3),
-}));
+// const StyledIcon = styled('div')(({ theme }) => ({
+//   margin: 'auto',
+//   display: 'flex',
+//   borderRadius: '50%',
+//   alignItems: 'center',
+//   width: theme.spacing(8),
+//   height: theme.spacing(8),
+//   justifyContent: 'center',
+//   marginBottom: theme.spacing(3),
+// }));
 
 // ----------------------------------------------------------------------
 
@@ -28,9 +24,11 @@ AppWidgetSummary.propTypes = {
   title: PropTypes.string.isRequired,
   total: PropTypes.number,
   sx: PropTypes.object,
+  onClick: PropTypes.func,
+  value: PropTypes.string
 };
 
-export default function AppWidgetSummary({ title, total, icon, onClick, value, color = 'primary', sx, ...other }) {
+export default function AppWidgetSummary({ title, onClick, value, color = 'primary', sx, ...other }) {
   return (
     <Card
       sx={{
