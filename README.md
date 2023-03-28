@@ -1,17 +1,17 @@
 <h1 align="center">
   <br>
-    Furever
+<img src='https://raw.githubusercontent.com/jsnmarkd/furever/5e46d54dfbf8a9221bf2bc1bed92357325c1bcb1/client/public/assets/logo_furever_text.svg' alt='log'/>
   <br>
 </h1>
 
 <h4 align="center">
   This project is an Application built with 
   <a href="https://reactjs.org/">React</a> 
-  
+
 </h4>
 
 <p align="center">
-  <a href="#final-product">Final Product</a> •
+  • <a href="#final-product">Final Product</a> •
   <a href="#setup">Setup</a> •
   <a href="#authors">Authors</a> •
   <a href="#dependencies">Dependencies</a> •
