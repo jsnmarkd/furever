@@ -6,8 +6,7 @@
 
 <h4 align="center">
   This project is an Application built with 
-  <a href="https://reactjs.org/">React</a> 
-
+  <a href="https://reactjs.org/">React</a>. Our social media app is dedicated to helping pet owners grieve the loss of their beloved dogs by providing a supportive and compassionate community of individuals who understand the depth of the human-animal bond. The app will allow users to create a digital memorial for their pets, share memories, and connect with other pet owners who have gone through similar experiences. 
 </h4>
 
 <p align="center">
