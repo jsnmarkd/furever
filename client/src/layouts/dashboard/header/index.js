@@ -13,6 +13,7 @@ import ProfilePopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
 import { useAuthContext } from '../../../providers/AuthProvider';
+import { useThemeContext } from '../../../theme/ThemeProvider';
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 280;
@@ -45,6 +46,7 @@ Header.propTypes = {
 
 export default function Header({ onOpenNav }) {
   const { user } = useAuthContext();
+  const { toggleDarkMode } = useThemeContext();
 
   return (
     <StyledRoot>
@@ -57,7 +59,8 @@ export default function Header({ onOpenNav }) {
             display: { lg: 'none' },
           }}
         >
-          <Iconify icon="eva:menu-2-fill" />
+         
+         <Iconify icon="eva:menu-2-fill" />
         </IconButton>
 
         <Searchbar />
@@ -86,10 +89,14 @@ export default function Header({ onOpenNav }) {
             </Link>
           ) : null}
           {user ? <NotificationsPopover /> : null}
+          {user ? (
+            <Button variant="outlined" color="primary" onClick={toggleDarkMode}>
+              Toggle Dark Mode
+            </Button>
+          ) : null}
           {user ? <ProfilePopover /> : null}
         </Stack>
       </StyledToolbar>
     </StyledRoot>
   );
 }
-
