@@ -16,6 +16,7 @@ const contentsRouter = require('./routes/contents');
 const loginRouter = require('./routes/login');
 const dogsRouter = require('./routes/dogs');
 const memorialRouter = require('./routes/memorial');
+const carouselRouter = require('./routes/carousels')
 
 const commentsRouter = require('./routes/comments');
 var app = express();
@@ -41,5 +42,6 @@ app.use('/likes', likesRouter);
 app.use('/contents', contentsRouter);
 app.use('/login', loginRouter);
 app.use('/comments', commentsRouter);
+app.use('/carousels', carouselRouter);
 module.exports = app;
 
