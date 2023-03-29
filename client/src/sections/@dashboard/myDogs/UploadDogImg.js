@@ -6,7 +6,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 
 export default function UploadDogImg(props) {
-  
+
 
   const uploadWidgetRef = useRef();
 
@@ -18,9 +18,6 @@ export default function UploadDogImg(props) {
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {
-          console.log('Done! Here is the image info: ', result.info.url);
-          console.log('resssssulllt:', result);
-          // setUploadURL(result.info.url);
           props.setUploadURL(result.info.url);
         }
       }
@@ -30,16 +27,16 @@ export default function UploadDogImg(props) {
   function showUploadWidget() {
     uploadWidgetRef.current.open();
   }
-  
-  return ( <Stack direction="row" spacing={1} mt={2} mb={2}>
- <Button variant="contained" component="label" color="secondary">
-  Upload
-  <input hidden  type="button" onClick={showUploadWidget} />
-</Button>
-<IconButton color="primary" aria-label="upload picture" component="label" >
-  <input hidden  type="button" onClick={showUploadWidget} />
-  <PhotoCamera />
-</IconButton>
-</Stack> )
+
+  return (<Stack direction="row" spacing={1} mt={2} mb={2}>
+    <Button variant="contained" component="label" color="secondary">
+      Upload
+      <input hidden type="button" onClick={showUploadWidget} />
+    </Button>
+    <IconButton color="primary" aria-label="upload picture" component="label" >
+      <input hidden type="button" onClick={showUploadWidget} />
+      <PhotoCamera />
+    </IconButton>
+  </Stack>)
 
 }

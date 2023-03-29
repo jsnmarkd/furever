@@ -101,7 +101,6 @@ const style: SxProps<Theme> = {
 
 export default function MyDogsPage() {
   const { user } = useAuthContext();
-  // console.log(user);
 
   const [open, setOpen] = useState(false);
 
@@ -156,20 +155,6 @@ export default function MyDogsPage() {
     }
     setSelected(newSelected);
   };
-
-  // const handleChangePage = (event, newPage) => {
-  //   setPage(newPage);
-  // };
-
-  // const handleChangeRowsPerPage = (event) => {
-  //   setPage(0);
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  // };
-
-  // const handleFilterByName = (event) => {
-  //   setPage(0);
-  //   setFilterName(event.target.value);
-  // };
 
   const handleOpenDogModal = (event) => {
     setDogModalOpen(true);

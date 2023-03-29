@@ -18,7 +18,6 @@ router.get("/user/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-   console.log(req.body);
   const dogName = req.body.dog_name
   const dogBio = req.body.dog_description
   const dogBirth = req.body.date_birth

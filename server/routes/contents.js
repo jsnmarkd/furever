@@ -28,7 +28,6 @@ router.get("/user/:id", (req, res) => {
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   contents.getContentById(id).then((data) => {
-    // console.log(data);
     res.json({ contents: data });
   });
 });
@@ -39,7 +38,6 @@ router.post("/", (req, res) => {
   const dogId = req.body.dog_id;
   const mediaId = req.body.media_id;
 
-  // const { dog_name, date_birth, date_passing, dog_description, dog_profile_picture } = req.body
   contents
     .addContent(userId, dogId, mediaId)
     .then((content) => {

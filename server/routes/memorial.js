@@ -7,7 +7,6 @@ const dogMedia = require('../db/queries/dog_media');
 // sends user dogs to front end
 router.post("/", (req, res) => {
   const userId = req.body.id;
-  console.log('user id inside req', userId);
   return userDogs
   .getDogsByUserId(userId)
   .then((result) => {
@@ -22,8 +21,6 @@ router.post("/", (req, res) => {
 // take the post and insert into create a post
 router.post("/new", (req, res) => {
   const { dog_id, description, uploadImgURL, isVideo } = req.body;
-  console.log('data sent from new memorial form to backend', req.body);
-
   // Assign uploadImgURL to media_video or media_picture based on isVideo
   const media_picture = isVideo ? null : uploadImgURL;
   const media_video = isVideo ? uploadImgURL : null;

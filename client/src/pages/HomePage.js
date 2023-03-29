@@ -53,9 +53,6 @@ export default function Page() {
   const results = fuse.search(query);
   const contentResults = results.length > 0 ? results.map(result => result.item) : contents ;
 
-  // console.log('fuse search', results);
-  // console.log('contentResults', contentResults);
-
   const handleOnSearch = ({ currentTarget = {} }) => {
     const { value } = currentTarget;
     setQuery(value);
@@ -65,9 +62,6 @@ export default function Page() {
     
     setQuery(value);
   };
-
-  // console.log('Posts:', POSTS);
-  // console.log('contents', contents);
 
   return (
     <>

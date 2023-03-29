@@ -38,10 +38,7 @@ const Slideshow = () => {
         url = url.join('/upload/w_600,h_600,c_fill/');
 
         setImageUrls((prevImageUrls) => [...prevImageUrls, url]);
-        console.log('IMAGE:', imageUrls);
         const uploadedImg = imageUrls[imageUrls.length - 1];
-        console.log('IMAGEUploaded:', uploadedImg);
-
         axios
           .post(`/carousels/user/${user.id}`, {
             user_id: user.id,

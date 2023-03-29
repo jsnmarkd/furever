@@ -9,7 +9,6 @@ import {
   Link,
   Stack,
   IconButton,
-  Button,
   InputAdornment,
   TextField,
   Checkbox,
@@ -22,8 +21,7 @@ import Iconify from '../components/iconify';
 import { useAuthContext } from '../providers/AuthProvider';
 
 import useResponsive from '../hooks/useResponsive';
-// client/src/pages/RegisterPage.js
-// client/src/providers/AuthProvider.js
+
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
@@ -82,10 +80,12 @@ export default function RegisterForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // confirms passwords are matching
     if (formData.password !== formData.passwordConfirmation) {
       setFormData((prevData) => ({ ...prevData, error: 'Passwords do not match' }));
       return;
     }
+    // checks email format
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(formData.email)) {
       setFormData((prevData) => ({ ...prevData, error: 'Invalid email address' }));
@@ -95,9 +95,8 @@ export default function RegisterForm() {
     axios
       .post('http://localhost:8080/register', formData)
       .then((response) => {
-        // console.log('rrs data', response)
-        const user = response.data.user; // Get the user data from the form data
-        register(user); // Call the register function with the user data
+        const user = response.data.user;
+        register(user);
         navigate('/dashboard', { replace: true });
       })
       .catch((error) => {

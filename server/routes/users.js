@@ -11,20 +11,16 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   users.getUserById(id).then((data) => {
-    console.log(data);
     res.json({ users: data });
   });
 });
 
 router.post("/:id", (req, res) => {
   const { username, email, firstName, lastName, oldPassword, newPassword, profileUrl } = req.body;
-  console.log('req.body', req.body);
-  console.log('req.params.id', req.params.id);
 
   users
     .editUser(req.params.id, username, email, oldPassword, newPassword, firstName, lastName, profileUrl)
     .then((user) => {
-      console.log('User updated:', user);
       const updatedUser = user;
       return res.status(200).send({ user: updatedUser, message: 'User successfully updated' });
     })

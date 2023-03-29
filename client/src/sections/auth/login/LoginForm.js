@@ -39,8 +39,6 @@ export default function LoginForm() {
       })
       .then((response) => {
         const { user } = response.data;
-        // console.log('front end user', user);
-
         login(user);
         navigate('/dashboard', { replace: true });
       })

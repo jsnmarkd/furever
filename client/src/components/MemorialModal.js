@@ -70,7 +70,6 @@ export default function MemorialModal({ children }) {
 
     // Find the selected dog object
     const selectedDog = userDogs.find((userDog) => userDog.dog_name === dog);
-    console.log("sel Dog", selectedDog);
     axios
       .post('http://localhost:8080/media', {
         dog_id: selectedDog.id,
@@ -80,8 +79,6 @@ export default function MemorialModal({ children }) {
         isVideo,
       })
       .then((response) => {
-        console.log('data from post', response.data);
-        console.log('data from post id', response.data[0].id);
         const newMemorialId = response.data[0].id;
         axios
           .post('http://localhost:8080/contents', {
@@ -90,7 +87,6 @@ export default function MemorialModal({ children }) {
             media_id: newMemorialId,
           })
           .then((res) => {
-            console.log('second POST request response', res);
             handleClose();
             window.location.reload();
           })
@@ -103,8 +99,7 @@ export default function MemorialModal({ children }) {
       });
   };
 
-  // to get dog info for menu
-  // console.log('front end auth context', user)
+  // gets dog list for drop down menu
   useEffect(() => {
     axios
       // sends user info to backend
@@ -112,7 +107,6 @@ export default function MemorialModal({ children }) {
       // get dogs
       .then((response) => {
         // show dog names on drop down menu
-        console.log('front end dogs result', response);
         setUserDogs(response.data);
       })
       .catch((error) => {
@@ -182,15 +176,6 @@ export default function MemorialModal({ children }) {
                   label="Video"
                 />
               </FormGroup>
-
-              {/* <TextField
-                fullWidth
-                sx={{ mt: 2 }}
-                label="Tags"
-                value={tags}
-                onChange={handleTagsChange}
-              /> */}
-
               <Button type="submit" size="large" variant="contained" sx={{ mt: 2 }}>
                 Submit
               </Button>

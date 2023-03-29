@@ -63,7 +63,6 @@ export default function ContentCard({ content }) {
     axios
       .get(`/likes/liked?user_id=${user_id}&content_id=${media_id}`)
       .then((res) => {
-        console.log('res.data for /likes/liked:', res.data);
         setLiked(res.data);
       })
       .catch((err) => {
@@ -74,7 +73,6 @@ export default function ContentCard({ content }) {
   const handleLike = () => {
     axios({ method: 'post', data: { user_id, content_id: media_id }, url: '/likes'})
       .then((res) => {
-        console.log('handleLike:', res.data);
         setLiked(true);
       })
       .catch((err) => {
@@ -86,7 +84,6 @@ export default function ContentCard({ content }) {
     axios
       .delete('/likes', { data: { user_id, content_id: media_id } })
       .then((res) => {
-        console.log('handleUnlike:', res.data);
         setLiked(false);
       })
       .catch((err) => {

@@ -64,12 +64,9 @@ const editUser = function (id, username, email, oldPassword, newPassword, firstN
       if (oldPassword && !bcrypt.compareSync(oldPassword, user.password)) {
         throw new Error("Incorrect password");
       }
-      console.log('passes check 1')
       return user;
     })
     .then((user) => {
-      console.log('passes check 2')
-      console.log('user obj in query', user);
       let queryString = "UPDATE users SET "
       let queryParams = []
 
@@ -84,7 +81,7 @@ const editUser = function (id, username, email, oldPassword, newPassword, firstN
       }
 
       if (newPassword) {
-        const hashedPassword = bcrypt.hashSync(newPassword, 10); // Hash the new password
+        const hashedPassword = bcrypt.hashSync(newPassword, 10); 
         queryParams.push(hashedPassword)
         queryString += `password = $${queryParams.length}, `
       }
@@ -106,22 +103,11 @@ const editUser = function (id, username, email, oldPassword, newPassword, firstN
 
       queryParams.push(id)
       queryString += `WHERE id = $${queryParams.length} RETURNING *;`
-
-      console.log('query strings', queryString, queryParams)
-
-      //   return db.query('UPDATE users SET username = $1, email = $2, password = $3, first_name = $4, last_name = $5, user_profile_picture = $6 WHERE id = $7 RETURNING *', [username, email, hashedPassword, firstName, lastName, profileUrl, id])
-      // })
       return db.query(queryString, queryParams)
         .then((data) => {
-          console.log('passes check 3')
-          console.log('user updated at query', data.rows[0])
           return data.rows[0]
         })
-        // .catch((err) => {
-        //   console.error('Error in editUser:', err);
-        //   throw err;
-        // });
     });
 };
 
-  module.exports = { getAllUsers, getUserById, checkUsernameExists, checkEmailExists, addUser, userExists, getUserByEmail, login, editUser };
+module.exports = { getAllUsers, getUserById, checkUsernameExists, checkEmailExists, addUser, userExists, getUserByEmail, login, editUser };

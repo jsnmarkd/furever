@@ -24,7 +24,6 @@ const getDogsByUserId = (id) => {
       [id]
     )
     .then((data) => {
-      // console.log(data);
       return data.rows;
     });
 };

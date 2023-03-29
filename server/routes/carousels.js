@@ -13,7 +13,6 @@ router.get("/user/:id", (req, res) => {
 });
 
 router.post("/user/:id", (req, res) => {
-  console.log(req.body);
   const userId = req.body.user_id;
   const carouselPic = req.body.carousel_pic;
 
