@@ -27,7 +27,8 @@ const getAllContent = () => {
         content_block.id,
         dog_media.id,
         users.id,
-        dogs.id;
+        dogs.id
+      ORDER BY content_block.created_at DESC;;
       `
     )
     .then((data) => {
