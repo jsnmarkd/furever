@@ -1,17 +1,16 @@
 <h1 align="center">
   <br>
-    Furever
+<img src='https://raw.githubusercontent.com/jsnmarkd/furever/5e46d54dfbf8a9221bf2bc1bed92357325c1bcb1/client/public/assets/logo_furever_text.svg' alt='log'/>
   <br>
 </h1>
 
 <h4 align="center">
   This project is an Application built with 
-  <a href="https://reactjs.org/">React</a> 
-  
+  <a href="https://reactjs.org/">React</a>. Our social media app is dedicated to helping pet owners grieve the loss of their beloved dogs by providing a supportive and compassionate community of individuals who understand the depth of the human-animal bond. The app will allow users to create a digital memorial for their pets, share memories, and connect with other pet owners who have gone through similar experiences. 
 </h4>
 
 <p align="center">
-  <a href="#final-product">Final Product</a> •
+  • <a href="#final-product">Final Product</a> •
   <a href="#setup">Setup</a> •
   <a href="#authors">Authors</a> •
   <a href="#dependencies">Dependencies</a> •
@@ -76,7 +75,7 @@ npm start
 
 - [Axios](https://axios-http.com/docs/intro)
 - [React](https://reactjs.org/)
-- PostgreSQL 9.x
+- [PostgreSQL](https://www.postgresql.org/)
 - [MUI](https://mui.com/)
 - [apexcharts](https://apexcharts.com)
 - [change-case](https://github.com/blakeembrey/change-case/tree/master/packages/camel-case#readme)

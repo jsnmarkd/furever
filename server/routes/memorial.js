@@ -11,7 +11,6 @@ router.post("/", (req, res) => {
   return userDogs
   .getDogsByUserId(userId)
   .then((result) => {
-    console.log('backend dogs reuslt', result)
     res.status(200).json(result);
   })
   .catch((error) => {

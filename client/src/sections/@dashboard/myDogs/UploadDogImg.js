@@ -6,7 +6,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 
 export default function UploadDogImg(props) {
-  const [uploadURL, setUploadURL] = useState('');
+  
 
   const uploadWidgetRef = useRef();
 
@@ -20,7 +20,7 @@ export default function UploadDogImg(props) {
         if (!error && result && result.event === 'success') {
           console.log('Done! Here is the image info: ', result.info.url);
           console.log('resssssulllt:', result);
-          setUploadURL(result.info.url);
+          // setUploadURL(result.info.url);
           props.setUploadURL(result.info.url);
         }
       }
