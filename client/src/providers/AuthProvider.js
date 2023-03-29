@@ -1,6 +1,5 @@
 import { createContext, useState, useContext } from 'react';
 
-
 const authContext = createContext();
 
 function useAuthContext() {
@@ -29,12 +28,13 @@ function AuthProvider(props) {
   const logout = function () {
     setAuth(false);
     setUser(null);
+    localStorage.clear();
   };
 
   // authContext will show these items
   const userData = { auth, user, setUser, register, logout, login };
 
-  // comonent to share context
+  // component to share context
   return (
     <authContext.Provider value={userData}>
       {props.children}
