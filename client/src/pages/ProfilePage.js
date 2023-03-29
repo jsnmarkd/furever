@@ -207,10 +207,6 @@ export default function ProfilePage() {
                 Save
                 <Fingerprint />
               </IconButton>
-
-              {/* <LoadingButton size="large" type="submit" variant="contained">
-          Save
-        </LoadingButton> */}
             </div>
           </form>
         </Container>

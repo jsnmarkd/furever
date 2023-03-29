@@ -33,9 +33,10 @@ export default function ShopProductCard({ product }) {
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
+        <Link color="inherit" underline="hover" href={link}>
           <Typography variant="subtitle2" noWrap >
-          <Link color="primary" component="h3" href={link}>{name}</Link> 
+          <Link color="primary" component="h3"  sx={{ cursor: 'pointer' }} 
+          href={link}>{name}</Link> 
           </Typography>
         </Link>
       </Stack>
