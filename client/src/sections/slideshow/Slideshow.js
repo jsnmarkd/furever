@@ -62,7 +62,7 @@ const Slideshow = () => {
   return (
     <>
       <div className="slider-container">
-        <Carousel showArrows showThumbs={false} autoPlay infiniteLoop>
+        <Carousel showArrows showThumbs={false} autoPlay infiniteLoop fade>
           {imageUrls.map((imageUrl) => (
             <div className="each-slide" key={imageUrl}>
               <Image publicId={imageUrl} cloudName={'dq5ggqhz4'}>
