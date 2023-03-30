@@ -19,6 +19,8 @@ import {
   Select,
   TextField,
 } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
 import { useAuthContext } from '../providers/AuthProvider';
 
@@ -44,6 +46,8 @@ export default function MemorialModal({ children }) {
   const { user } = useAuthContext();
   const [uploadImgURL, setUploadImgURL] = useState('');
   const [isVideo, setIsVideo] = useState(false);
+
+  const notify = () => toast('Posted new Memorial!');
 
   const handleMediaTypeChange = (event) => {
     setIsVideo(event.target.checked);
@@ -88,7 +92,10 @@ export default function MemorialModal({ children }) {
           })
           .then((res) => {
             handleClose();
-            window.location.reload();
+            notify();
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000)
           })
           .catch((error) => {
             console.error(error);
@@ -116,6 +123,7 @@ export default function MemorialModal({ children }) {
 
   return (
     <div>
+      <ToastContainer />
       {React.cloneElement(children, { onClick: handleOpen })}
       <Modal
         open={open}

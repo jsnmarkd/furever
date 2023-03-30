@@ -29,14 +29,13 @@ export default function ShopProductCard({ product }) {
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        <StyledProductImg alt={name} src={cover} />
+      <Link color="inherit" underline="hover" href={link}> <StyledProductImg alt={name} src={cover} sx={{ cursor: 'pointer' }} target="_blank"/></Link>
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover" href={link}>
+        <Link color="inherit" underline="hover" href={link} target="_blank" rel="noopener" >
           <Typography variant="subtitle2" noWrap >
-          <Link color="primary" component="h3"  sx={{ cursor: 'pointer' }} 
-          href={link}>{name}</Link> 
+          <Link color="primary" component="h3" underline="hover"  sx={{ cursor: 'pointer' }} target="_blank" rel="noopener" >{name}</Link> 
           </Typography>
         </Link>
       </Stack>
