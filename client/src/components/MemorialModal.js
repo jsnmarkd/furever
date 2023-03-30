@@ -1,3 +1,4 @@
+// client/src../sections/@dashboard/myDogs/MemorialModal.js
 // client/src/components/MemorialModal.js
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
@@ -6,10 +7,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { SxProps } from '@mui/system';
 import {
   Checkbox,
   FormControlLabel,
   FormGroup,
+  Theme,
   FormControl,
   InputLabel,
   MenuItem,
@@ -18,8 +21,19 @@ import {
 } from '@mui/material';
 import UploadDogImg from '../sections/@dashboard/myDogs/UploadDogImg';
 import { useAuthContext } from '../providers/AuthProvider';
-import styles from './MemorialModal.scss'; // Import the SCSS module
 
+const style: SxProps<Theme> = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '60vw',
+  height: 'auto',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function MemorialModal({ children }) {
   const [open, setOpen] = React.useState(false);
